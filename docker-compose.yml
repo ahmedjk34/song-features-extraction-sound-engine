@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  audio-analyzer:
+    build: .
+    container_name: audio-analyzer
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    # Override command to run interactively
+    command: python3 main.py
