@@ -14,8 +14,8 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
             'preferredcodec': 'wav',
         }],
         'postprocessor_args': [
-            '-ar', '48000',        # Sample rate: 48 kHz
-            '-ac', '1',            # Mono
+            '-ar', '44100',        # 44.1 kHz - CD quality, standard for music
+            '-ac', '2',            # STEREO - crucial for music analysis
             '-sample_fmt', 's16',  # 16-bit PCM
         ],
         'prefer_ffmpeg': True,
@@ -33,4 +33,4 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
         print("❌ Failed: No WAV found")
 
 # Example:
-download_song("Lose Yourself", "Eminem", "eminem_lose_yourself.wav")
+download_song("CRY", "cigs after sex", "audio.wav")
