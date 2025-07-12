@@ -1,3 +1,4 @@
 essentia
 numpy
 pyyaml
+yt-dlp
