@@ -32,5 +32,3 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
     else:
         print("❌ Failed: No WAV found")
 
-# Example:
-download_song("CRY", "cigs after sex", "audio.wav")

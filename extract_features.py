@@ -37,7 +37,3 @@ def extract_features(audio_path: str):
         "rms": float(rms),
         "mfcc": mfccs_mean,
     }
-
-# Example usage
-features = extract_features("audio.wav")
-print(json.dumps(features, indent=2))
