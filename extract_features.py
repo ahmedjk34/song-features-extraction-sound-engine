@@ -1,18 +1,14 @@
 import librosa
 import numpy as np
 
-
 def load_audio(audio_path: str, sr: int = 44100):
-    """Loads an audio file and returns the waveform and sample rate."""
     try:
         y, sr = librosa.load(audio_path, sr=sr, mono=True)
         return y, sr
     except Exception as e:
         raise RuntimeError(f"librosa.load failed: {e}")
 
-
 def calculate_features(y_seg, sr):
-    """Calculates audio features for a given segment."""
     try:
         bpm, _ = librosa.beat.beat_track(y=y_seg, sr=sr)
         chroma_stft = librosa.feature.chroma_stft(y=y_seg, sr=sr)
@@ -37,9 +33,7 @@ def calculate_features(y_seg, sr):
     except Exception as e:
         raise RuntimeError(f"Feature extraction failed: {e}")
 
-
 def aggregate_features(features_per_segment, key):
-    """Aggregates statistics (mean, std, min, max) for a given feature key."""
     vals = [seg[key] for seg in features_per_segment if key in seg]
     if not vals:
         return {}
@@ -50,9 +44,7 @@ def aggregate_features(features_per_segment, key):
         "max": float(np.max(vals)),
     }
 
-
 def aggregate_mfcc(features_per_segment, key):
-    """Aggregates MFCC statistics (mean and std) for each coefficient."""
     mfcc_arrs = [seg[key] for seg in features_per_segment if key in seg]
     if not mfcc_arrs:
         return []
@@ -65,17 +57,20 @@ def aggregate_mfcc(features_per_segment, key):
         for i in range(mfcc_arrs.shape[1])
     ]
 
-
-def extract_features(audio_path: str, segment_duration: float = 10.0):
+def extract_features(audio_path: str, segment_duration: float = 10.0, min_rms: float = 0.01):
     """
     Extracts audio features for the entire audio and for segments.
     Returns a dict with aggregated statistics for each feature.
+    BPM is computed globally and for valid segments. since mean BPM can vary significantly across segments,
     """
     try:
         y, sr = load_audio(audio_path)
         duration = librosa.get_duration(y=y, sr=sr)
         total_segments = max(1, int(duration // segment_duration))
         features_per_segment = []
+
+        # 1. Compute global BPM for the entire song
+        global_bpm, _ = librosa.beat.beat_track(y=y, sr=sr)
 
         for seg in range(total_segments):
             start_sample = int(seg * segment_duration * sr)
@@ -87,14 +82,17 @@ def extract_features(audio_path: str, segment_duration: float = 10.0):
 
             try:
                 features = calculate_features(y_seg, sr)
-                features_per_segment.append(features)
+                # Only accept BPM from segments with sufficient energy (rms)
+                if features["rms"] >= min_rms:
+                    features_per_segment.append(features)
             except RuntimeError as e:
-                features_per_segment.append({"error": f"segment {seg}: {e}"})
+                continue  # Skip problematic segment
 
         return {
             "duration_sec": float(duration),
             "segments": total_segments,
-            "bpm": aggregate_features(features_per_segment, "bpm"),
+            "global_bpm": float(global_bpm),  # Main BPM for the song
+            "bpm_segments": aggregate_features(features_per_segment, "bpm"),  # Variability (optional)
             "chroma_stft": aggregate_features(features_per_segment, "chroma_stft"),
             "spectral_centroid": aggregate_features(features_per_segment, "spectral_centroid"),
             "spectral_bandwidth": aggregate_features(features_per_segment, "spectral_bandwidth"),
