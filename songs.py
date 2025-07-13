@@ -1,5 +1,5 @@
 songs = [
-    ["Lose Yourself", "Eminem"],
+    ["Forget Her", "Jeff Buckley"],
     ["Empty", "Chase Atlantic"],
     ["Cry baby", "The neighborhood"],
 ]
