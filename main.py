@@ -4,7 +4,11 @@ import time
 from download_song import download_song
 from extract_features import extract_features
 from songs import songs
+import asyncio
+from libsql_client import create_client
 
+from dotenv import load_dotenv
+load_dotenv()  # <-- Load .env at the very top!
 
 def log_error(song, artist, error, log_file="error_log.json"):
     """Logs errors to a JSON file."""
@@ -61,14 +65,31 @@ def process_song(song, artist, index, temp_dir="temp_files", global_start=None):
             os.remove(filename)
 
 
-def save_results(results, output_file="extracted_features.json"):
-    """Saves the extracted features to a JSON file."""
+
+
+async def save_results(results, output_file="extracted_features.json"):
+    """Saves the extracted features to a JSON file and DB."""
+    # Save to file
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     print(f"✅ Done. Output saved to {output_file}")
 
+    # Prepare DB connection
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
 
-def main():
+    # Insert JSON into data_from_site table
+    data_json = json.dumps(results, ensure_ascii=False)
+    async with create_client(url, auth_token=auth_token) as client:
+        await client.execute(
+            "INSERT INTO data_from_site (data) VALUES (?)",
+            [data_json]
+        )
+        print("✅ Data inserted into data_from_site table.")
+
+
+
+async def main():
     """Main function to process all songs."""
     results = []
     start_all = time.perf_counter()
@@ -78,10 +99,10 @@ def main():
         if result:
             results.append(result)
 
-    save_results(results)
+    await save_results(results)
     total_duration = time.perf_counter() - start_all
     print(f"[+{total_duration:.2f}s] 🎉 All songs processed in {total_duration:.2f} seconds")
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
