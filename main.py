@@ -13,7 +13,7 @@ load_dotenv()  # Load .env at the very top!
 
 
 def log_error(song_id, artist_id, item_name, artist, error, log_file="error_log.json"):
-    """Logs errors to a JSON file."""
+    """Logs errors to a JSON file. Will handle empty or corrupted log file gracefully."""
     entry = {
         "song_id": song_id, 
         "artist_id": artist_id, 
@@ -24,14 +24,16 @@ def log_error(song_id, artist_id, item_name, artist, error, log_file="error_log.
     }
     logs = []
     if os.path.exists(log_file):
-        with open(log_file, "r", encoding="utf-8") as f:
-            logs = json.load(f)
+        try:
+            with open(log_file, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except (json.JSONDecodeError, Exception):
+            logs = []
     logs.append(entry)
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2, ensure_ascii=False)
     print(f"❌ Error logged for item ID {song_id}: {error}")
-
-
+    
 async def process_and_save_item(client, song_id, artist_id, song_name, artist_name, 
                                item_index, total_items, temp_dir="temp_files", global_start=None):
     """Downloads an audio file, extracts features, and saves to DB."""
@@ -58,7 +60,13 @@ async def process_and_save_item(client, song_id, artist_id, song_name, artist_na
         # Check file size
         file_size = os.path.getsize(filename) if os.path.exists(filename) else 0
         file_size_mb = file_size / (1024 * 1024)
-        
+
+        # PATCH: Check for missing or empty file before feature extraction!
+        if not os.path.exists(filename) or os.path.getsize(filename) == 0:
+            log_error(song_id, artist_id, song_name, artist_name, f"No audio file found at {filename}")
+            print(f"[+{elapsed():.2f}s] ❌ Failed: No WAV found at expected path: {filename}")
+            return False
+
         print(f"[+{elapsed():.2f}s] ✅ Download complete! ({download_duration:.2f}s, {file_size_mb:.2f}MB)")
 
         print(f"[+{elapsed():.2f}s] 🎧 Extracting audio features...")
@@ -109,7 +117,6 @@ async def process_and_save_item(client, song_id, artist_id, song_name, artist_na
                 print(f"[+{elapsed():.2f}s] 🗑️  Temporary file cleaned up: {filename}")
             except Exception as rm_err:
                 print(f"[+{elapsed():.2f}s] ⚠️  Error deleting temp file {filename}: {rm_err}")
-
 
 async def main():
     """Main function to process audio items one at a time from songs_from_playlists."""
