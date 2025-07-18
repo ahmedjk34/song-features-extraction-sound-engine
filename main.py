@@ -6,6 +6,7 @@ from extract_features import extract_features
 from songs import songs
 import asyncio
 from libsql_client import create_client
+from util import flatten_audio_features
 
 from dotenv import load_dotenv
 load_dotenv()  # <-- Load .env at the very top!
@@ -46,13 +47,16 @@ def process_song(song, artist, index, temp_dir="temp_files", global_start=None):
             log_error(song, artist, features["error"])
             return None
 
+        # Flatten features for SQL/ML use
+        flat_vector = flatten_audio_features(features)
         duration = time.perf_counter() - start_time
         print(f"[+{elapsed():.2f}s] ⏱️ Process duration for this song: {duration:.2f} seconds")
 
         return {
             "song": song,
             "artist": artist,
-            "audio_features": features,
+            "audio_features": features,       # full dict
+            "flat_vector": flat_vector        # flat list of 253 floats
         }
 
     except Exception as e:
@@ -63,7 +67,6 @@ def process_song(song, artist, index, temp_dir="temp_files", global_start=None):
     finally:
         if os.path.exists(filename):
             os.remove(filename)
-
 
 
 
