@@ -1,2 +1,5 @@
 __pycache__/
 notes
+.env
+.cache
+.extracted_features
