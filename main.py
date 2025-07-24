@@ -1,24 +1,32 @@
 import os
 import time
 import json
+import asyncio
 from download_song import download_song
 from extract_features import extract_features
-from util import flatten_audio_features
-
-import asyncio
+from util import (
+    flatten_audio_features,
+    parse_feature_vector,
+    average_feature_vectors,
+    vector_to_json_str
+)
+from artist_vector_utils import (
+    fetch_artist_song_vectors,
+    update_artist_vector
+)
 from libsql_client import create_client
-
 from dotenv import load_dotenv
+
 load_dotenv()  # Load .env at the very top!
 
 
 def log_error(song_id, artist_id, item_name, artist, error, log_file="error_log.json"):
     """Logs errors to a JSON file. Will handle empty or corrupted log file gracefully."""
     entry = {
-        "song_id": song_id, 
-        "artist_id": artist_id, 
-        "item_name": item_name, 
-        "artist": artist, 
+        "song_id": song_id,
+        "artist_id": artist_id,
+        "item_name": item_name,
+        "artist": artist,
         "error": error,
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
     }
@@ -33,8 +41,28 @@ def log_error(song_id, artist_id, item_name, artist, error, log_file="error_log.
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=2, ensure_ascii=False)
     print(f"❌ Error logged for item ID {song_id}: {error}")
-    
-async def process_and_save_item(client, song_id, artist_id, song_name, artist_name, 
+
+
+async def update_artist_vector_if_needed(client, artist_id):
+    """Update the artist's feature vector if song count >= 5."""
+    # Fetch song count for the artist
+    result = await client.execute("SELECT song_count FROM artists_vector WHERE artist_id = ?", [artist_id])
+    if not result.rows:
+        return
+    song_count = result.rows[0]['song_count']
+    if song_count < 5:
+        return
+
+    vectors = await fetch_artist_song_vectors(client, artist_id)
+    if len(vectors) >= 5:
+        avg_vec = average_feature_vectors(vectors)
+        await update_artist_vector(client, artist_id, avg_vec)
+        print(f"✅ Updated artist {artist_id} profile vector (count={song_count})")
+    else:
+        print(f"⚠️ Not enough valid vectors to update artist {artist_id} (found {len(vectors)})")
+
+
+async def process_and_save_item(client, song_id, artist_id, song_name, artist_name,
                                item_index, total_items, temp_dir="temp_files", global_start=None):
     """Downloads an audio file, extracts features, and saves to DB."""
     os.makedirs(temp_dir, exist_ok=True)
@@ -56,7 +84,7 @@ async def process_and_save_item(client, song_id, artist_id, song_name, artist_na
         download_start = time.perf_counter()
         await asyncio.to_thread(download_song, song_name, artist_name, filename)
         download_duration = time.perf_counter() - download_start
-        
+
         # Check file size
         file_size = os.path.getsize(filename) if os.path.exists(filename) else 0
         file_size_mb = file_size / (1024 * 1024)
@@ -90,11 +118,14 @@ async def process_and_save_item(client, song_id, artist_id, song_name, artist_na
         print(f"[+{elapsed():.2f}s] 💾 Saving to database...")
         db_start = time.perf_counter()
         await client.execute(
-            "INSERT INTO songs (song_id, artist_id, feature_vector) VALUES (?, ?, ?)",
-            [song_id, artist_id, str(flat_vector)]
+            "INSERT INTO songs (song_id, artist_id, feature_vector, song_name, artist_name) VALUES (?, ?, ?, ?, ?)",
+            [song_id, artist_id, json.dumps(flat_vector), song_name, artist_name]
         )
         db_duration = time.perf_counter() - db_start
-        
+
+        # Update artist vector if needed (after insert, so trigger has updated song count)
+        await update_artist_vector_if_needed(client, artist_id)
+
         total_duration = time.perf_counter() - start_time
         print(f"[+{elapsed():.2f}s] ✅ Database save complete! ({db_duration:.2f}s)")
         print(f"[+{elapsed():.2f}s] 🎉 AUDIO ITEM PROCESSED SUCCESSFULLY!")
@@ -118,11 +149,12 @@ async def process_and_save_item(client, song_id, artist_id, song_name, artist_na
             except Exception as rm_err:
                 print(f"[+{elapsed():.2f}s] ⚠️  Error deleting temp file {filename}: {rm_err}")
 
+
 async def main():
     """Main function to process audio items one at a time from songs_from_playlists."""
     print("🚀 STARTING AUDIO PROCESSING PIPELINE")
     print("="*80)
-    
+
     url = os.getenv("TURSO_DATABASE_URL")
     auth_token = os.getenv("TURSO_AUTH_TOKEN")
 
@@ -131,21 +163,22 @@ async def main():
         return
 
     print(f"🔗 Connecting to database...")
-    
+
     async with create_client(url, auth_token=auth_token) as client:
         print("✅ Database connection established!")
-        
+
         # Get all items from songs_from_playlists table
         print("📋 Fetching items from source table...")
-        playlist_items = await client.execute("SELECT song_id, artist_id, song_name, artist_name FROM songs_from_playlists")
-        
+        playlist_items_result = await client.execute("SELECT song_id, artist_id, song_name, artist_name FROM songs_from_playlists")
+        playlist_items = playlist_items_result.rows
+
         total_items_in_source = len(playlist_items)
         print(f"📊 Found {total_items_in_source} audio items in source table")
 
         # Get all existing song_ids in one query (MUCH FASTER!)
         print("🔍 Fetching all existing processed item IDs...")
         existing_ids_result = await client.execute("SELECT song_id FROM songs")
-        existing_ids = {row[0] for row in existing_ids_result}  # Convert to set for fast lookup
+        existing_ids = {row[0] for row in existing_ids_result.rows}  # Convert to set for fast lookup
         print(f"✅ Found {len(existing_ids)} already processed items")
 
         # Check which items need processing
@@ -153,7 +186,7 @@ async def main():
         print("="*80)
         items_to_process = []
         items_already_processed = 0
-        
+
         for entry in playlist_items:
             song_id, artist_id, song_name, artist_name = entry
             if song_id in existing_ids:
@@ -164,7 +197,7 @@ async def main():
                 items_to_process.append(entry)
 
         items_to_download = len(items_to_process)
-        
+
         print("\n" + "="*80)
         print("📈 PROCESSING SUMMARY:")
         print(f"📀 Total items in source: {total_items_in_source}")
@@ -188,32 +221,32 @@ async def main():
         start_all = time.perf_counter()
         successful_processes = 0
         failed_processes = 0
-        
+
         for i, entry in enumerate(items_to_process, 1):
             song_id, artist_id, song_name, artist_name = entry
-            
+
             print(f"\n⏰ Starting item {i}/{items_to_download} at {time.strftime('%H:%M:%S')}")
-            
+
             success = await process_and_save_item(
-                client, song_id, artist_id, song_name, artist_name, 
+                client, song_id, artist_id, song_name, artist_name,
                 i, items_to_download, global_start=start_all
             )
-            
+
             if success:
                 successful_processes += 1
             else:
                 failed_processes += 1
-            
+
             # Progress update
             completed = successful_processes + failed_processes
             overall_completed = items_already_processed + completed
             overall_progress = (overall_completed / total_items_in_source) * 100
-            
+
             print(f"\n📊 PROGRESS UPDATE:")
             print(f"✅ Successful processes this session: {successful_processes}")
             print(f"❌ Failed processes this session: {failed_processes}")
             print(f"📈 Overall progress: {overall_completed}/{total_items_in_source} ({overall_progress:.1f}%)")
-            
+
             if i < items_to_download:
                 remaining = items_to_download - i
                 avg_time_per_item = (time.perf_counter() - start_all) / i
@@ -221,7 +254,7 @@ async def main():
                 print(f"⏱️  Estimated time remaining: {estimated_remaining_time/60:.1f} minutes")
 
         total_duration = time.perf_counter() - start_all
-        
+
         print("\n" + "="*80)
         print("🎉 PROCESSING COMPLETE!")
         print("="*80)
@@ -231,10 +264,10 @@ async def main():
         print(f"📊 Success rate: {(successful_processes/(successful_processes+failed_processes)*100):.1f}%" if (successful_processes+failed_processes) > 0 else "N/A")
         print(f"🎵 Average time per item: {total_duration/items_to_download:.2f} seconds" if items_to_download > 0 else "N/A")
         print(f"📈 Final overall progress: {items_already_processed + successful_processes}/{total_items_in_source} ({((items_already_processed + successful_processes)/total_items_in_source)*100:.1f}%)")
-        
+
         if failed_processes > 0:
             print(f"⚠️  Check error_log.json for details on {failed_processes} failed processes")
-        
+
         print("="*80)
 
 
