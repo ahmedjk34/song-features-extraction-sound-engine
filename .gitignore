@@ -3,3 +3,4 @@ notes
 .env
 .cache
 .extracted_features
+downloaded_songs.log
