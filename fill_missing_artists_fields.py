@@ -51,6 +51,7 @@ async def get_spotify_token(session):
 async def get_artist_metadata(artist_id, session, token):
     url = f"https://api.spotify.com/v1/artists/{artist_id}"
     headers = {"Authorization": f"Bearer {token}"}
+    
     async with session.get(url, headers=headers) as resp:
         if resp.status == 200:
             data = await resp.json()
@@ -70,12 +71,21 @@ async def get_artist_metadata(artist_id, session, token):
                 "images": images,
                 "popularity": popularity,
             }
+
         elif resp.status == 401:
             log_warn(f"Spotify token expired while fetching artist_id {artist_id}.")
             return "TOKEN_EXPIRED"
+
+        elif resp.status == 429:
+            retry_after = int(resp.headers.get("Retry-After", "5"))
+            log_warn(f"Rate limit hit! Waiting {retry_after} seconds before retrying artist_id {artist_id}...")
+            await asyncio.sleep(retry_after)
+            return await get_artist_metadata(artist_id, session, token)  # Retry once
+
         else:
             log_fail(f"Spotify API error for artist_id {artist_id}: HTTP {resp.status}")
             return None
+
 
 async def fill_missing_artist_fields():
     url = os.getenv("TURSO_DATABASE_URL")

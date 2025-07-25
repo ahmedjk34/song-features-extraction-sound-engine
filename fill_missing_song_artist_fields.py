@@ -51,6 +51,46 @@ async def get_spotify_token(session):
 async def get_spotify_metadata(song_id, session, token):
     url = f"https://api.spotify.com/v1/tracks/{song_id}"
     headers = {"Authorization": f"Bearer {token}"}
+    
+    async with session.get(url, headers=headers) as resp:
+        if resp.status == 200:
+            data = await resp.json()
+            song_name = data.get("name")
+            artists = data.get("artists", [])
+            artist_name = artists[0]["name"] if artists else None
+            sub_artists = json.dumps([a for a in artists[1:]]) if len(artists) > 1 else None
+            explicit = data.get("explicit")
+            popularity = data.get("popularity")
+            duration_ms = data.get("duration_ms")
+            album_obj = data.get("album")
+            album = json.dumps(album_obj) if album_obj else None
+
+            log_info(f"Fetched metadata for song_id {song_id}: name='{song_name}', artist='{artist_name}', sub_artists={sub_artists}")
+            return {
+                "song_name": song_name,
+                "artist_name": artist_name,
+                "sub_artists": sub_artists,
+                "explicit": explicit,
+                "popularity": popularity,
+                "duration_ms": duration_ms,
+                "album": album
+            }
+
+        elif resp.status == 401:
+            log_warn(f"Spotify token expired while fetching song_id {song_id}.")
+            return "TOKEN_EXPIRED"
+
+        elif resp.status == 429:
+            retry_after = int(resp.headers.get("Retry-After", "5"))
+            log_warn(f"Rate limit hit! Waiting {retry_after} seconds before retrying song_id {song_id}...")
+            await asyncio.sleep(retry_after)
+            return await get_spotify_metadata(song_id, session, token)  # Retry once after wait
+
+        else:
+            log_fail(f"Spotify API error for song_id {song_id}: HTTP {resp.status}")
+            return None
+    url = f"https://api.spotify.com/v1/tracks/{song_id}"
+    headers = {"Authorization": f"Bearer {token}"}
     async with session.get(url, headers=headers) as resp:
         if resp.status == 200:
             data = await resp.json()
