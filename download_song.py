@@ -1,3 +1,4 @@
+import platform
 import yt_dlp
 import os
 
@@ -41,7 +42,17 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
 
         video_url = video_info['webpage_url']
 
-    # Now, download with processing
+    # Pick ffmpeg path depending on OS
+    system = platform.system()
+    if system == "Windows":
+        ffmpeg_path = r"C:/ffmpeg/bin/ffmpeg.exe"
+    elif system in ("Linux", "Darwin"):  # Darwin = macOS
+        ffmpeg_path = "/usr/bin/ffmpeg"
+    else:
+        ffmpeg_path = "ffmpeg"  # fallback: expect it in PATH
+
+    
+    # Now, download and convert to WAV
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': 'temp_audio.%(ext)s',
@@ -50,13 +61,13 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
             'preferredcodec': 'wav',
         }],
         'postprocessor_args': [
-            '-ar', '44100',        # 44.1 kHz - CD quality, standard for music
-            '-ac', '2',            # STEREO - crucial for music analysis
-            '-sample_fmt', 's16',  # 16-bit PCM
+            '-ar', '44100',
+            '-ac', '2',
+            '-sample_fmt', 's16',
         ],
         'prefer_ffmpeg': True,
         'quiet': False,
-        'ffmpeg_location': 'C:/ffmpeg/bin/',  # Adjust as needed
+        'ffmpeg_location': ffmpeg_path,
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
