@@ -1,0 +1,11 @@
+#This is the CPU version only. For GPU support, please refer to the official PyTorch website.
+#IN case the GPU version starts installing, you might want to cancel and run the command below manually
+# torch --index-url https://download.pytorch.org/whl/cpu
+torchvggish
+librosa
+numpy
+yt-dlp
+python-dotenv
+aiohttp
+spotipy
+libsql-client
