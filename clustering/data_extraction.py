@@ -1,9 +1,13 @@
+# utils.py
 import os
 from dotenv import load_dotenv
 from libsql_client import create_client
 import asyncio
 import aiohttp
 import numpy as np
+
+# Load environment variables immediately on import
+load_dotenv()
 
 # ANSI color codes for pretty CMD logging
 class Log:
@@ -16,19 +20,22 @@ class Log:
     BOLD = '\033[1m'
     ENDC = '\033[0m'
 
-def log_info(msg):
+
+def log_info(msg: str):
     print(f"{Log.OKBLUE}[INFO]{Log.ENDC} {msg}")
 
-def log_success(msg):
+
+def log_success(msg: str):
     print(f"{Log.OKGREEN}[SUCCESS]{Log.ENDC} {msg}")
 
-def log_warn(msg):
+
+def log_warn(msg: str):
     print(f"{Log.WARNING}[WARN]{Log.ENDC} {msg}")
 
-def log_fail(msg):
+
+def log_fail(msg: str):
     print(f"{Log.FAIL}[FAIL]{Log.ENDC} {msg}")
 
-load_dotenv()
 
 async def get_songs_from_db():
     url = os.getenv("TURSO_DATABASE_URL")
@@ -43,11 +50,7 @@ async def get_songs_from_db():
     async with create_client(url, auth_token=auth_token) as client, aiohttp.ClientSession() as session:
         log_success("Database connection established.")
         
-        # Find artists with any new field missing
-        songs_query = """
-        SELECT * from songs
-        """
-        
+        songs_query = "SELECT * from songs"
         log_info("Fetching songs from database...")
         result = await client.execute(songs_query)
         
@@ -56,14 +59,11 @@ async def get_songs_from_db():
             return []
         
         # Convert rows to dictionaries using column names
-        songs = []
-        for row in result.rows:
-            # Create dictionary by zipping column names with row values
-            song_dict = {col: row[i] for i, col in enumerate(result.columns)}
-            songs.append(song_dict)
+        songs = [{col: row[i] for i, col in enumerate(result.columns)} for row in result.rows]
         
         log_success(f"Fetched {len(songs)} songs from the database.")
         return songs
+
 
 def verify_features(songs):
     original_count = len(songs)
@@ -75,20 +75,19 @@ def verify_features(songs):
         
         # Convert string to numpy array if needed
         if isinstance(feature_vector, str):
-            # Convert string representation to numpy array
             feature_vector = np.fromstring(feature_vector.strip("[]"), sep=",")
         
         if feature_vector is None or len(feature_vector) != 223:
             log_warn(f"Song ID {song['song_id']} has invalid feature vector.")
         else:
-            # Update the song dictionary with the processed feature vector
-            song_copy = song.copy()  # Make a copy to avoid modifying original
+            song_copy = song.copy()
             song_copy['feature_vector'] = feature_vector
             verified_songs.append(song_copy)
     
     verified_count = len(verified_songs)
     log_success(f"Verification complete. {verified_count}/{original_count} songs have valid feature vectors.")
     return verified_songs
+
 
 def data_quality_report(songs):
     if not songs:
@@ -108,17 +107,20 @@ def data_quality_report(songs):
             "missing": int(np.sum(np.isnan(col))),
         }
     
-    # Print summary for each feature (or group as needed)
+    # Print summary for each feature
     for feat, stats in report.items():
-        print(f"{feat}: mean={stats['mean']:.3f}, std={stats['std']:.3f}, min={stats['min']:.3f}, max={stats['max']:.3f}, missing={stats['missing']}")
+        print(f"{feat}: mean={stats['mean']:.3f}, std={stats['std']:.3f}, "
+              f"min={stats['min']:.3f}, max={stats['max']:.3f}, missing={stats['missing']}")
 
-async def main():
-    songs = await get_songs_from_db()
-    if songs is None or len(songs) == 0:
-        return
-    
-    verified_songs = verify_features(songs)
-    data_quality_report(verified_songs)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# Define what gets exported if someone does `from utils import *`
+__all__ = [
+    "Log",
+    "log_info",
+    "log_success",
+    "log_warn",
+    "log_fail",
+    "get_songs_from_db",
+    "verify_features",
+    "data_quality_report",
+]
