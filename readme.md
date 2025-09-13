@@ -347,28 +347,46 @@ Recalculates all artist profile vectors based on their songs.
 
 ## Extracted Features Table
 
-| Feature Category  | Feature Name       | Dimensions | Description                                              |
-| ----------------- | ------------------ | ---------- | -------------------------------------------------------- |
-| **Global**        | duration_sec       | 1          | Total audio duration in seconds                          |
-| **Global**        | segments           | 1          | Number of 10-second segments processed                   |
-| **Temporal**      | global_bpm         | 1          | Overall tempo of the song                                |
-| **Temporal**      | bpm_segments       | 4          | BPM statistics (mean, std, min, max) per segment         |
-| **Temporal**      | onset_env_mean     | 4          | Onset strength statistics                                |
-| **Temporal**      | onset_count        | 4          | Number of note onsets statistics                         |
-| **Temporal**      | zero_crossing_rate | 4          | Zero-crossing rate statistics                            |
-| **Spectral**      | chroma_stft        | 4          | Chromagram (pitch class) statistics                      |
-| **Spectral**      | spectral_centroid  | 4          | Spectral centroid statistics                             |
-| **Spectral**      | spectral_bandwidth | 4          | Spectral bandwidth statistics                            |
-| **Spectral**      | rolloff            | 4          | Spectral rolloff statistics                              |
-| **Timbral**       | rms                | 4          | RMS energy statistics                                    |
-| **Timbral**       | mfcc_mean          | 52         | MFCC mean statistics (13 coeffs × 4 stats)               |
-| **Timbral**       | mfcc_std           | 52         | MFCC standard deviation statistics (13 coeffs × 4 stats) |
-| **Loudness**      | loudness_mean      | 1          | Average loudness across segments                         |
-| **Loudness**      | loudness_std       | 1          | Loudness standard deviation                              |
-| **Loudness**      | loudness_min       | 1          | Minimum loudness                                         |
-| **Loudness**      | loudness_max       | 1          | Maximum loudness                                         |
-| **Deep Learning** | vggish_emb         | 128        | VGGish neural network embeddings                         |
-| **TOTAL**         |                    | **~270**   | **Total feature dimensions**                             |
+| Feature Category  | Feature Name       | Dimensions | Description                                      |
+| ----------------- | ------------------ | ---------- | ------------------------------------------------ |
+| **Global**        | duration_sec       | 1          | Total audio duration in seconds                  |
+| **Global**        | segments           | 1          | Number of 10-second segments processed           |
+| **Temporal**      | global_bpm         | 1          | Overall tempo of the song                        |
+| **Temporal**      | bpm_segments       | 4          | BPM statistics (mean, std, min, max) per segment |
+| **Temporal**      | onset_env_mean     | 4          | Onset strength statistics                        |
+| **Temporal**      | onset_count        | 4          | Number of note onsets statistics                 |
+| **Temporal**      | zero_crossing_rate | 4          | Zero-crossing rate statistics                    |
+| **Spectral**      | chroma_stft        | 4          | Chromagram (pitch class) statistics              |
+| **Spectral**      | spectral_centroid  | 4          | Spectral centroid statistics                     |
+| **Spectral**      | spectral_bandwidth | 4          | Spectral bandwidth statistics                    |
+| **Spectral**      | rolloff            | 4          | Spectral rolloff statistics                      |
+| **Timbral**       | rms                | 4          | RMS energy statistics                            |
+| **Timbral**       | mfcc_mean          | 26         | MFCC mean (13 coeffs × 2: mean, std)             |
+| **Timbral**       | mfcc_std           | 26         | MFCC std (13 coeffs × 2: mean, std)              |
+| **Loudness**      | loudness           | 4          | Loudness statistics (mean, std, min, max)        |
+| **Deep Learning** | vggish_emb         | 128        | VGGish neural network embeddings                 |
+| **TOTAL**         |                    | **223**    | **Total feature dimensions**                     |
+
+### Detailed Breakdown:
+
+```
+3    # Global features (duration_sec, segments, global_bpm)
++ 4    # bpm_segments (mean, std, min, max)
++ 4    # chroma_stft (mean, std, min, max)
++ 4    # spectral_centroid (mean, std, min, max)
++ 4    # spectral_bandwidth (mean, std, min, max)
++ 4    # rolloff (mean, std, min, max)
++ 4    # zero_crossing_rate (mean, std, min, max)
++ 4    # rms (mean, std, min, max)
++ 26   # mfcc_mean (13 coefficients × 2 values each: mean, std)
++ 26   # mfcc_std (13 coefficients × 2 values each: mean, std)
++ 4    # onset_env_mean (mean, std, min, max)
++ 4    # onset_count (mean, std, min, max)
++ 4    # loudness (mean, std, min, max)
++ 128  # vggish_emb (128-dimensional embedding)
+─────
+= 223 total features
+```
 
 ### Feature Aggregation Strategy
 
