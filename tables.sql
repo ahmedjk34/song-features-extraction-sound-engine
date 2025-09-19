@@ -45,6 +45,8 @@ CREATE TABLE song_clusters (
     -- K-Means
     kmeans_cluster_id INT,
     kmeans_distance REAL,
+    confidence REAL, --for k-means only,others confidence can be derived from probabilities
+
     
     -- GMM  
     gmm_cluster_id INT,
@@ -59,7 +61,6 @@ CREATE TABLE song_clusters (
     dbscan_cluster_id INT,  -- -1 for noise
     dbscan_is_core BOOLEAN,
     
-    confidence REAL,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
     
     PRIMARY KEY (song_id, algorithm),
