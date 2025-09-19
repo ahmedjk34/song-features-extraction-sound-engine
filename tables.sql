@@ -45,8 +45,9 @@ CREATE TABLE song_clusters (
     -- K-Means
     kmeans_cluster_id INT,
     kmeans_distance REAL,
-    confidence REAL, --for k-means only,others confidence can be derived from probabilities
-
+    confidence REAL, -- for k-means only, others confidence can be derived from probabilities
+    kmeans_cluster_size INT, -- number of points in this cluster
+    kmeans_silhouette_score REAL, -- silhouette score for this point/cluster
     
     -- GMM  
     gmm_cluster_id INT,

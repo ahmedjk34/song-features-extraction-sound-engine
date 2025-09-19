@@ -118,21 +118,22 @@ async def prepare_data_pipeline():
     # Data extraction and verification
     songs = await get_songs_from_db()
     verified_songs = verify_features(songs)
-    
+
     # Feature processing with intelligent weighting
-    processed_vectors = [process_and_return_vector(song, verified_songs) 
+    processed_vectors = [process_and_return_vector(song, verified_songs)
                         for song in verified_songs]
-    
+
     # PCA dimensionality reduction (93% variance retention)
     pca = PCA(n_components=0.93, svd_solver='full')
     reduced_vectors = pca.fit_transform(processed_vectors)
-    
+
     return reduced_vectors, pca, verified_songs
 ```
 
 #### 2. **Enhanced Feature Preprocessing**
 
 - **Intelligent Group Weighting**:
+
   - VGGish embeddings: 1.2x weight (deep learning features)
   - MFCC features: 1.05x weight (timbral characteristics)
   - Spectral features: 0.85x weight (frequency domain)
@@ -170,24 +171,33 @@ def kmeans(X, n_clusters=5, max_iters=100, tol=1e-4, n_init=10):
 CREATE TABLE song_clusters (
     song_id TEXT NOT NULL,
     algorithm TEXT CHECK(algorithm IN ('kmeans', 'gmm', 'hierarchical', 'dbscan')),
-    
-    -- K-Means specific fields
+
+    -- K-Means
     kmeans_cluster_id INT,
     kmeans_distance REAL,
-    
-    -- Future algorithm support
+    confidence REAL, -- for k-means only, others confidence can be derived from probabilities
+    kmeans_cluster_size INT, -- number of points in this cluster
+    kmeans_silhouette_score REAL, -- silhouette score for this point/cluster
+
+    -- GMM
     gmm_cluster_id INT,
-    gmm_probabilities TEXT,  -- JSON format
-    hier_level1_id INT,      -- Hierarchical clustering
-    hier_level2_id INT,
-    dbscan_cluster_id INT,   -- DBSCAN clustering
-    
-    confidence REAL,
+    gmm_probabilities TEXT,  -- store JSON as text
+
+    -- Hierarchical
+    hier_level1_id INT,  -- broad clusters
+    hier_level2_id INT,  -- fine clusters
+    hier_distance REAL,
+
+    -- DBSCAN
+    dbscan_cluster_id INT,  -- -1 for noise
+    dbscan_is_core BOOLEAN,
+
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-    
+
     PRIMARY KEY (song_id, algorithm),
     FOREIGN KEY (song_id) REFERENCES songs(song_id)
 );
+
 ```
 
 ## Setup & Installation
@@ -310,6 +320,7 @@ This will:
 ### 3. Run Clustering Analysis
 
 #### Complete Clustering Pipeline
+
 ```bash
 python clustering/main.py
 ```
@@ -317,6 +328,7 @@ python clustering/main.py
 This executes the unified data pipeline with PCA processing.
 
 #### Find Optimal Number of Clusters
+
 ```bash
 python clustering/k-means/k_means_elbow.py
 ```
@@ -324,6 +336,7 @@ python clustering/k-means/k_means_elbow.py
 This generates an elbow plot to determine the optimal K value for clustering.
 
 #### Programmatic Clustering Usage
+
 ```python
 import asyncio
 from clustering.clustering_util import prepare_data_pipeline
@@ -332,10 +345,10 @@ from clustering.k_means.k_means import kmeans
 async def run_clustering():
     # Prepare data with PCA
     reduced_vectors, pca, songs = await prepare_data_pipeline()
-    
+
     # Perform K-Means clustering
     centroids, labels, inertia = kmeans(reduced_vectors, n_clusters=8)
-    
+
     # Use cluster assignments for analysis
     for i, song in enumerate(songs):
         cluster_id = labels[i]
@@ -719,4 +732,3 @@ GROUPS = {
    - **MFCC**: Moderate weight for timbral characteristics
    - **Spectral**: Lower weight to balance frequency domain features
    - **Rhythmic**: Higher weight for tempo and harmonic content
-
