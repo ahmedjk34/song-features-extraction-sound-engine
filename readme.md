@@ -1,10 +1,10 @@
-# Audio Feature Extraction & Artist Profiling System
+# Audio Feature Extraction & Clustering System
 
 ## Project Overview
 
 ### Goal
 
-This system implements an automated pipeline for extracting rich audio features from songs to enable music analysis, recommendation systems, and audio similarity matching. It bridges the gap between raw audio content and meaningful numerical representations that can be used in machine learning applications.
+This system implements an automated pipeline for extracting rich audio features from songs and applying machine learning clustering to enable music analysis, recommendation systems, and audio similarity matching. It bridges the gap between raw audio content and meaningful numerical representations that can be used in machine learning applications, with advanced clustering capabilities for music discovery and analysis.
 
 ### Main Functionalities
 
@@ -13,24 +13,28 @@ This system implements an automated pipeline for extracting rich audio features 
   - Traditional audio features (MFCCs, spectral features, tempo)
   - Deep learning embeddings (VGGish neural network features)
   - Rhythmic and harmonic characteristics
-- **Database Integration**: Stores processed features in Turso database for scalable access
+- **Advanced Clustering Pipeline**: Machine learning clustering with PCA dimensionality reduction
+- **Database Integration**: Stores processed features and cluster assignments in Turso database
 - **Artist Profile Generation**: Creates averaged feature vectors for artists based on their songs
 - **Batch Processing**: Handles large playlists with error recovery and progress tracking
+- **K-Means Clustering**: Automated music similarity clustering with elbow method optimization
 
 ### Problems It Solves
 
-- **Music Recommendation**: Enables content-based filtering using audio similarity
+- **Music Recommendation**: Enables content-based filtering using audio similarity and clustering
 - **Genre Classification**: Provides features for automatic music genre detection
 - **Audio Analysis**: Supports research in music information retrieval
-- **Playlist Generation**: Enables creation of playlists based on audio characteristics
-- **Artist Similarity**: Quantifies musical similarity between artists
+- **Playlist Generation**: Enables creation of playlists based on audio characteristics and cluster membership
+- **Artist Similarity**: Quantifies musical similarity between artists and clusters
+- **Music Discovery**: Identifies similar songs through cluster analysis
+- **Content Organization**: Automatically groups songs by acoustic similarity
 
 ## Pipeline & Architecture
 
 ### Overview of the Processing Pipeline
 
 ```
-YouTube URL/Search → Audio Download → Feature Extraction → Database Storage → Artist Profiling
+YouTube URL/Search → Audio Download → Feature Extraction → Database Storage → Artist Profiling → Clustering Analysis
 ```
 
 ### Detailed Pipeline Steps
@@ -45,7 +49,7 @@ YouTube URL/Search → Audio Download → Feature Extraction → Database Storag
 
 #### 2. **Audio Download** (`download_song.py`)
 
-- **Purpose**: Downloads audio files from YouTube based on song/artist names
+- **Purpose**: Downloads and preprocesses audio from YouTube
 - **Input**: Song name, artist name, output filename
 - **Output**: WAV audio file (44.1kHz, stereo)
 - **Why Necessary**: Obtains raw audio data for feature extraction
@@ -88,6 +92,104 @@ YouTube URL/Search → Audio Download → Feature Extraction → Database Storag
 - **Why Necessary**: Enables artist-level analysis and recommendations
 - **Logic**: Automatically updates artist profiles when ≥5 songs are processed
 
+#### 6. **Clustering Pipeline** (`clustering/`)
+
+- **Purpose**: Groups songs by acoustic similarity using machine learning
+- **Input**: Feature vectors from processed songs
+- **Output**: Cluster assignments and similarity metrics
+- **Why Necessary**: Enables music discovery and recommendation through similarity grouping
+- **Key Components**:
+  - **Data Pipeline** (`clustering_util.py`): Unified extraction, verification, and PCA processing
+  - **Feature Preprocessing** (`feature_preprocessing.py`): Intelligent scaling and weighting
+  - **K-Means Implementation** (`k-means/k_means.py`): Custom clustering with multiple initializations
+  - **Elbow Method** (`k-means/k_means_elbow.py`): Optimal cluster number selection
+  - **Database Integration**: Stores cluster assignments in `song_clusters` table
+
+## Clustering System
+
+### Machine Learning Pipeline
+
+The clustering system processes the 223-dimensional feature vectors through several stages:
+
+#### 1. **Data Preparation Pipeline** (`clustering/clustering_util.py`)
+
+```python
+async def prepare_data_pipeline():
+    # Data extraction and verification
+    songs = await get_songs_from_db()
+    verified_songs = verify_features(songs)
+    
+    # Feature processing with intelligent weighting
+    processed_vectors = [process_and_return_vector(song, verified_songs) 
+                        for song in verified_songs]
+    
+    # PCA dimensionality reduction (93% variance retention)
+    pca = PCA(n_components=0.93, svd_solver='full')
+    reduced_vectors = pca.fit_transform(processed_vectors)
+    
+    return reduced_vectors, pca, verified_songs
+```
+
+#### 2. **Enhanced Feature Preprocessing**
+
+- **Intelligent Group Weighting**:
+  - VGGish embeddings: 1.2x weight (deep learning features)
+  - MFCC features: 1.05x weight (timbral characteristics)
+  - Spectral features: 0.85x weight (frequency domain)
+  - Rhythmic features: 1.1x weight (tempo and chroma)
+
+- **Min-Max Scaling**: Features scaled to 1-10 range for optimal clustering
+- **Data Cleaning**: NaN/infinity handling with robust error recovery
+
+#### 3. **PCA Dimensionality Reduction**
+
+- **Variance Retention**: Maintains 93% of original feature variance
+- **Dimension Reduction**: Typically reduces from 223 to ~130 dimensions
+- **Performance Benefits**: Faster clustering and reduced storage requirements
+- **Noise Reduction**: Eliminates redundant feature correlations
+
+#### 4. **K-Means Clustering Implementation**
+
+```python
+def kmeans(X, n_clusters=5, max_iters=100, tol=1e-4, n_init=10):
+    # Multiple random initializations for robustness
+    # Convergence monitoring with tolerance controls
+    # Returns centroids, labels, and inertia for quality assessment
+```
+
+#### 5. **Elbow Method Optimization**
+
+- **Automated K Selection**: Tests cluster numbers from 2-15
+- **Inertia Analysis**: Computes within-cluster sum of squares
+- **Visual Validation**: Generates elbow plots for optimal K identification
+- **Integration Ready**: Seamlessly works with the main clustering pipeline
+
+### Database Schema for Clustering
+
+```sql
+CREATE TABLE song_clusters (
+    song_id TEXT NOT NULL,
+    algorithm TEXT CHECK(algorithm IN ('kmeans', 'gmm', 'hierarchical', 'dbscan')),
+    
+    -- K-Means specific fields
+    kmeans_cluster_id INT,
+    kmeans_distance REAL,
+    
+    -- Future algorithm support
+    gmm_cluster_id INT,
+    gmm_probabilities TEXT,  -- JSON format
+    hier_level1_id INT,      -- Hierarchical clustering
+    hier_level2_id INT,
+    dbscan_cluster_id INT,   -- DBSCAN clustering
+    
+    confidence REAL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    
+    PRIMARY KEY (song_id, algorithm),
+    FOREIGN KEY (song_id) REFERENCES songs(song_id)
+);
+```
+
 ## Setup & Installation
 
 ### Prerequisites
@@ -114,6 +216,8 @@ spotipy==2.22.1          # Spotify API
 libsql-client==0.5.0     # Database client
 python-dotenv==1.0.0     # Environment variables
 numpy==1.24.3            # Numerical computing
+scikit-learn>=1.3.0      # Machine learning (PCA, preprocessing)
+matplotlib>=3.7.0        # Plotting for elbow method
 ```
 
 ### Environment Setup
@@ -134,6 +238,13 @@ SPOTIPY_CLIENT_SECRET=your_spotify_client_secret
 - **macOS**: `brew install ffmpeg`
 
 ### Database Schema
+
+Run the complete database setup using the provided schema:
+
+```bash
+# Execute the SQL schema file
+sqlite3 your_database.db < tables.sql
+```
 
 The system expects these tables in your Turso database:
 
@@ -161,6 +272,16 @@ CREATE TABLE artists_vector (
     feature_vector TEXT,  -- JSON array
     song_count INTEGER
 );
+
+-- Clustering results
+CREATE TABLE song_clusters (
+    song_id TEXT NOT NULL,
+    algorithm TEXT,
+    kmeans_cluster_id INT,
+    kmeans_distance REAL,
+    confidence REAL,
+    PRIMARY KEY (song_id, algorithm)
+);
 ```
 
 ## Usage Instructions
@@ -186,7 +307,44 @@ This will:
 - Store results in the database
 - Update artist profiles automatically
 
-### 3. Fill Missing Artist Information (Optional)
+### 3. Run Clustering Analysis
+
+#### Complete Clustering Pipeline
+```bash
+python clustering/main.py
+```
+
+This executes the unified data pipeline with PCA processing.
+
+#### Find Optimal Number of Clusters
+```bash
+python clustering/k-means/k_means_elbow.py
+```
+
+This generates an elbow plot to determine the optimal K value for clustering.
+
+#### Programmatic Clustering Usage
+```python
+import asyncio
+from clustering.clustering_util import prepare_data_pipeline
+from clustering.k_means.k_means import kmeans
+
+async def run_clustering():
+    # Prepare data with PCA
+    reduced_vectors, pca, songs = await prepare_data_pipeline()
+    
+    # Perform K-Means clustering
+    centroids, labels, inertia = kmeans(reduced_vectors, n_clusters=8)
+    
+    # Use cluster assignments for analysis
+    for i, song in enumerate(songs):
+        cluster_id = labels[i]
+        print(f"{song['song_name']} → Cluster {cluster_id}")
+
+asyncio.run(run_clustering())
+```
+
+### 4. Fill Missing Artist Information (Optional)
 
 ```bash
 python fill_missing_artists_fields.py
@@ -195,7 +353,7 @@ python fill_missing_song_artist_fields.py
 
 These scripts enrich the database with additional metadata.
 
-### 4. Manual Artist Vector Updates
+### 5. Manual Artist Vector Updates
 
 ```bash
 python average_artists_vectors.py
@@ -289,6 +447,71 @@ Recalculates all artist profile vectors based on their songs.
 
 **Logic**: Creates representative artist profiles by averaging song features
 
+### Clustering Modules
+
+#### `clustering/clustering_util.py` - Unified Data Pipeline
+
+**Purpose**: Provides a streamlined pipeline for clustering preparation
+
+**Key Functions**:
+
+- `prepare_data_pipeline()`: Complete data extraction, verification, EDA, and PCA processing
+
+**Features**:
+
+- Integrated data quality reporting
+- Automatic PCA dimensionality reduction
+- Comprehensive error handling
+- Async processing support
+
+#### `clustering/feature_preprocessing.py` - Advanced Feature Processing
+
+**Purpose**: Intelligent feature scaling and weighting for clustering
+
+**Key Functions**:
+
+- `process_and_return_vector()`: Single-song feature processing with weighting
+- `clean_feature_vector()`: Data sanitization and normalization
+- `min_max_scale()`: Custom scaling to 1-10 range
+
+**Feature Group Weights**:
+
+```python
+GROUPS = {
+    "vggish":   {"slice": slice(95, 223),   "weight": 1.2},  # Deep learning
+    "mfcc":     {"slice": slice(31, 83),    "weight": 1.05}, # Timbral
+    "spectral": {"slice": slice(11, 31),    "weight": 0.85}, # Frequency
+    "rhythmic": {"slice": slice(3, 11),     "weight": 1.1}   # Tempo/Chroma
+}
+```
+
+#### `clustering/k-means/k_means.py` - K-Means Implementation
+
+**Purpose**: Custom K-Means clustering optimized for audio features
+
+**Key Functions**:
+
+- `kmeans()`: Main clustering function with multiple initializations
+- `compute_inertia()`: Quality metric calculation
+
+**Features**:
+
+- Multiple random initializations (n_init=10)
+- Convergence monitoring with tolerance
+- Inertia-based quality assessment
+- Robust centroid updates
+
+#### `clustering/k-means/k_means_elbow.py` - Elbow Method
+
+**Purpose**: Automated optimal cluster number selection
+
+**Features**:
+
+- Tests K values from 2-15
+- Generates elbow plots
+- Uses PCA-reduced features
+- Integrated with main pipeline
+
 ### Support Modules
 
 #### `get_spotify_playlist_songs.py` - Playlist Processing
@@ -305,6 +528,7 @@ Recalculates all artist profile vectors based on their songs.
 
 - Fills gaps in artist and song metadata
 - Ensures database completeness for analysis
+- Enhanced conditional update logic
 
 ## Code Flow
 
@@ -333,7 +557,13 @@ Recalculates all artist profile vectors based on their songs.
    Audio File → Segment into chunks → Extract per-segment features → Aggregate statistics → Return feature vector
    ```
 
-4. **Artist Profile Updates**
+4. **Clustering Pipeline Workflow**
+
+   ```
+   Feature Vectors → Data Verification → EDA → Feature Preprocessing → PCA Reduction → K-Means Clustering → Store Results
+   ```
+
+5. **Artist Profile Updates**
    - Triggered when artist has ≥5 processed songs
    - Computes average feature vector across all artist's songs
    - Stores in `artists_vector` table
@@ -344,6 +574,7 @@ Recalculates all artist profile vectors based on their songs.
 - Comprehensive error logging to `error_log.json`
 - Automatic cleanup of temporary files
 - Progress preservation (can resume after interruption)
+- Robust data validation throughout clustering pipeline
 
 ## Extracted Features Table
 
@@ -395,6 +626,13 @@ Recalculates all artist profile vectors based on their songs.
 - **Robust processing**: Segments with insufficient energy (RMS < 0.01) are excluded from BPM calculation
 - **Deep learning integration**: VGGish embeddings averaged across all valid segments
 
+### Clustering Feature Processing
+
+- **Intelligent weighting**: Different feature groups weighted based on importance for clustering
+- **Min-max scaling**: All features scaled to 1-10 range for consistent clustering performance
+- **PCA reduction**: Dimensionality reduced while maintaining 93% of variance
+- **Quality control**: Comprehensive data validation and cleaning before clustering
+
 ## Configuration & Environment Variables
 
 ### Required Environment Variables
@@ -425,6 +663,23 @@ Recalculates all artist profile vectors based on their songs.
 - Temporary file directory: "temp_files"
 - Error log file: "error_log.json"
 
+#### In `clustering/feature_preprocessing.py`:
+
+- **Feature group weights**:
+  - VGGish: 1.2x
+  - MFCC: 1.05x
+  - Spectral: 0.85x
+  - Rhythmic: 1.1x
+- **Scaling range**: 1-10 (min-max scaling)
+- **PCA variance retention**: 93%
+
+#### In `clustering/k-means/k_means.py`:
+
+- `n_clusters`: Number of clusters (default: 5)
+- `max_iters`: Maximum iterations (default: 100)
+- `tol`: Convergence tolerance (default: 1e-4)
+- `n_init`: Number of random initializations (default: 10)
+
 ## Additional Notes
 
 ### Audio Processing Insights
@@ -449,31 +704,19 @@ Recalculates all artist profile vectors based on their songs.
    - Fallback values for failed extractions
    - Statistical aggregation reduces noise
 
-### Performance Optimizations
+### Clustering System Insights
 
-1. **Async Processing**: Database operations and I/O are asynchronous
-2. **Batch Duplicate Detection**: Single query to check all existing songs
-3. **Model Reuse**: VGGish model loaded once and reused
-4. **Memory Management**: Temporary files cleaned after each song
-5. **Progress Tracking**: Detailed timing and progress information
+1. **PCA Benefits**: Dimensionality reduction provides multiple advantages:
 
-### Design Decisions
+   - **Performance**: Faster clustering on reduced dimensions
+   - **Storage**: More efficient database storage
+   - **Noise Reduction**: Eliminates redundant feature correlations
+   - **Visualization**: Enables 2D/3D cluster visualization
 
-1. **Database Choice**: Turso (libsql) chosen for:
+2. **Feature Weighting Strategy**: Different weights optimize clustering quality:
 
-   - Serverless scalability
-   - SQL compatibility
-   - Edge deployment capabilities
+   - **VGGish**: Higher weight for deep learning semantic features
+   - **MFCC**: Moderate weight for timbral characteristics
+   - **Spectral**: Lower weight to balance frequency domain features
+   - **Rhythmic**: Higher weight for tempo and harmonic content
 
-2. **Feature Storage**: JSON arrays in database for:
-
-   - Flexibility in feature vector changes
-   - Easy serialization/deserialization
-   - Compatibility with various ML frameworks
-
-3. **Artist Profiling**: Automatic updates ensure:
-   - Fresh artist representations
-   - Scalable processing
-   - Consistent data quality
-
-This sound engine provides a robust foundation for music analysis applications, combining traditional signal processing with modern deep learning approaches to create comprehensive audio representations suitable for recommendation systems, genre classification, and music research.
