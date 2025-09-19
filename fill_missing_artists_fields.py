@@ -110,11 +110,8 @@ async def fill_missing_artist_fields():
         artists_missing_query = """
             SELECT artist_id
             FROM artists_vector
-            WHERE artist_name IS NULL
-               OR followers IS NULL
-               OR genres IS NULL
-               OR images IS NULL
-               OR popularity IS NULL
+            WHERE artist_name = ''
+
         """
         log_info("Searching for artists with missing metadata fields...")
         artists_missing = await client.execute(artists_missing_query)
@@ -140,6 +137,30 @@ async def fill_missing_artist_fields():
             if meta and isinstance(meta, dict):
                 update_query = f"""
                     UPDATE {table}
+                    SET artist_name = CASE WHEN artist_name IS NULL OR artist_name = '' THEN ? ELSE artist_name END,
+                        followers = CASE WHEN followers IS NULL OR followers = 0 THEN ? ELSE followers END,
+                        genres = CASE WHEN genres IS NULL OR genres = '[]' THEN ? ELSE genres END,
+                        images = CASE WHEN images IS NULL OR images = '[]' THEN ? ELSE images END,
+                        popularity = CASE WHEN popularity IS NULL OR popularity = 0 THEN ? ELSE popularity END
+                    WHERE artist_id = ?
+                """
+                result = await client.execute(update_query, [
+                    meta["artist_name"],
+                    meta["followers"],
+                    meta["genres"],
+                    meta["images"],
+                    meta["popularity"],
+                    artist_id
+                ])
+
+                # Debug: check how many rows were actually updated
+                rows_updated = getattr(result, "rows_affected", None)
+                if rows_updated is not None:
+                    log_success(f"Updated {artist_id} in {table} (rows affected: {rows_updated}).")
+                else:
+                    log_success(f"Updated {artist_id} in {table}. [no rows_affected info]")
+                update_query = f"""
+                    UPDATE {table}
                     SET artist_name = COALESCE(artist_name, ?),
                         followers = COALESCE(followers, ?),
                         genres = COALESCE(genres, ?),
@@ -155,7 +176,6 @@ async def fill_missing_artist_fields():
                     meta["popularity"],
                     artist_id
                 ])
-                log_success(f"Updated {artist_id} in {table}.")
             else:
                 log_warn(f"Could not fetch info for {artist_id}. Skipping.")
 
