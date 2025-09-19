@@ -133,12 +133,36 @@ def evaluate_silhouette_and_sizes(clustered_data):
 
     return sil_score, cluster_counts
 
+async def update_cluster_metrics_in_db(clustered_data, sil_score, cluster_counts):
+    """Update kmeans_cluster_size and kmeans_silhouette_score in the DB."""
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    async with create_client(url, auth_token=auth_token) as client:
+        log_info("Updating cluster metrics in the database...")
+
+        for cid, size in cluster_counts.items():
+            query = """
+                UPDATE song_clusters
+                SET kmeans_cluster_size = ?, kmeans_silhouette_score = ?
+                WHERE algorithm = 'kmeans' AND kmeans_cluster_id = ?;
+            """
+            await client.execute(query, [size, float(sil_score), int(cid)])
+            log_success(f"Updated cluster {cid}: size={size}, silhouette={sil_score:.4f}")
+
+        log_success("All cluster metrics updated successfully.")
+
+
 async def main():
     clustered_data = await get_kmeans_clusters_from_db()
     if not clustered_data:
         log_fail("No k-means clustered data found.")
         return
-    evaluate_silhouette_and_sizes(clustered_data)
+
+    sil_score, cluster_counts = evaluate_silhouette_and_sizes(clustered_data)
+
+    # --- Update database with computed metrics ---
+    await update_cluster_metrics_in_db(clustered_data, sil_score, cluster_counts)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
