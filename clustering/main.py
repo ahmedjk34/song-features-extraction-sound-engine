@@ -90,7 +90,9 @@ async def insert_cluster_results(client, results):
         for r in results
     ]
 
-    await client.executemany(query, params)
+    for param_set in params:
+        await client.execute(query, param_set)    
+    
     log_success(f"Inserted/updated {len(results)} cluster results.")
 
 
@@ -197,7 +199,6 @@ async def perform_clustering(reduced_vectors, verified_songs, method="kmeans"):
         log_warn(f"Unknown clustering method: {method}")
 
     return results
-
 async def main():
     reduced_vectors, pca, verified_songs = await prepare_data_pipeline()
     if reduced_vectors is None:
