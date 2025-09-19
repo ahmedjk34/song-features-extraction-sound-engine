@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 
 # --- Feature group boundaries and weights (based on your flattening order) ---
 # 0: duration_sec
@@ -19,45 +18,64 @@ from sklearn.preprocessing import StandardScaler
 # 91-94: loudness (mean, std, min, max)
 # 95-222: vggish_emb (128 dims)
 
-# Feature group slices and weights
+# Feature group slices and new, slightly lower weights
 VGGISH_SLICE = slice(95, 223)    # 128 dims
 MFCC_SLICE   = slice(31, 83)     # 52 dims (26 means+stds)
 SPECTRAL_SLICE = slice(11, 31)   # 20 dims (spectral_centroid, bandwidth, rolloff, zcr, rms: 5x4)
 RHYTHMIC_SLICE = slice(3, 11)    # 8 dims (bpm_segments, chroma_stft: 2x4)
-# (You may adjust boundaries later?)
 
 GROUPS = {
-    "vggish":   {"slice": VGGISH_SLICE,   "weight": 1.5},
-    "mfcc":     {"slice": MFCC_SLICE,     "weight": 1.2},
-    "spectral": {"slice": SPECTRAL_SLICE, "weight": 1.0},
-    "rhythmic": {"slice": RHYTHMIC_SLICE, "weight": 1.5}
+    "vggish":   {"slice": VGGISH_SLICE,   "weight": 1.2},
+    "mfcc":     {"slice": MFCC_SLICE,     "weight": 1.05},
+    "spectral": {"slice": SPECTRAL_SLICE, "weight": 0.85},
+    "rhythmic": {"slice": RHYTHMIC_SLICE, "weight": 1.1}
 }
 
-def fit_feature_group_scalers(X, groups=GROUPS):
-    """Fit a StandardScaler for each group, returns dict of scalers."""
-    scalers = {}
-    for group, cfg in groups.items():
-        scaler = StandardScaler()
-        scaler.fit(X[:, cfg["slice"]])
-        scalers[group] = scaler
-    return scalers
+def clean_feature_vector(vec):
+    """Ensure the vector is valid, numeric, nan/inf-free, and length 223."""
+    vec = np.asarray(vec, dtype=np.float64)
+    vec = np.nan_to_num(vec, nan=0.0, posinf=0.0, neginf=0.0)
+    if vec.size < 223:
+        vec = np.pad(vec, (0, 223-vec.size), mode='constant')
+    elif vec.size > 223:
+        vec = vec[:223]
+    return vec
 
-def transform_features(X, scalers, groups=GROUPS):
-    """Normalize and weight each group, returns new array."""
-    X_out = np.zeros_like(X)
-    for group, cfg in groups.items():
-        X_out[:, cfg["slice"]] = scalers[group].transform(X[:, cfg["slice"]]) * cfg["weight"]
-    return X_out
+def min_max_scale(X, feature_range=(-10, 10)):
+    """Scale features in X to the given feature_range along axis 0."""
+    X = np.asarray(X, dtype=np.float64)
+    X_min = np.nanmin(X, axis=0)
+    X_max = np.nanmax(X, axis=0)
+    denom = np.where(X_max - X_min == 0, 1, X_max - X_min)
+    X_scaled = (X - X_min) / denom
+    scale = feature_range[1] - feature_range[0]
+    X_scaled = X_scaled * scale + feature_range[0]
+    return X_scaled
 
-def process_and_store_features(songs, save_path="normalized_vectors.npy"):
+def process_and_return_vector(song, all_songs, groups=GROUPS):
     """
-    Given a list of song dicts with 'feature_vector', normalize and weight features by group.
-    Saves both original and normalized vectors to disk as numpy array of dicts.
+    Clean, min-max scale (1-10), and weight the features for a single song.
+    - all_songs: list of all song dicts (for scaling context)
+    Returns: np.ndarray (shape: (223,))
     """
-    X = np.array([song['feature_vector'] for song in songs])
-    scalers = fit_feature_group_scalers(X)
-    X_norm = transform_features(X, scalers)
-    paired = [{"original": orig, "normalized": norm} for orig, norm in zip(X, X_norm)]
-    np.save(save_path, paired)
-    print(f"[INFO] Saved {len(paired)} original+normalized vector pairs to {save_path}")
-    return paired
+    # Clean all feature vectors for scaling context
+    X = np.array([clean_feature_vector(s['feature_vector']) for s in all_songs])
+    X_scaled = min_max_scale(X, feature_range=(1, 10))
+    # Find this song's index (by object equality, fallback to clean directly)
+    try:
+        i = all_songs.index(song)
+        x = X_scaled[i]
+    except Exception:
+        x = min_max_scale([clean_feature_vector(song['feature_vector'])], feature_range=(1, 10))[0]
+
+    # Weight groups and ensure after weighting, values remain in 1–10
+    x_weighted = np.copy(x)
+    for group, cfg in groups.items():
+        sl = cfg["slice"]
+        w = cfg["weight"]
+        x_weighted[sl] = x[sl] * w
+        # Rescale weighted part if it leaves 1–10 range
+        if x_weighted[sl].min() < 1 or x_weighted[sl].max() > 10:
+            x_weighted[sl] = min_max_scale(x_weighted[sl][None, :], (1, 10))[0]
+
+    return x_weighted
