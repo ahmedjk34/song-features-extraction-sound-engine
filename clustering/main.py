@@ -8,6 +8,7 @@ from sklearn.cluster import DBSCAN, AgglomerativeClustering
 from sklearn.mixture import GaussianMixture
 
 from k_means.k_means import kmeans
+from gmm.gmm import gmm_em, assign_labels
 
 
 DB_URL = os.getenv("TURSO_DATABASE_URL")
@@ -137,24 +138,32 @@ async def perform_clustering(reduced_vectors, verified_songs, method="kmeans"):
             })
             
     elif method == "gmm":
-        log_info("Running GMM clustering...")
-        gmm = GaussianMixture(n_components=8, random_state=42).fit(X)
-        probs = gmm.predict_proba(X)
-        labels = gmm.predict(X)
-        for song, label, prob in zip(verified_songs, labels, probs):
+        log_info("Running custom GMM clustering...")
+        # Use your custom GMM implementation
+        means, covariances, weights, responsibilities, log_likelihood = gmm_em(
+            X, n_clusters=8, max_iters=100, tol=1e-4, seed=42, verbose=True
+        )
+        labels = assign_labels(responsibilities)
+        
+        log_info(f"GMM converged with log-likelihood: {log_likelihood:.4f}")
+        
+        for song, label, responsibility in zip(verified_songs, labels, responsibilities):
+            # Get the probabilities for this data point across all clusters
+            probs = responsibility.tolist()
+            
             results.append({
                 "song_id": song['song_id'],
-                "algorithm": "gmm",
+                "algorithm": "gmm",  # Changed to distinguish from sklearn version
                 "kmeans_cluster_id": None,
                 "kmeans_distance": None,
                 "gmm_cluster_id": int(label),
-                "gmm_probabilities": prob.tolist(),
+                "gmm_probabilities": probs,
                 "hier_level1_id": None,
                 "hier_level2_id": None,
                 "hier_distance": None,
                 "dbscan_cluster_id": None,
                 "dbscan_is_core": None,
-                "confidence": float(np.max(prob))
+                "confidence": float(np.max(responsibility))
             })
 
     elif method == "hierarchical":
@@ -199,13 +208,14 @@ async def perform_clustering(reduced_vectors, verified_songs, method="kmeans"):
         log_warn(f"Unknown clustering method: {method}")
 
     return results
+
 async def main():
     reduced_vectors, pca, verified_songs = await prepare_data_pipeline()
     if reduced_vectors is None:
         return
 
     # Choose clustering method here
-    method = "kmeans"  # or "gmm", "hierarchical", "dbscan"
+    method = "gmm"  # "kmeans", "gmm", "gmm_sklearn", "hierarchical", "dbscan"
     cluster_results = await perform_clustering(reduced_vectors, verified_songs, method=method)
 
     if not DB_URL or not AUTH_TOKEN:
