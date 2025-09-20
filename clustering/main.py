@@ -6,12 +6,11 @@ from libsql_client import create_client
 import os
 
 from k_means.k_means import kmeans
-
-# UPDATED IMPORT - Use the fixed GMM implementation
 from gmm.gmm import gmm_em
 
-from hierarchical.hierarchical import hierarchical_clustering
-from hierarchical.hierarchical_extract import extract_clusters , get_merge_height_for_point
+# UPDATED IMPORTS - Use optimized hierarchical clustering
+from hierarchical.hierarchical import hierarchical_clustering_optimized
+from hierarchical.hierarchical_extract import extract_clusters, get_merge_height_for_point
 
 DB_URL = os.getenv("TURSO_DATABASE_URL")
 AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
@@ -96,7 +95,7 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
     
     if method == "kmeans":
         log_info("Running K-Means clustering...")
-        k = 6  # chosen via the elbow method
+        k = 5  # chosen via the elbow method
         centroids, labels, inertia = kmeans(X, n_clusters=k)
         for i, (song, label) in enumerate(zip(verified_songs, labels)):
             reduced_vector = X[i]
@@ -121,8 +120,9 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                 "dbscan_is_core": None,
                 "confidence": confidence
             })
+            
     elif method == "gmm":
-        log_info("Running FIXED GMM clustering...")
+        log_info("Running GMM clustering...")
         
         try:
             means, covariances, weights, responsibilities, log_likelihood, labels = gmm_em(
@@ -130,7 +130,6 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
             )
             log_info(f"GMM converged with log-likelihood: {log_likelihood:.4f}")
             
-            # Build results using the fixed return values
             for song, label, responsibility in zip(verified_songs, labels, responsibilities):
                 probs = responsibility.tolist()
                 results.append({
@@ -153,44 +152,89 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
             return []
             
     elif method == "hierarchical":
-        log_info("Running custom Hierarchical clustering...")
+        log_info("Running OPTIMIZED custom Hierarchical clustering...")
         
-        # Use your custom implementation
-        linkage_matrix = hierarchical_clustering(X, linkage="average", metric="euclidean")
+        # Check dataset size and choose approach
+        if X.shape[0] > 10000:
+            log_warn(f"Large dataset ({X.shape[0]} points). Using memory-efficient version...")
+            from hierarchical.hierarchical import hierarchical_clustering_memory_efficient
+            linkage_matrix = hierarchical_clustering_memory_efficient(
+                X, linkage="average", metric="euclidean", chunk_size=2000, verbose=True
+            )
+        else:
+            # Use optimized version for reasonable dataset sizes
+            linkage_matrix = hierarchical_clustering_optimized(
+                X, linkage="average", metric="euclidean", verbose=True
+            )
+        
+        if linkage_matrix.size == 0:
+            log_fail("Hierarchical clustering failed to produce results")
+            return []
         
         # Choose two levels for broad and fine clusters
         broad_level = 3
         fine_level = 8
         
+        # Adjust levels based on dataset size
+        max_broad = min(broad_level, X.shape[0] - 1)
+        max_fine = min(fine_level, X.shape[0] - 1)
+        
+        log_info(f"Extracting clusters: broad={max_broad}, fine={max_fine}")
+        
         # Get cluster assignments for both levels
-        hier_level1_labels = extract_clusters(linkage_matrix, broad_level, N=X.shape[0])
-        hier_level2_labels = extract_clusters(linkage_matrix, fine_level, N=X.shape[0])
+        hier_level1_labels = extract_clusters(linkage_matrix, max_broad, N=X.shape[0])
+        hier_level2_labels = extract_clusters(linkage_matrix, max_fine, N=X.shape[0])
+        
+        if len(hier_level1_labels) == 0 or len(hier_level2_labels) == 0:
+            log_fail("Failed to extract cluster labels")
+            return []
         
         # Build results with merge heights
         for idx, song in enumerate(verified_songs):
-            # Get the merge distance at which this sample joined its fine cluster
-            merge_height = get_merge_height_for_point(linkage_matrix, idx, fine_level, N=X.shape[0])
-            
-            # Calculate confidence based on merge height (lower height = more confident)
-            # Normalize by max height in linkage matrix
-            max_height = np.max(linkage_matrix[:, 2]) if len(linkage_matrix) > 0 else 1.0
-            confidence = float(1.0 - (merge_height / max_height)) if max_height > 0 else 1.0
-            confidence = max(0.1, min(1.0, confidence))  # Clamp between 0.1 and 1.0
-            
-            results.append({
-                "song_id": song['song_id'],
-                "algorithm": "hierarchical",
-                "kmeans_cluster_id": None,
-                "kmeans_distance": None,
-                "gmm_cluster_id": None,
-                "gmm_probabilities": None,
-                "hier_level1_id": int(hier_level1_labels[idx]),
-                "hier_level2_id": int(hier_level2_labels[idx]),
-                "hier_distance": float(merge_height),
-                "dbscan_cluster_id": None,
-                "dbscan_is_core": None,
-                "confidence": confidence
-            })
+            try:
+                # Get the merge distance at which this sample joined its fine cluster
+                merge_height = get_merge_height_for_point(
+                    linkage_matrix, idx, max_fine, N=X.shape[0], verbose=False
+                )
+                
+                # Calculate confidence based on merge height (lower height = more confident)
+                # Normalize by max height in linkage matrix
+                max_height = np.max(linkage_matrix[:, 2]) if len(linkage_matrix) > 0 else 1.0
+                confidence = float(1.0 - (merge_height / max_height)) if max_height > 0 else 1.0
+                confidence = max(0.1, min(1.0, confidence))  # Clamp between 0.1 and 1.0
+                
+                results.append({
+                    "song_id": song['song_id'],
+                    "algorithm": "hierarchical",
+                    "kmeans_cluster_id": None,
+                    "kmeans_distance": None,
+                    "gmm_cluster_id": None,
+                    "gmm_probabilities": None,
+                    "hier_level1_id": int(hier_level1_labels[idx]),
+                    "hier_level2_id": int(hier_level2_labels[idx]),
+                    "hier_distance": float(merge_height),
+                    "dbscan_cluster_id": None,
+                    "dbscan_is_core": None,
+                    "confidence": confidence
+                })
+            except Exception as e:
+                log_warn(f"Error processing song {idx}: {e}")
+                # Add with default values if processing fails
+                results.append({
+                    "song_id": song['song_id'],
+                    "algorithm": "hierarchical",
+                    "kmeans_cluster_id": None,
+                    "kmeans_distance": None,
+                    "gmm_cluster_id": None,
+                    "gmm_probabilities": None,
+                    "hier_level1_id": 0,
+                    "hier_level2_id": 0,
+                    "hier_distance": 0.0,
+                    "dbscan_cluster_id": None,
+                    "dbscan_is_core": None,
+                    "confidence": 0.5
+                })
+                
     elif method == "dbscan":
         from sklearn.cluster import DBSCAN
         log_info("Running DBSCAN clustering...")
@@ -213,14 +257,15 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
             })
     else:
         log_warn(f"Unknown clustering method: {method}")
+        
     return results
 
 async def main():
+    """Run all clustering methods."""
     reduced_vectors, pca, verified_songs = await prepare_data_pipeline()
     if reduced_vectors is None:
         return
     
-    # UPDATED: Test all methods sequentially
     methods = ["kmeans", "gmm", "hierarchical", "dbscan"]
     
     if not DB_URL or not AUTH_TOKEN:
@@ -241,8 +286,7 @@ async def main():
                 log_fail(f"Error in {method.upper()} clustering: {str(e)}")
                 continue
 
-# ALTERNATIVE: Run single method
-async def main_single_method(method="gmm"):
+async def main_single_method(method="hierarchical"):
     """Run clustering with a single method."""
     reduced_vectors, pca, verified_songs = await prepare_data_pipeline()
     if reduced_vectors is None:
@@ -261,4 +305,4 @@ async def main_single_method(method="gmm"):
 if __name__ == "__main__":
     # Choose which version to run:
     # asyncio.run(main())  # Run all methods
-    asyncio.run(main_single_method("gmm"))  # Run only GMM
+    asyncio.run(main_single_method("hierarchical"))  # Run optimized hierarchical only
