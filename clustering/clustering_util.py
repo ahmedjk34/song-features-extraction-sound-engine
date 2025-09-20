@@ -14,32 +14,26 @@ async def prepare_data_pipeline():
         pca (PCA object): fitted PCA object
         verified_songs (list): list of verified song dicts
     """
-    # Data extraction
+
+    # Data extraction (keep same)
     songs = await get_songs_from_db()
     if songs is None or len(songs) == 0:
         print("No songs found in DB.")
         return None, None, None
     
-    # Feature verification
+    # Feature verification (keep same)
     verified_songs = verify_features(songs)
     data_quality_report(verified_songs)
     data_eda(verified_songs)
-
-    # Feature processing
-    processed_vectors = np.array([
-        process_and_return_vector(song, verified_songs)
-        for song in verified_songs
-    ])
-
-    # PCA Reduction
-    pca = PCA(n_components=0.93, svd_solver='full')
+    
+    # NEW:
+    processed_vectors = process_and_return_vector(verified_songs, scaling_method='robust')
+    
+    # More conservative PCA (MODIFY THIS):
+    pca = PCA(n_components=min(50, processed_vectors.shape[1] // 2), svd_solver='full')
     reduced_vectors = pca.fit_transform(processed_vectors)
     
     print(f"PCA reduced shape: {reduced_vectors.shape} (from {processed_vectors.shape[1]} features)")
-    print("Sample (first 5 rows) of PCA-reduced features:")
-    for i, row in enumerate(reduced_vectors[:5]):
-        print(f"Row {i}: {np.round(row, 3)}")
-
+    print(f"Explained variance ratio: {pca.explained_variance_ratio_.sum():.4f}")
+    
     return reduced_vectors, pca, verified_songs
-
-

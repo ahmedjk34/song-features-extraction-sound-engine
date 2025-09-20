@@ -485,7 +485,7 @@ Recalculates all artist profile vectors based on their songs.
 
 - `process_and_return_vector()`: Single-song feature processing with weighting
 - `clean_feature_vector()`: Data sanitization and normalization
-- `min_max_scale()`: Custom scaling to 1-10 range
+- `min_max_scale()`: Custom scaling to -10-10 range
 
 **Feature Group Weights**:
 

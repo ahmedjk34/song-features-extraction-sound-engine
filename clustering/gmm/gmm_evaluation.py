@@ -98,7 +98,7 @@ async def get_gmm_clusters_from_db():
             
             # Main query
             query = """
-                SELECT s.song_id, s.feature_vector, c.gmm_cluster_id, c.gmm_responsibilities
+                SELECT s.song_id, s.feature_vector, c.gmm_cluster_id, c.gmm_probabilities
                 FROM songs s
                 JOIN song_clusters c ON s.song_id = c.song_id
                 WHERE c.algorithm = 'gmm'
@@ -145,7 +145,7 @@ async def get_gmm_clusters_from_db():
                     
                     if not columns_data:
                         # If no column info, assume default order
-                        columns_data = ['song_id', 'feature_vector', 'gmm_cluster_id', 'gmm_responsibilities']
+                        columns_data = ['song_id', 'feature_vector', 'gmm_cluster_id', 'gmm_probabilities']
                         log_warn("No column information found, using default column order.")
                     
                     data = [{col: row[i] for i, col in enumerate(columns_data)} for row in rows_data]
@@ -227,7 +227,7 @@ def evaluate_gmm_silhouette_and_sizes(clustered_data):
     
     for i, entry in enumerate(clustered_data):
         fv = parse_feature_vector(entry.get("feature_vector"))
-        resp = parse_responsibilities(entry.get("gmm_responsibilities"))
+        resp = parse_responsibilities(entry.get("gmm_probabilities"))
         cid = entry.get("gmm_cluster_id")
         
         if fv is not None and resp is not None and cid is not None:
