@@ -2,17 +2,22 @@
 
 ## Overview
 
-This project applies K-Means clustering to a dataset of music tracks, each represented by a high-dimensional feature vector derived from audio analysis and metadata. The feature vectors originally comprised **223 features per song**.  
-**Dimensionality reduction via PCA** (Principal Component Analysis) was performed prior to clustering to mitigate the challenges of high-dimensional data and retain the most informative components.
+This project applies K-Means clustering to a dataset of **7,963 music tracks**, each represented by a high-dimensional feature vector derived from audio analysis and metadata. The feature vectors originally comprised **223 features per song**.
+
+**Dimensionality reduction via PCA** (Principal Component Analysis) was performed prior to clustering to reduce dimensionality and retain the most informative components.
+
+---
 
 ## Clustering Methodology
 
 - **Algorithm:** K-Means
-- **Feature Vector Size:** 223 features (reduced with PCA before clustering)
+- **Feature Vector Size:** 223 features (reduced with PCA)
 - **Cluster Count (k):** Selected using the Elbow Method
 - **Evaluation Metrics:**
   - **Silhouette Score**
   - **Cluster Size Distribution**
+
+---
 
 ## Results
 
@@ -20,49 +25,59 @@ This project applies K-Means clustering to a dataset of music tracks, each repre
 
 | Cluster | Number of Songs |
 | ------- | --------------: |
-| 0       |            1445 |
-| 1       |             119 |
-| 2       |            1513 |
-| 3       |            2115 |
-| 4       |            1682 |
-| 5       |            1089 |
+| 0       |            1707 |
+| 1       |            1977 |
+| 2       |            1541 |
+| 3       |            1836 |
+| 4       |             902 |
 
-- Clusters are somewhat imbalanced. For example, cluster 1 is much smaller than others, and cluster 3 is the largest.
+> Note: Clusters are somewhat imbalanced. For example, cluster 4 is smaller than others, while cluster 1 is the largest.
+
+---
 
 ### 2. Silhouette Score
 
-- **Silhouette Score:** `0.0053`
+- **Silhouette Score:** `0.0139`
 
-**Interpretation:**  
-The silhouette score, ranging from -1 to 1, measures both how close each point in a cluster is to points in its own cluster vs. those in other clusters.
+The silhouette score ranges from -1 to 1:
 
-- A score **close to 1** means well-separated clusters.
-- A score **around 0** (like 0.0053 here) means clusters are highly overlapping or poorly defined.
+- **Close to 1:** Well-separated clusters
+- **Around 0:** Overlapping or poorly defined clusters (like in this case)
+
+---
+
+### 3. Graphical Representations
+
+#### K-Means Elbow Plot
+
+![K-Means Elbow Plot](../../images/k-means_elbow.png)
+
+#### Cluster Visualization (Optional)
+
+![K-Means Cluster Plot](../../images/k-means.png)
+
+> These visualizations show that even after PCA, music features overlap significantly, explaining the low silhouette score.
+
+---
 
 ## Why Are the Scores Low?
 
-- **Even with PCA, Music Data Remains Complex:**  
-  While PCA helps reduce dimensionality and noise, music data often lacks clear, hard boundaries between categories—musical characteristics may blend and overlap, making distinct clusters difficult.
-- **Feature Quality:**  
-  Not all extracted features may be equally relevant for perceptual grouping. Some features may introduce noise or redundancy, even after PCA.
-- **K-Means Limitations:**  
-  K-Means assumes clusters are spherical and equally sized, which may not fit the true structure of music data.
-- **Cluster Structure in Music:**  
-  Musical genres, moods, or styles often overlap, so clusters may not be well-separated in any feature space.
+1. **Complexity of Music Data:** Musical characteristics often overlap, making distinct clusters hard to define.
+2. **Feature Quality:** Not all audio features equally capture perceptual similarity; some may introduce noise.
+3. **K-Means Limitations:** Assumes spherical, equally-sized clusters, which may not match real music data structure.
+4. **Overlapping Musical Properties:** Genres, moods, and styles often blur together.
 
-## Graphical Representation
-
-![K-means Plot](../../images/k-means.png)
-
-So the visualization supports what we mean: with these complicated yet overlapping music features (even after PCA), K-Means doesn’t find well-separated groups in this music dataset.
+---
 
 ## Recommendations
 
-- Consider further feature engineering or selection to focus on the most musically meaningful features.
-- Try alternative clustering algorithms (GMM, DBSCAN, Agglomerative) that may find structure K-Means misses.
-- Inspect cluster quality visually (e.g., 2D/3D projections from PCA or t-SNE).
-- Experiment with different numbers of principal components in PCA and different values of k.
+- Try **alternative clustering algorithms**: Gaussian Mixture Models (GMM), DBSCAN, Agglomerative Clustering.
+- Refine **feature engineering/selection** to focus on perceptually meaningful features.
+- Visualize clusters using **2D/3D PCA or t-SNE** for interpretability.
+- Experiment with different **numbers of PCA components** and **values of k**.
+
+---
 
 ## Conclusion
 
-The low silhouette score suggests that, for this dataset and these features (even after PCA), K-Means is not able to find well-separated clusters. This is a common challenge with complex, high-dimensional data like music. Further exploration with other methods and feature engineering is recommended.
+K-Means struggles to produce well-separated clusters on this high-dimensional, complex music dataset. The low silhouette score indicates overlapping clusters, common in music data. **Further exploration with other clustering methods and feature engineering is recommended.**
