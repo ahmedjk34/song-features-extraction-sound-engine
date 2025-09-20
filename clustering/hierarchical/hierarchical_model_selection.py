@@ -4,6 +4,8 @@ import asyncio
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.utils import resample
 
 # Add parent directory to sys.path for imports
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,23 +14,45 @@ if parent_dir not in sys.path:
 
 # Import your modules
 from clustering_util import prepare_data_pipeline
-from hierarchical import hierarchical_clustering, log_info, log_success, log_warn, log_fail, log_debug
-from hierarchical_extract import extract_clusters, compute_cluster_statistics
+from hierarchical import log_info, log_success, log_warn, log_fail, log_debug
+from hierarchical_extract import compute_cluster_statistics
 
-def evaluate_clustering_for_k(X, linkage_matrix, k, verbose=False):
+def sample_data_for_hierarchical(X, max_samples=1000, random_state=42):
     """
-    Evaluate clustering quality for a specific number of clusters.
+    Sample data to make hierarchical clustering feasible.
+    """
+    if X.shape[0] <= max_samples:
+        log_info(f"Data size {X.shape[0]} <= {max_samples}, using all data")
+        return X, np.arange(X.shape[0])
+    
+    log_warn(f"Data too large ({X.shape[0]} points). Sampling {max_samples} points for hierarchical clustering")
+    
+    # Sample data
+    X_sampled, indices = resample(X, np.arange(X.shape[0]), 
+                                 n_samples=max_samples, 
+                                 random_state=random_state, 
+                                 replace=False)
+    
+    log_info(f"Sampled data shape: {X_sampled.shape}")
+    return X_sampled, indices
+
+def evaluate_clustering_for_k_sklearn(X, k, linkage='average', verbose=False):
+    """
+    Evaluate clustering quality for a specific number of clusters using sklearn.
+    This is much more efficient than custom implementation.
     """
     try:
         if verbose:
             log_debug(f"Evaluating k={k} clusters")
         
-        # Extract cluster labels
-        labels = extract_clusters(linkage_matrix, k, N=X.shape[0], verbose=False)
+        # Use sklearn's AgglomerativeClustering (much more efficient)
+        clusterer = AgglomerativeClustering(
+            n_clusters=k,
+            linkage=linkage,
+            metric='euclidean'
+        )
         
-        if len(labels) == 0:
-            log_warn(f"Failed to extract clusters for k={k}")
-            return None
+        labels = clusterer.fit_predict(X)
         
         actual_clusters = len(np.unique(labels))
         if actual_clusters == 1:
@@ -107,49 +131,49 @@ def evaluate_clustering_for_k(X, linkage_matrix, k, verbose=False):
         log_fail(f"Evaluation failed for k={k}: {e}")
         return None
 
-def hierarchical_model_selection(X, k_range=None, linkage="average", metric="euclidean", verbose=True):
+def hierarchical_model_selection_efficient(X, k_range=None, linkage="average", 
+                                         max_samples=1000, verbose=True):
     """
-    Perform model selection for hierarchical clustering across different numbers of clusters.
+    Perform efficient model selection for hierarchical clustering.
+    Uses sampling for large datasets and sklearn's optimized implementation.
     """
     if verbose:
-        log_info("Starting hierarchical clustering model selection")
+        log_info("Starting efficient hierarchical clustering model selection")
     
     # Set default k_range
     if k_range is None:
         k_range = range(2, min(21, X.shape[0]))
     
+    # Sample data if too large
+    X_work, sample_indices = sample_data_for_hierarchical(X, max_samples=max_samples)
+    
     if verbose:
         log_info(f"Testing k values: {list(k_range)}")
-        log_info(f"Data shape: {X.shape}")
-        log_info(f"Using {linkage} linkage with {metric} metric")
-    
-    # Perform hierarchical clustering once
-    log_info("Computing hierarchical clustering...")
-    linkage_matrix = hierarchical_clustering(X, linkage=linkage, metric=metric, verbose=verbose)
-    
-    if linkage_matrix.size == 0:
-        log_fail("Hierarchical clustering failed")
-        return None
-    
-    log_success(f"Linkage matrix computed: {linkage_matrix.shape}")
+        log_info(f"Working data shape: {X_work.shape}")
+        log_info(f"Using {linkage} linkage with euclidean metric")
     
     # Evaluate each k value
     results = []
     for k in k_range:
-        if k >= X.shape[0]:
+        if k >= X_work.shape[0]:
             log_warn(f"Skipping k={k} (>= number of data points)")
             continue
         
-        metrics = evaluate_clustering_for_k(X, linkage_matrix, k, verbose=False)
+        metrics = evaluate_clustering_for_k_sklearn(X_work, k, linkage=linkage, verbose=False)
         if metrics is not None:
             results.append(metrics)
             if verbose:
                 sil = metrics.get('silhouette_score')
                 ch = metrics.get('calinski_harabasz_score')
                 db = metrics.get('davies_bouldin_score')
-                print(f"k={k:2d}: Silhouette={sil:.3f if sil else 'N/A':>6}, "
-                      f"CH={ch:.1f if ch else 'N/A':>6}, "
-                      f"DB={db:.3f if db else 'N/A':>6}")
+                
+                sil_str = f"{sil:.3f}" if sil is not None else "N/A"
+                ch_str = f"{ch:.1f}" if ch is not None else "N/A"
+                db_str = f"{db:.3f}" if db is not None else "N/A"
+                
+                print(f"k={k:2d}: Silhouette={sil_str:>6}, "
+                      f"CH={ch_str:>8}, "
+                      f"DB={db_str:>6}")
     
     if not results:
         log_fail("No successful evaluations")
@@ -159,9 +183,12 @@ def hierarchical_model_selection(X, k_range=None, linkage="average", metric="euc
     
     return {
         'results': results,
-        'linkage_matrix': linkage_matrix,
         'linkage_type': linkage,
-        'metric': metric
+        'metric': 'euclidean',
+        'sampled': X_work.shape[0] < X.shape[0],
+        'sample_size': X_work.shape[0],
+        'original_size': X.shape[0],
+        'sample_indices': sample_indices
     }
 
 def find_optimal_k(results, criterion='silhouette', verbose=True):
@@ -213,6 +240,34 @@ def find_optimal_k(results, criterion='silhouette', verbose=True):
     
     return optimal
 
+def get_final_clustering(X, optimal_k, linkage='average', verbose=True):
+    """
+    Get final clustering on full dataset using optimal k.
+    """
+    if verbose:
+        log_info(f"Computing final clustering with k={optimal_k}")
+    
+    try:
+        clusterer = AgglomerativeClustering(
+            n_clusters=optimal_k,
+            linkage=linkage,
+            metric='euclidean'
+        )
+        
+        labels = clusterer.fit_predict(X)
+        
+        if verbose:
+            log_success(f"Final clustering completed. Found {len(np.unique(labels))} clusters")
+            
+            # Compute final statistics
+            cluster_stats = compute_cluster_statistics(labels, verbose=True)
+            
+        return labels, cluster_stats
+        
+    except Exception as e:
+        log_fail(f"Final clustering failed: {e}")
+        return None, None
+
 def plot_model_selection_results(results, save_path=None, figsize=(15, 10)):
     """
     Plot comprehensive model selection results.
@@ -238,6 +293,14 @@ def plot_model_selection_results(results, save_path=None, figsize=(15, 10)):
         balance_scores = [r.get('balance_score') for r in data]
         
         fig, axes = plt.subplots(2, 3, figsize=figsize)
+        
+        # Add title indicating if sampling was used
+        if results.get('sampled', False):
+            fig.suptitle(f"Hierarchical Clustering Model Selection\n"
+                        f"(Evaluated on {results['sample_size']} sampled points "
+                        f"from {results['original_size']} total)", fontsize=14)
+        else:
+            fig.suptitle("Hierarchical Clustering Model Selection", fontsize=14)
         
         # 1. Silhouette Score
         valid_sil = [(k, s) for k, s in zip(k_values, sil_scores) if s is not None]
@@ -292,12 +355,6 @@ def plot_model_selection_results(results, save_path=None, figsize=(15, 10)):
             axes[1,0].set_xlabel('Number of Clusters (k)')
             axes[1,0].set_ylabel('Inertia')
             axes[1,0].grid(True, alpha=0.3)
-            
-            # Mark optimal (minimum inertia)
-            best_idx = np.argmin(inertia_vals)
-            axes[1,0].axvline(x=k_inertia[best_idx], color='red', linestyle='--', alpha=0.7)
-            axes[1,0].text(k_inertia[best_idx], inertia_vals[best_idx], f'  k={k_inertia[best_idx]}', 
-                           verticalalignment='bottom')
         
         # 5. Balance Score
         valid_balance = [(k, s) for k, s in zip(k_values, balance_scores) if s is not None]
@@ -312,32 +369,81 @@ def plot_model_selection_results(results, save_path=None, figsize=(15, 10)):
             # Mark optimal
             best_idx = np.argmax(bal_vals)
             axes[1,1].axvline(x=k_bal[best_idx], color='red', linestyle='--', alpha=0.7)
-            axes[1,1].text(k_bal[best_idx], bal_vals[best_idx], f'  k={k_bal[best_idx]}', 
-                           verticalalignment='bottom')
         
-        # 6. Empty subplot (or optionally cluster size distribution)
-        axes[1,2].axis('off')  # Placeholder; could add histogram of cluster sizes
+        # 6. Summary table
+        axes[1,2].axis('off')
+        
+        # Create summary text
+        summary_text = "Optimal k by different criteria:\n\n"
+        criteria = ['silhouette', 'calinski_harabasz', 'davies_bouldin']
+        for criterion in criteria:
+            optimal = find_optimal_k(results, criterion=criterion, verbose=False)
+            if optimal:
+                summary_text += f"{criterion.replace('_', ' ').title()}: k={optimal['k']}\n"
+        
+        axes[1,2].text(0.1, 0.5, summary_text, fontsize=12, verticalalignment='center',
+                      bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgray", alpha=0.5))
         
         plt.tight_layout()
         if save_path:
-            plt.savefig(save_path, dpi=300)
+            plt.savefig(save_path, dpi=300, bbox_inches='tight')
             log_success(f"Model selection plot saved to {save_path}")
         plt.show()
+        
+        return fig
     
     except Exception as e:
         log_fail(f"Plotting failed: {e}")
         return None
 
-# Example usage
 if __name__ == "__main__":
     # Load or prepare data
-    X = prepare_data_pipeline(verbose=True)  # Make sure this returns a NumPy array
+    pipeline_result = asyncio.run(prepare_data_pipeline())
     
-    # Run hierarchical model selection
-    results = hierarchical_model_selection(X, k_range=range(2, 15), linkage="average", metric="euclidean")
+    # Check if pipeline succeeded
+    if pipeline_result is None or pipeline_result[0] is None:
+        log_fail("Data pipeline failed")
+        sys.exit(1)
     
-    # Find optimal k
-    optimal = find_optimal_k(results, criterion='silhouette')
+    # Unpack the tuple
+    X, pca, verified_songs = pipeline_result
+    
+    log_info(f"Loaded data with shape: {X.shape}")
+    log_info(f"PCA explained variance: {pca.explained_variance_ratio_.sum():.4f}")
+    
+    # Run efficient hierarchical model selection
+    results = hierarchical_model_selection_efficient(
+        X,
+        k_range=range(2, 15),
+        linkage="average",
+        max_samples=1000,  # Limit to 1000 samples for efficiency
+        verbose=True
+    )
+    
+    if results is None:
+        log_fail("Model selection failed")
+        sys.exit(1)
+    
+    # Find optimal k using different criteria
+    criteria = ['silhouette', 'calinski_harabasz', 'davies_bouldin']
+    optimal_results = {}
+    
+    for criterion in criteria:
+        optimal = find_optimal_k(results, criterion=criterion)
+        if optimal:
+            optimal_results[criterion] = optimal
+            log_success(f"Best k by {criterion}: {optimal['k']}")
+    
+    # Use silhouette score as primary criterion
+    if 'silhouette' in optimal_results:
+        best_k = optimal_results['silhouette']['k']
+        log_info(f"Using k={best_k} based on silhouette score for final clustering")
+        
+        # Get final clustering on full dataset
+        final_labels, final_stats = get_final_clustering(X, best_k, linkage="average")
+        
+        if final_labels is not None:
+            log_success("Final clustering completed successfully!")
     
     # Plot results
     plot_model_selection_results(results, save_path="hierarchical_model_selection.png")
