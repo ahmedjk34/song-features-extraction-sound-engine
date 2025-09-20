@@ -18,11 +18,11 @@ import numpy as np
 # 91-94: loudness (mean, std, min, max)
 # 95-222: vggish_emb (128 dims)
 
-# Feature group slices and new, slightly lower weights
+# Feature group slices and weights
 VGGISH_SLICE = slice(95, 223)    # 128 dims
 MFCC_SLICE   = slice(31, 83)     # 52 dims (26 means+stds)
 SPECTRAL_SLICE = slice(11, 31)   # 20 dims (spectral_centroid, bandwidth, rolloff, zcr, rms: 5x4)
-RHYTHMIC_SLICE = slice(3, 11)    # 8 dims (bpm_segments, chroma_stft: 2x4)
+RHYTHMIC_SLICE = slice(3, 11)    # 8 dims (bmp_segments, chroma_stft: 2x4)
 
 GROUPS = {
     "vggish":   {"slice": VGGISH_SLICE,   "weight": 1.2},
@@ -54,28 +54,58 @@ def min_max_scale(X, feature_range=(-10, 10)):
 
 def process_and_return_vector(song, all_songs, groups=GROUPS):
     """
-    Clean, min-max scale (1-10), and weight the features for a single song.
-    - all_songs: list of all song dicts (for scaling context)
-    Returns: np.ndarray (shape: (223,))
+    Clean, min-max scale (-10 to 10), and weight the features for a single song.
+    PRESERVES weighting effects by NOT rescaling after weighting.
+    
+    Args:
+        song: Individual song dict
+        all_songs: List of all song dicts (for scaling context)
+        groups: Feature group configuration
+    
+    Returns: 
+        np.ndarray (shape: (223,)) - Properly weighted feature vector
     """
     # Clean all feature vectors for scaling context
     X = np.array([clean_feature_vector(s['feature_vector']) for s in all_songs])
-    X_scaled = min_max_scale(X, feature_range=(1, 10))
-    # Find this song's index (by object equality, fallback to clean directly)
+    
+    # Scale to (-10, 10) - wider range preserves more variance
+    X_scaled = min_max_scale(X, feature_range=(-10, 10))
+    
+    # Find this song's scaled vector
     try:
         i = all_songs.index(song)
         x = X_scaled[i]
     except Exception:
-        x = min_max_scale([clean_feature_vector(song['feature_vector'])], feature_range=(1, 10))[0]
+        x = min_max_scale([clean_feature_vector(song['feature_vector'])], feature_range=(-10, 10))[0]
 
-    # Weight groups and ensure after weighting, values remain in 1–10
+    # Apply weights - NO RESCALING AFTER THIS!
     x_weighted = np.copy(x)
     for group, cfg in groups.items():
         sl = cfg["slice"]
         w = cfg["weight"]
         x_weighted[sl] = x[sl] * w
-        # Rescale weighted part if it leaves 1–10 range
-        if x_weighted[sl].min() < 1 or x_weighted[sl].max() > 10:
-            x_weighted[sl] = min_max_scale(x_weighted[sl][None, :], (1, 10))[0]
-
+        
+        # REMOVED THE DESTRUCTIVE RESCALING STEP!
+        # This allows weights to actually differentiate feature groups
+        
     return x_weighted
+
+def get_feature_stats_after_weighting(all_songs, groups=GROUPS):
+    """
+    Debug function to see the actual range of features after weighting.
+    Call this to verify your weights are working properly.
+    """
+    processed_vectors = np.array([
+        process_and_return_vector(song, all_songs, groups)
+        for song in all_songs[:50]  # Sample first 50 for speed
+    ])
+    
+    print(f"After weighting - Feature range: [{processed_vectors.min():.3f}, {processed_vectors.max():.3f}]")
+    print(f"Feature std: {processed_vectors.std():.3f}")
+    
+    for group, cfg in groups.items():
+        sl = cfg["slice"]
+        group_data = processed_vectors[:, sl]
+        print(f"{group}: range=[{group_data.min():.3f}, {group_data.max():.3f}], std={group_data.std():.3f}")
+    
+    return processed_vectors

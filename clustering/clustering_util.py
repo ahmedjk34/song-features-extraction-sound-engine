@@ -1,6 +1,6 @@
 from data_extraction import get_songs_from_db, verify_features, data_quality_report
 from data_eda import data_eda
-from feature_preprocessing import process_and_return_vector
+from feature_preprocessing import process_and_return_vector, get_feature_stats_after_weighting
 from sklearn.decomposition import PCA
 import numpy as np
 
@@ -30,6 +30,11 @@ async def prepare_data_pipeline():
         process_and_return_vector(song, verified_songs)
         for song in verified_songs
     ])
+
+    # OPTIONAL: Debug check to verify weights are working
+    print("\n=== DEBUGGING: Checking if weights are preserved ===")
+    get_feature_stats_after_weighting(verified_songs)
+    print("=== End Debug Check ===\n")
 
     # PCA Reduction
     pca = PCA(n_components=0.93, svd_solver='full')
