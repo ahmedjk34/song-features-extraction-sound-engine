@@ -141,7 +141,7 @@ async def perform_clustering(reduced_vectors, verified_songs, method="kmeans"):
         log_info("Running custom GMM clustering...")
         # Use your custom GMM implementation
         means, covariances, weights, responsibilities, log_likelihood = gmm_em(
-            X, n_clusters=8, max_iters=100, tol=1e-4, seed=42, verbose=True
+            X, n_clusters=4, max_iters=100, tol=1e-4, seed=42, verbose=True
         )
         labels = assign_labels(responsibilities)
         
@@ -215,7 +215,7 @@ async def main():
         return
 
     # Choose clustering method here
-    method = "gmm"  # "kmeans", "gmm", "gmm_sklearn", "hierarchical", "dbscan"
+    method = "gmm"  # "kmeans", "gmm", "hierarchical", "dbscan"
     cluster_results = await perform_clustering(reduced_vectors, verified_songs, method=method)
 
     if not DB_URL or not AUTH_TOKEN:
