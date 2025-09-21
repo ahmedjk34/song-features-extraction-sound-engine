@@ -49,18 +49,25 @@ CREATE TABLE song_clusters (
     kmeans_cluster_size INT, -- number of points in this cluster
     kmeans_silhouette_score REAL, -- silhouette score for this point/cluster
     
-    -- GMM  
+    -- GMM
     gmm_cluster_id INT,
-    gmm_probabilities TEXT,  -- store JSON as text
+    gmm_probabilities TEXT, -- store JSON as text
     
     -- Hierarchical
-    hier_level1_id INT,  -- broad clusters
-    hier_level2_id INT,  -- fine clusters
+    hier_level1_id INT, -- broad clusters
+    hier_level2_id INT, -- fine clusters
     hier_distance REAL,
     
     -- DBSCAN
-    dbscan_cluster_id INT,  -- -1 for noise
+    dbscan_cluster_id INT, -- -1 for noise
     dbscan_is_core BOOLEAN,
+    is_noise_point BOOLEAN, -- derived from dbscan_cluster_id == -1
+    eps REAL, -- DBSCAN epsilon parameter
+    min_samples INTEGER, -- DBSCAN min_samples parameter
+    dbscan_cluster_size INTEGER, -- number of points in this DBSCAN cluster
+    dbscan_silhouette_score REAL, -- silhouette score for DBSCAN clustering
+    dbscan_n_clusters INTEGER, -- total number of DBSCAN clusters found
+    dbscan_n_noise INTEGER, -- total number of noise points in DBSCAN
     
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
     
