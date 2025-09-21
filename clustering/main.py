@@ -9,6 +9,9 @@ import os
 from k_means.k_means import kmeans
 from gmm.gmm import gmm_em
 
+# UPDATED IMPORTS - Use optimized DBSCAN
+from dbscan.dbscan import dbscan_optimal, dbscan_alternative, dbscan, get_cluster_info
+
 # UPDATED IMPORTS - Use optimized hierarchical clustering
 from hierarchical.hierarchical import hierarchical_clustering_optimized
 from hierarchical.hierarchical_extract import extract_clusters, get_merge_height_for_point
@@ -50,8 +53,10 @@ async def insert_cluster_results(client, results):
         gmm_cluster_id, gmm_probabilities,
         hier_level1_id, hier_level2_id, hier_distance,
         dbscan_cluster_id, dbscan_is_core,
+        is_noise_point, eps, min_samples, dbscan_cluster_size,
+        dbscan_silhouette_score, dbscan_n_clusters, dbscan_n_noise,
         confidence
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(song_id, algorithm) DO UPDATE SET
         kmeans_cluster_id=excluded.kmeans_cluster_id,
         kmeans_distance=excluded.kmeans_distance,
@@ -62,6 +67,13 @@ async def insert_cluster_results(client, results):
         hier_distance=excluded.hier_distance,
         dbscan_cluster_id=excluded.dbscan_cluster_id,
         dbscan_is_core=excluded.dbscan_is_core,
+        is_noise_point=excluded.is_noise_point,
+        eps=excluded.eps,
+        min_samples=excluded.min_samples,
+        dbscan_cluster_size=excluded.dbscan_cluster_size,
+        dbscan_silhouette_score=excluded.dbscan_silhouette_score,
+        dbscan_n_clusters=excluded.dbscan_n_clusters,
+        dbscan_n_noise=excluded.dbscan_n_noise,
         confidence=excluded.confidence
     """
     params = [
@@ -77,6 +89,13 @@ async def insert_cluster_results(client, results):
             r.get('hier_distance'),
             r.get('dbscan_cluster_id'),
             r.get('dbscan_is_core'),
+            r.get('is_noise_point'),           # NEW
+            r.get('eps'),                      # NEW
+            r.get('min_samples'),              # NEW
+            r.get('dbscan_cluster_size'),      # NEW
+            r.get('dbscan_silhouette_score'),  # NEW
+            r.get('dbscan_n_clusters'),        # NEW
+            r.get('dbscan_n_noise'),           # NEW
             r.get('confidence')
         )
         for r in results
@@ -89,7 +108,7 @@ async def insert_cluster_results(client, results):
 
 async def perform_clustering(reduced_vectors, verified_songs, method="hierarchical"):
     """
-    Perform clustering using one of the 4 algorithms.
+    Perform clustering using one of the 4 algorithms with optimized DBSCAN.
     """
     results = []
     X = np.array(reduced_vectors)
@@ -119,6 +138,13 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                 "hier_distance": None,
                 "dbscan_cluster_id": None,
                 "dbscan_is_core": None,
+                "is_noise_point": None,           # NEW
+                "eps": None,                      # NEW
+                "min_samples": None,              # NEW
+                "dbscan_cluster_size": None,      # NEW
+                "dbscan_silhouette_score": None,  # NEW
+                "dbscan_n_clusters": None,        # NEW
+                "dbscan_n_noise": None,           # NEW
                 "confidence": confidence
             })
             
@@ -145,6 +171,13 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                     "hier_distance": None,
                     "dbscan_cluster_id": None,
                     "dbscan_is_core": None,
+                    "is_noise_point": None,           # NEW
+                    "eps": None,                      # NEW
+                    "min_samples": None,              # NEW
+                    "dbscan_cluster_size": None,      # NEW
+                    "dbscan_silhouette_score": None,  # NEW
+                    "dbscan_n_clusters": None,        # NEW
+                    "dbscan_n_noise": None,           # NEW
                     "confidence": float(np.max(responsibility))
                 })
                 
@@ -328,6 +361,13 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                     "hier_distance": float(hier_distance),
                     "dbscan_cluster_id": None,
                     "dbscan_is_core": None,
+                    "is_noise_point": None,           # NEW
+                    "eps": None,                      # NEW
+                    "min_samples": None,              # NEW
+                    "dbscan_cluster_size": None,      # NEW
+                    "dbscan_silhouette_score": None,  # NEW
+                    "dbscan_n_clusters": None,        # NEW
+                    "dbscan_n_noise": None,           # NEW
                     "confidence": float(confidence)
                 })
                 
@@ -346,31 +386,193 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                     "hier_distance": 0.5,
                     "dbscan_cluster_id": None,
                     "dbscan_is_core": None,
+                    "is_noise_point": None,           # NEW
+                    "eps": None,                      # NEW
+                    "min_samples": None,              # NEW
+                    "dbscan_cluster_size": None,      # NEW
+                    "dbscan_silhouette_score": None,  # NEW
+                    "dbscan_n_clusters": None,        # NEW
+                    "dbscan_n_noise": None,           # NEW
                     "confidence": 0.5
                 })
         
         log_success(f"CUSTOM hierarchical clustering completed. Processed {len(results)} songs with cosine-based confidence calculation.")
         log_info(f"Applied winner configuration: k=3, average linkage, cosine metric using CUSTOM implementation (Quality: FAIR)")
+        
     elif method == "dbscan":
-        from sklearn.cluster import DBSCAN
-        log_info("Running DBSCAN clustering...")
-        dbscan = DBSCAN(eps=0.5, min_samples=5).fit(X)
-        for song, label in zip(verified_songs, dbscan.labels_):
-            is_core = label != -1 and len(dbscan.core_sample_indices_) > 0
-            results.append({
-                "song_id": song['song_id'],
-                "algorithm": "dbscan",
-                "kmeans_cluster_id": None,
-                "kmeans_distance": None,
-                "gmm_cluster_id": None,
-                "gmm_probabilities": None,
-                "hier_level1_id": None,
-                "hier_level2_id": None,
-                "hier_distance": None,
-                "dbscan_cluster_id": int(label),
-                "dbscan_is_core": bool(is_core),
-                "confidence": 1.0 if label != -1 else 0.0
-            })
+        log_info("Running OPTIMIZED DBSCAN clustering with parameter selection results...")
+        
+        # Use the optimal parameters from your comprehensive analysis
+        try:
+            # Primary recommendation: eps=9.978, min_samples=6
+            log_info("Using PRIMARY recommendation from parameter selection analysis")
+            result = dbscan_optimal(X)
+            
+            labels = result['labels']
+            core_samples = result['core_samples']
+            cluster_info = result['cluster_info']
+            parameters = result['parameters']  # Get eps and min_samples
+            
+            # Extract parameters for database storage
+            eps_value = parameters['eps']
+            min_samples_value = parameters['min_samples']
+            n_clusters = cluster_info['n_clusters']
+            n_noise = cluster_info['n_noise']
+            
+            log_info(f"DBSCAN Results Summary:")
+            log_info(f"  Clusters: {n_clusters}")
+            log_info(f"  Noise points: {n_noise} ({cluster_info['noise_ratio']:.2%})")
+            log_info(f"  Core points: {cluster_info['n_core']}")
+            log_info(f"  Border points: {cluster_info['n_border']}")
+            log_info(f"  Quality: {cluster_info['quality_score']}")
+            log_info(f"  Cluster sizes: {list(cluster_info['cluster_sizes'].values())}")
+            log_info(f"  Parameters: eps={eps_value}, min_samples={min_samples_value}")
+            
+            # Calculate silhouette score if we have valid clusters
+            silhouette = None
+            if n_clusters > 1 and n_noise < len(labels):
+                try:
+                    non_noise_mask = labels != -1
+                    if np.sum(non_noise_mask) > 1:
+                        silhouette = silhouette_score(X[non_noise_mask], labels[non_noise_mask])
+                        log_info(f"  Silhouette Score: {silhouette:.4f}")
+                except Exception as e:
+                    log_warn(f"Could not compute silhouette score: {e}")
+                    silhouette = None
+            
+            # Build results with ALL new fields populated
+            for idx, song in enumerate(verified_songs):
+                label = labels[idx]
+                is_core = core_samples[idx]
+                is_noise = (label == -1)
+                
+                # Calculate cluster size for this specific cluster
+                if label != -1:
+                    cluster_size = cluster_info['cluster_sizes'].get(label, 0)
+                else:
+                    cluster_size = n_noise  # For noise points, store total noise count
+                
+                # Calculate confidence based on cluster membership and core status
+                if is_noise:
+                    confidence = 0.1
+                elif is_core:
+                    confidence = 0.9
+                else:  # Border point
+                    confidence = 0.6
+                
+                # Adjust confidence based on cluster size (larger clusters = more confident)
+                if not is_noise and cluster_size > 0:
+                    size_factor = min(1.0, cluster_size / 100.0)
+                    confidence *= (0.7 + 0.3 * size_factor)
+                
+                # Adjust confidence based on overall clustering quality
+                if silhouette is not None and silhouette > 0:
+                    quality_factor = min(1.0, silhouette * 2)
+                    confidence *= (0.8 + 0.2 * quality_factor)
+                
+                confidence = max(0.1, min(1.0, confidence))
+                
+                results.append({
+                    "song_id": song['song_id'],
+                    "algorithm": "dbscan",
+                    "kmeans_cluster_id": None,
+                    "kmeans_distance": None,
+                    "gmm_cluster_id": None,
+                    "gmm_probabilities": None,
+                    "hier_level1_id": None,
+                    "hier_level2_id": None,
+                    "hier_distance": None,
+                    "dbscan_cluster_id": int(label) if label != -1 else -1,  # Store -1 for noise
+                    "dbscan_is_core": bool(is_core),
+                    "is_noise_point": bool(is_noise),                     # NEW
+                    "eps": float(eps_value),                              # NEW
+                    "min_samples": int(min_samples_value),                # NEW
+                    "dbscan_cluster_size": int(cluster_size),             # NEW
+                    "dbscan_silhouette_score": float(silhouette) if silhouette is not None else None,  # NEW
+                    "dbscan_n_clusters": int(n_clusters),                 # NEW
+                    "dbscan_n_noise": int(n_noise),                      # NEW
+                    "confidence": float(confidence)
+                })
+            
+            log_success(f"OPTIMIZED DBSCAN completed: {len(results)} songs processed with full schema support")
+            log_info(f"Applied optimal parameters: eps={eps_value}, min_samples={min_samples_value} (Primary recommendation)")
+            
+        except Exception as e:
+            log_fail(f"DBSCAN clustering failed: {str(e)}")
+            log_info("Falling back to alternative parameters...")
+            
+            try:
+                # Alternative: eps=9.978, min_samples=3
+                result = dbscan_alternative(X)
+                
+                labels = result['labels']
+                core_samples = result['core_samples']
+                cluster_info = result['cluster_info']
+                parameters = result['parameters']
+                
+                # Extract parameters for database storage
+                eps_value = parameters['eps']
+                min_samples_value = parameters['min_samples']
+                n_clusters = cluster_info['n_clusters']
+                n_noise = cluster_info['n_noise']
+                
+                # Calculate silhouette for alternative
+                silhouette = None
+                if n_clusters > 1 and n_noise < len(labels):
+                    try:
+                        non_noise_mask = labels != -1
+                        if np.sum(non_noise_mask) > 1:
+                            silhouette = silhouette_score(X[non_noise_mask], labels[non_noise_mask])
+                    except Exception as e:
+                        silhouette = None
+                
+                # Process results same as above but with alternative parameters
+                for idx, song in enumerate(verified_songs):
+                    label = labels[idx]
+                    is_core = core_samples[idx]
+                    is_noise = (label == -1)
+                    
+                    # Calculate cluster size for this specific cluster
+                    if label != -1:
+                        cluster_size = cluster_info['cluster_sizes'].get(label, 0)
+                    else:
+                        cluster_size = n_noise
+                    
+                    if is_noise:
+                        confidence = 0.1
+                    elif is_core:
+                        confidence = 0.8  # Slightly lower for alternative
+                    else:
+                        confidence = 0.5
+                    
+                    results.append({
+                        "song_id": song['song_id'],
+                        "algorithm": "dbscan",
+                        "kmeans_cluster_id": None,
+                        "kmeans_distance": None,
+                        "gmm_cluster_id": None,
+                        "gmm_probabilities": None,
+                        "hier_level1_id": None,
+                        "hier_level2_id": None,
+                        "hier_distance": None,
+                        "dbscan_cluster_id": int(label) if label != -1 else -1,
+                        "dbscan_is_core": bool(is_core),
+                        "is_noise_point": bool(is_noise),                     # NEW
+                        "eps": float(eps_value),                              # NEW
+                        "min_samples": int(min_samples_value),                # NEW
+                        "dbscan_cluster_size": int(cluster_size),             # NEW
+                        "dbscan_silhouette_score": float(silhouette) if silhouette is not None else None,  # NEW
+                        "dbscan_n_clusters": int(n_clusters),                 # NEW
+                        "dbscan_n_noise": int(n_noise),                      # NEW
+                        "confidence": float(confidence)
+                    })
+                
+                log_success(f"DBSCAN completed with alternative parameters: {len(results)} songs processed")
+                log_info(f"Applied alternative parameters: eps={eps_value}, min_samples={min_samples_value}")
+                
+            except Exception as e2:
+                log_fail(f"Both DBSCAN configurations failed: {str(e2)}")
+                return []
     else:
         log_warn(f"Unknown clustering method: {method}")
         
@@ -402,13 +604,13 @@ async def main():
                 log_fail(f"Error in {method.upper()} clustering: {str(e)}")
                 continue
 
-async def main_single_method(method="hierarchical"):
-    """Run clustering with a single method."""
+async def main_single_method(method="dbscan"):
+    """Run clustering with a single method - optimized for DBSCAN."""
     reduced_vectors, pca, verified_songs = await prepare_data_pipeline()
     if reduced_vectors is None:
         return
     
-    log_info(f"Running {method.upper()} clustering only...")
+    log_info(f"Running OPTIMIZED {method.upper()} clustering only...")
     cluster_results = await perform_clustering(reduced_vectors, verified_songs, method=method)
     
     if not DB_URL or not AUTH_TOKEN:
@@ -421,4 +623,4 @@ async def main_single_method(method="hierarchical"):
 if __name__ == "__main__":
     # Choose which version to run:
     # asyncio.run(main())  # Run all methods
-    asyncio.run(main_single_method("hierarchical"))  # Run optimized hierarchical only
+    asyncio.run(main_single_method("dbscan"))  # Run optimized DBSCAN only
