@@ -12,6 +12,11 @@ from gmm.gmm import gmm_em
 from hierarchical.hierarchical import hierarchical_clustering_optimized
 from hierarchical.hierarchical_extract import extract_clusters, get_merge_height_for_point
 
+#
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
+from sklearn.metrics.pairwise import pairwise_distances
+
 DB_URL = os.getenv("TURSO_DATABASE_URL")
 AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
 
@@ -152,56 +157,162 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
             return []
             
     elif method == "hierarchical":
-        log_info("Running OPTIMIZED custom Hierarchical clustering...")
+        log_info("Running OPTIMIZED scikit-learn Hierarchical clustering...")
         
-        # Check dataset size and choose approach
-        if X.shape[0] > 10000:
-            log_warn(f"Large dataset ({X.shape[0]} points). Using memory-efficient version...")
-            from hierarchical.hierarchical import hierarchical_clustering_memory_efficient
-            linkage_matrix = hierarchical_clustering_memory_efficient(
-                X, linkage="average", metric="euclidean", chunk_size=2000, verbose=True
-            )
-        else:
-            # Use optimized version for reasonable dataset sizes
-            linkage_matrix = hierarchical_clustering_optimized(
-                X, linkage="average", metric="euclidean", verbose=True
-            )
+        # Use PCA-transformed features directly (no additional preprocessing)
+        X_features = X
+        log_info(f"Using full dataset for optimized clustering (shape: {X_features.shape})")
+        log_info(f"Feature range: [{X_features.min():.3f}, {X_features.max():.3f}], std: {X_features.std():.3f}")
         
-        if linkage_matrix.size == 0:
-            log_fail("Hierarchical clustering failed to produce results")
-            return []
+        # Pre-compute COSINE distance matrix (your optimal metric for 50D audio features)
+        log_info("Pre-computing cosine distance matrix for optimal clustering...")
+        distance_matrix = pairwise_distances(X_features, metric='cosine')
+        log_info(f"Cosine distance matrix computed: {distance_matrix.shape}")
         
-        # Choose two levels for broad and fine clusters
-        broad_level = 3
-        fine_level = 8
+        # Use your ACTUAL optimal parameters from comprehensive evaluation
+        optimal_k_values = {
+            'broad_level': 2,    # Keep for hierarchy
+            'medium_level': 3,   # Your optimal k=3 
+            'fine_level': 3      # Change from 8 to 3 (your optimal performs much better)
+        }
         
-        # Adjust levels based on dataset size
-        max_broad = min(broad_level, X.shape[0] - 1)
-        max_fine = min(fine_level, X.shape[0] - 1)
+        log_info(f"Using OPTIMAL parameters from evaluation: {optimal_k_values}")
+        log_info("Winner: k=3, linkage=average, metric=cosine (Silhouette: 0.1587, Quality: FAIR)")
         
-        log_info(f"Extracting clusters: broad={max_broad}, fine={max_fine}")
+        # Fit all clustering levels with OPTIMAL settings
+        clusterings = {}
         
-        # Get cluster assignments for both levels
-        hier_level1_labels = extract_clusters(linkage_matrix, max_broad, N=X.shape[0])
-        hier_level2_labels = extract_clusters(linkage_matrix, max_fine, N=X.shape[0])
-        
-        if len(hier_level1_labels) == 0 or len(hier_level2_labels) == 0:
-            log_fail("Failed to extract cluster labels")
-            return []
-        
-        # Build results with merge heights
-        for idx, song in enumerate(verified_songs):
+        for level_name, n_clusters in optimal_k_values.items():
+            actual_k = min(n_clusters, X_features.shape[0] - 1)
+            
+            if actual_k < 2:
+                log_warn(f"Insufficient data for {level_name} clustering (k={actual_k})")
+                continue
+                
             try:
-                # Get the merge distance at which this sample joined its fine cluster
-                merge_height = get_merge_height_for_point(
-                    linkage_matrix, idx, max_fine, N=X.shape[0], verbose=False
+                log_info(f"Fitting {level_name} with k={actual_k} using optimal cosine distance...")
+                
+                # OPTIMAL AgglomerativeClustering settings from your evaluation
+                clustering = AgglomerativeClustering(
+                    n_clusters=actual_k,
+                    linkage='average',               # Your optimal linkage (not complete!)
+                    metric='precomputed',            # Use precomputed cosine distance matrix
+                    compute_full_tree=True,          # Compute full dendrogram for accuracy
+                    compute_distances=True           # Store distances for analysis
                 )
                 
-                # Calculate confidence based on merge height (lower height = more confident)
-                # Normalize by max height in linkage matrix
-                max_height = np.max(linkage_matrix[:, 2]) if len(linkage_matrix) > 0 else 1.0
-                confidence = float(1.0 - (merge_height / max_height)) if max_height > 0 else 1.0
-                confidence = max(0.1, min(1.0, confidence))  # Clamp between 0.1 and 1.0
+                # Fit using precomputed COSINE distance matrix for optimal results
+                labels = clustering.fit_predict(distance_matrix)
+                
+                # Calculate comprehensive quality metrics using COSINE metric
+                if len(np.unique(labels)) > 1:
+                    # Use COSINE distance for silhouette (matches clustering metric)
+                    silhouette = silhouette_score(X_features, labels, metric='cosine')
+                    calinski_harabasz = calinski_harabasz_score(X_features, labels)
+                    davies_bouldin = davies_bouldin_score(X_features, labels)
+                    
+                    # Additional accuracy metrics
+                    inertia = 0.0
+                    cluster_sizes = []
+                    for cluster_id in np.unique(labels):
+                        cluster_mask = (labels == cluster_id)
+                        cluster_points = X_features[cluster_mask]
+                        if len(cluster_points) > 1:
+                            cluster_center = np.mean(cluster_points, axis=0)
+                            # Use cosine-based inertia calculation
+                            cosine_distances = pairwise_distances(cluster_points, cluster_center.reshape(1, -1), metric='cosine').flatten()
+                            cluster_inertia = np.sum(cosine_distances)
+                            inertia += cluster_inertia
+                        cluster_sizes.append(np.sum(cluster_mask))
+                    
+                    balance = min(cluster_sizes) / max(cluster_sizes) if cluster_sizes else 0.0
+                    
+                    log_info(f"{level_name} (k={actual_k}) OPTIMAL METRICS:")
+                    log_info(f"  Silhouette (cosine): {silhouette:.4f}")
+                    log_info(f"  Calinski-Harabasz: {calinski_harabasz:.2f}")
+                    log_info(f"  Davies-Bouldin: {davies_bouldin:.4f}")
+                    log_info(f"  Balance ratio: {balance:.4f}")
+                    log_info(f"  Cluster sizes: {cluster_sizes}")
+                    
+                else:
+                    silhouette = 0.0
+                    calinski_harabasz = 0.0
+                    davies_bouldin = float('inf')
+                    balance = 0.0
+                    
+                clusterings[level_name] = {
+                    'model': clustering,
+                    'labels': labels,
+                    'n_clusters': actual_k,
+                    'silhouette': silhouette,
+                    'calinski_harabasz': calinski_harabasz,
+                    'davies_bouldin': davies_bouldin,
+                    'balance': balance,
+                    'distances': clustering.distances_ if hasattr(clustering, 'distances_') else None
+                }
+                
+            except Exception as e:
+                log_fail(f"Failed to create {level_name} clustering with k={actual_k}: {e}")
+                continue
+        
+        if not clusterings:
+            log_fail("All hierarchical clustering attempts failed")
+            return []
+        
+        # Use the optimal levels from your evaluation
+        broad_clustering = clusterings.get('broad_level')
+        fine_clustering = clusterings.get('fine_level')  # Now using k=3 instead of k=8
+        
+        if not broad_clustering or not fine_clustering:
+            log_fail("Could not create required clustering levels")
+            return []
+        
+        broad_labels = broad_clustering['labels']
+        fine_labels = fine_clustering['labels']
+        
+        log_success("OPTIMAL hierarchical clustering completed:")
+        log_info(f"  Broad level (k=2): silhouette={broad_clustering['silhouette']:.4f}")
+        log_info(f"  Fine level (k=3): silhouette={fine_clustering['silhouette']:.4f}")
+        
+        # Build results with COSINE-based confidence calculation
+        for idx, song in enumerate(verified_songs):
+            try:
+                # Calculate per-point silhouette using COSINE distance
+                fine_label = fine_labels[idx]
+                point_features = X_features[idx].reshape(1, -1)
+                
+                # Calculate COSINE distances to all points in same cluster
+                same_cluster_mask = (fine_labels == fine_label) & (np.arange(len(fine_labels)) != idx)
+                if np.any(same_cluster_mask):
+                    same_cluster_points = X_features[same_cluster_mask]
+                    same_cluster_distances = pairwise_distances(point_features, same_cluster_points, metric='cosine').flatten()
+                    avg_same_cluster_dist = np.mean(same_cluster_distances)
+                else:
+                    avg_same_cluster_dist = 0.0
+                
+                # Calculate COSINE distances to nearest other cluster
+                other_clusters = np.unique(fine_labels[fine_labels != fine_label])
+                min_other_cluster_dist = float('inf')
+                
+                for other_cluster in other_clusters:
+                    other_cluster_mask = (fine_labels == other_cluster)
+                    other_cluster_points = X_features[other_cluster_mask]
+                    other_cluster_distances = pairwise_distances(point_features, other_cluster_points, metric='cosine').flatten()
+                    avg_other_cluster_dist = np.mean(other_cluster_distances)
+                    min_other_cluster_dist = min(min_other_cluster_dist, avg_other_cluster_dist)
+                
+                # Calculate point-specific silhouette score with COSINE
+                if min_other_cluster_dist != float('inf') and max(avg_same_cluster_dist, min_other_cluster_dist) > 0:
+                    point_silhouette = (min_other_cluster_dist - avg_same_cluster_dist) / max(min_other_cluster_dist, avg_same_cluster_dist)
+                else:
+                    point_silhouette = 0.0
+                
+                # Convert silhouette to confidence (shift and scale to [0.1, 1.0])
+                confidence = (point_silhouette + 1.0) / 2.0  # Map [-1,1] to [0,1]
+                confidence = max(0.1, min(1.0, confidence))
+                
+                # COSINE-based distance calculation
+                hier_distance = avg_same_cluster_dist if avg_same_cluster_dist > 0 else 0.1
                 
                 results.append({
                     "song_id": song['song_id'],
@@ -210,16 +321,17 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                     "kmeans_distance": None,
                     "gmm_cluster_id": None,
                     "gmm_probabilities": None,
-                    "hier_level1_id": int(hier_level1_labels[idx]),
-                    "hier_level2_id": int(hier_level2_labels[idx]),
-                    "hier_distance": float(merge_height),
+                    "hier_level1_id": int(broad_labels[idx]),
+                    "hier_level2_id": int(fine_labels[idx]),
+                    "hier_distance": float(hier_distance),
                     "dbscan_cluster_id": None,
                     "dbscan_is_core": None,
-                    "confidence": confidence
+                    "confidence": float(confidence)
                 })
+                
             except Exception as e:
                 log_warn(f"Error processing song {idx}: {e}")
-                # Add with default values if processing fails
+                # Fallback with reasonable defaults
                 results.append({
                     "song_id": song['song_id'],
                     "algorithm": "hierarchical",
@@ -227,14 +339,16 @@ async def perform_clustering(reduced_vectors, verified_songs, method="hierarchic
                     "kmeans_distance": None,
                     "gmm_cluster_id": None,
                     "gmm_probabilities": None,
-                    "hier_level1_id": 0,
-                    "hier_level2_id": 0,
-                    "hier_distance": 0.0,
+                    "hier_level1_id": int(broad_labels[idx]) if idx < len(broad_labels) else 0,
+                    "hier_level2_id": int(fine_labels[idx]) if idx < len(fine_labels) else 0,
+                    "hier_distance": 0.5,
                     "dbscan_cluster_id": None,
                     "dbscan_is_core": None,
                     "confidence": 0.5
                 })
-                
+        
+        log_success(f"OPTIMAL hierarchical clustering completed. Processed {len(results)} songs with cosine-based confidence calculation.")
+        log_info(f"Applied winner configuration: k=3, average linkage, cosine metric (Quality: FAIR)") 
     elif method == "dbscan":
         from sklearn.cluster import DBSCAN
         log_info("Running DBSCAN clustering...")
