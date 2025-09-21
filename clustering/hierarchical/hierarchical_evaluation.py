@@ -1,9 +1,14 @@
+import os
+import asyncio
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score, adjusted_rand_score
 import scipy.cluster.hierarchy as sch
 import warnings
+
+from dotenv import load_dotenv
+from libsql_client import create_client
 
 # ANSI color codes for pretty CMD logging
 class Log:
@@ -56,70 +61,6 @@ def safe_pca_transform(X, n_components=2, verbose=False):
     except Exception as e:
         log_warn(f"PCA transformation failed: {e}, using random projection")
         return np.random.randn(X.shape[0], n_components) * np.std(X), np.array([0.5, 0.5])
-
-def plot_dendrogram(linkage_matrix, labels=None, title="Hierarchical Clustering Dendrogram", 
-                   max_points=100, figsize=(12, 6), save_path=None):
-    """
-    Visualize dendrogram with enhanced features and error handling.
-    """
-    try:
-        log_info("Creating dendrogram plot")
-        
-        if linkage_matrix.size == 0:
-            log_fail("Empty linkage matrix, cannot create dendrogram")
-            return None
-        
-        # Validate linkage matrix
-        if linkage_matrix.shape[1] != 4:
-            log_fail(f"Invalid linkage matrix shape: {linkage_matrix.shape}")
-            return None
-        
-        plt.figure(figsize=figsize)
-        
-        # Limit display for large datasets
-        if linkage_matrix.shape[0] > max_points:
-            log_warn(f"Large dataset ({linkage_matrix.shape[0]} merges), truncating display")
-            truncate_mode = 'lastp'
-            p = max_points
-        else:
-            truncate_mode = None
-            p = None
-        
-        # Create dendrogram
-        dendrogram_data = sch.dendrogram(
-            linkage_matrix, 
-            labels=labels,
-            truncate_mode=truncate_mode,
-            p=p,
-            count_sort='ascending',
-            distance_sort='ascending'
-        )
-        
-        plt.title(title, fontsize=14, fontweight='bold')
-        plt.xlabel("Sample Index or (Cluster Size)", fontsize=12)
-        plt.ylabel("Distance", fontsize=12)
-        plt.grid(True, alpha=0.3)
-        
-        # Add statistics
-        max_dist = np.max(linkage_matrix[:, 2])
-        min_dist = np.min(linkage_matrix[:, 2])
-        plt.text(0.02, 0.98, f"Distance range: [{min_dist:.3f}, {max_dist:.3f}]", 
-                transform=plt.gca().transAxes, bbox=dict(boxstyle="round,pad=0.3", facecolor="lightblue"),
-                verticalalignment='top')
-        
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
-            log_success(f"Dendrogram saved to {save_path}")
-        
-        plt.show()
-        log_success("Dendrogram plot created successfully")
-        return dendrogram_data
-    
-    except Exception as e:
-        log_fail(f"Failed to create dendrogram: {e}")
-        return None
 
 def plot_cluster_assignments(X, flat_labels, title="Hierarchical Clustering Results", 
                            figsize=(10, 8), save_path=None, show_centroids=True):
@@ -261,7 +202,7 @@ def cluster_size_metrics(flat_labels, verbose=False):
         log_fail(f"Error computing cluster size metrics: {e}")
         return {}
 
-def evaluate_clustering_quality(X, labels, linkage_matrix=None, verbose=False):
+def evaluate_clustering_quality(X, labels, verbose=False):
     """
     Comprehensive clustering quality evaluation.
     """
@@ -372,7 +313,7 @@ def evaluate_clustering_quality(X, labels, linkage_matrix=None, verbose=False):
         log_fail(f"Clustering quality evaluation failed: {e}")
         return {}
 
-def plot_evaluation_summary(X, labels, linkage_matrix=None, save_path=None, figsize=(15, 10)):
+def plot_evaluation_summary(X, labels, save_path=None, figsize=(15, 10)):
     """
     Create a comprehensive evaluation summary plot.
     """
@@ -436,21 +377,16 @@ def plot_evaluation_summary(X, labels, linkage_matrix=None, save_path=None, figs
                           transform=axes[1,0].transAxes, ha='center', va='center')
             axes[1,0].set_title("Silhouette Analysis (Failed)")
         
-        # 4. Dendrogram (if linkage matrix available)
-        if linkage_matrix is not None and linkage_matrix.size > 0:
-            try:
-                sch.dendrogram(linkage_matrix, ax=axes[1,1], truncate_mode='lastp', p=30)
-                axes[1,1].set_title("Dendrogram (Truncated)")
-                axes[1,1].set_xlabel("Sample Index")
-                axes[1,1].set_ylabel("Distance")
-            except Exception as e:
-                axes[1,1].text(0.5, 0.5, f"Dendrogram failed:\n{str(e)}", 
-                              transform=axes[1,1].transAxes, ha='center', va='center')
-                axes[1,1].set_title("Dendrogram (Failed)")
-        else:
-            axes[1,1].text(0.5, 0.5, "No linkage matrix\nprovided", 
+        # 4. Level comparison (hierarchical-specific)
+        try:
+            axes[1,1].text(0.5, 0.5, "Hierarchical Clustering\nEvaluation Complete", 
+                          transform=axes[1,1].transAxes, ha='center', va='center',
+                          bbox=dict(boxstyle="round,pad=0.5", facecolor="lightgray"))
+            axes[1,1].set_title("Hierarchical Analysis")
+        except Exception as e:
+            axes[1,1].text(0.5, 0.5, f"Analysis failed:\n{str(e)}", 
                           transform=axes[1,1].transAxes, ha='center', va='center')
-            axes[1,1].set_title("Dendrogram (Not Available)")
+            axes[1,1].set_title("Analysis (Failed)")
         
         plt.tight_layout()
         
@@ -465,3 +401,196 @@ def plot_evaluation_summary(X, labels, linkage_matrix=None, save_path=None, figs
     except Exception as e:
         log_fail(f"Failed to create evaluation summary: {e}")
         return None
+
+def parse_feature_vector(vector_str):
+    """Parse a feature vector from DB string into numpy array."""
+    if isinstance(vector_str, (list, np.ndarray)):
+        return np.array(vector_str)
+    if vector_str is None:
+        return None
+    try:
+        s = vector_str.strip()
+        if s.startswith("[") and s.endswith("]"):
+            s = s[1:-1]
+        values = [float(x) for x in s.split(",") if x.strip()]
+        return np.array(values)
+    except Exception as e:
+        log_warn(f"Failed to parse feature vector: {vector_str} ({e})")
+        return None
+
+async def get_hierarchical_clusters_from_db():
+    """
+    Fetch hierarchical clustering results from the database.
+    Uses the correct column names from your schema.
+    """
+    load_dotenv()
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    if not url or not auth_token:
+        log_fail("Missing database credentials! Check your .env file.")
+        return []
+    
+    log_info("Connecting to database...")
+    try:
+        async with create_client(url, auth_token=auth_token) as client:
+            log_success("Database connection established.")
+            
+            # Fixed query using correct column names from your schema
+            query = """
+                SELECT s.song_id, s.feature_vector, c.hier_level1_id, c.hier_level2_id, c.hier_distance
+                FROM songs s
+                JOIN song_clusters c ON s.song_id = c.song_id
+                WHERE c.algorithm = 'hierarchical'
+                AND c.hier_level1_id IS NOT NULL
+            """
+            
+            log_info("Fetching hierarchical clustered songs from database...")
+            result = await client.execute(query)
+            
+            if not result.rows:
+                log_warn("No hierarchical clustered songs found in the database.")
+                return []
+                
+            # Convert result to dictionary format
+            columns = result.columns
+            data = []
+            for row in result.rows:
+                row_dict = {}
+                for i, col in enumerate(columns):
+                    row_dict[col] = row[i]
+                data.append(row_dict)
+            
+            log_success(f"Fetched {len(data)} hierarchical clustered songs from the database.")
+            return data
+            
+    except Exception as e:
+        log_fail(f"Database error: {e}")
+        return []
+
+async def update_hierarchical_metrics_in_db(clustered_data, level1_metrics, level2_metrics):
+    """Update hierarchical clustering metrics in the database."""
+    load_dotenv()
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    
+    try:
+        async with create_client(url, auth_token=auth_token) as client:
+            log_info("Updating hierarchical metrics in the database...")
+            
+            # You may need to add columns to your schema first:
+            # ALTER TABLE song_clusters ADD COLUMN hier_level1_silhouette REAL;
+            # ALTER TABLE song_clusters ADD COLUMN hier_level2_silhouette REAL;
+            
+            # Update metrics for each song
+            for entry in clustered_data:
+                song_id = entry.get('song_id')
+                level1_id = entry.get('hier_level1_id')
+                level2_id = entry.get('hier_level2_id')
+                
+                level1_sil = level1_metrics.get('silhouette_score')
+                level2_sil = level2_metrics.get('silhouette_score')
+                
+                # This assumes you add silhouette columns to your schema
+                update_query = """
+                    UPDATE song_clusters 
+                    SET hier_level1_silhouette = ?, hier_level2_silhouette = ?
+                    WHERE song_id = ? AND algorithm = 'hierarchical'
+                """
+                
+                await client.execute(update_query, [level1_sil, level2_sil, song_id])
+            
+            log_success("Hierarchical metrics updated successfully.")
+            
+    except Exception as e:
+        log_fail(f"Failed to update metrics in database: {e}")
+
+async def main():
+    """Main evaluation pipeline for hierarchical clustering."""
+    # Load data from DB
+    clustered_data = await get_hierarchical_clusters_from_db()
+    if not clustered_data:
+        log_fail("No hierarchical clustered data found.")
+        return
+    
+    log_info(f"Processing {len(clustered_data)} hierarchical clustered songs")
+    
+    # Prepare feature matrix and labels for both levels
+    X = []
+    level1_labels = []
+    level2_labels = []
+    
+    for entry in clustered_data:
+        fv = parse_feature_vector(entry.get("feature_vector"))
+        l1_id = entry.get("hier_level1_id")
+        l2_id = entry.get("hier_level2_id")
+        
+        if fv is not None and l1_id is not None:
+            X.append(fv)
+            level1_labels.append(int(l1_id))
+            level2_labels.append(int(l2_id) if l2_id is not None else -1)
+    
+    X = np.array(X)
+    level1_labels = np.array(level1_labels)
+    level2_labels = np.array(level2_labels)
+    
+    if X.shape[0] == 0:
+        log_fail("No valid feature vectors found.")
+        return
+    
+    log_success(f"Successfully loaded {X.shape[0]} feature vectors with {X.shape[1]} dimensions")
+    
+    # Evaluate Level 1 clustering (broad clusters)
+    print(f"\n{Log.HEADER}{'='*60}{Log.ENDC}")
+    print(f"{Log.HEADER}EVALUATING LEVEL 1 HIERARCHICAL CLUSTERING (Broad){Log.ENDC}")
+    print(f"{Log.HEADER}{'='*60}{Log.ENDC}")
+    
+    level1_metrics = evaluate_clustering_quality(X, level1_labels, verbose=True)
+    level1_size_metrics = cluster_size_metrics(level1_labels, verbose=True)
+    
+    # Evaluate Level 2 clustering (fine clusters) if available
+    if np.any(level2_labels != -1):
+        print(f"\n{Log.HEADER}{'='*60}{Log.ENDC}")
+        print(f"{Log.HEADER}EVALUATING LEVEL 2 HIERARCHICAL CLUSTERING (Fine){Log.ENDC}")
+        print(f"{Log.HEADER}{'='*60}{Log.ENDC}")
+        
+        # Filter out entries without level 2 assignments
+        level2_mask = level2_labels != -1
+        if np.sum(level2_mask) > 1:
+            X_level2 = X[level2_mask]
+            level2_labels_filtered = level2_labels[level2_mask]
+            
+            level2_metrics = evaluate_clustering_quality(X_level2, level2_labels_filtered, verbose=True)
+            level2_size_metrics = cluster_size_metrics(level2_labels_filtered, verbose=True)
+        else:
+            log_warn("Not enough Level 2 cluster assignments for evaluation")
+            level2_metrics = {}
+    else:
+        log_info("No Level 2 cluster assignments found")
+        level2_metrics = {}
+    
+    # Visualize results
+    print(f"\n{Log.HEADER}{'='*40}{Log.ENDC}")
+    print(f"{Log.HEADER}CREATING VISUALIZATIONS{Log.ENDC}")
+    print(f"{Log.HEADER}{'='*40}{Log.ENDC}")
+    
+    # Plot Level 1 clusters
+    plot_cluster_assignments(X, level1_labels, 
+                           title="Hierarchical Clustering - Level 1 (Broad Clusters)")
+    
+    # Plot Level 2 clusters if available
+    if np.any(level2_labels != -1):
+        level2_mask = level2_labels != -1
+        if np.sum(level2_mask) > 1:
+            plot_cluster_assignments(X[level2_mask], level2_labels[level2_mask], 
+                                   title="Hierarchical Clustering - Level 2 (Fine Clusters)")
+    
+    # Create comprehensive evaluation summary
+    plot_evaluation_summary(X, level1_labels)
+    
+    # Update database with metrics (optional - requires schema modification)
+    # await update_hierarchical_metrics_in_db(clustered_data, level1_metrics, level2_metrics)
+    
+    log_success("Hierarchical clustering evaluation pipeline completed successfully!")
+
+if __name__ == "__main__":
+    asyncio.run(main())
