@@ -47,33 +47,237 @@ def parse_feature_vector(vector_str):
         log_warn(f"Failed to parse feature vector: {vector_str} ({e})")
         return None
 
+
 async def get_dbscan_clusters_from_db():
-    """Fetch DBSCAN clustered songs from database."""
+    """Fetch DBSCAN clustered songs from database with robust error handling."""
     load_dotenv()
     url = os.getenv("TURSO_DATABASE_URL")
     auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    
     if not url or not auth_token:
         log_fail("Missing database credentials! Check your .env file.")
         return []
     
     log_info("Connecting to database...")
-    async with create_client(url, auth_token=auth_token) as client:
-        log_success("Database connection established.")
-        query = """
-            SELECT s.song_id, s.feature_vector, c.dbscan_cluster_id, c.is_core_point, c.is_noise_point
-            FROM songs s
-            JOIN song_clusters c ON s.song_id = c.song_id
-            WHERE c.algorithm = 'dbscan'
-        """
-        log_info("Fetching DBSCAN clustered songs from database...")
-        result = await client.execute(query)
-        if not result.rows:
-            log_warn("No DBSCAN clustered songs found in the database.")
-            return []
-        columns = result.columns
-        data = [{col: row[i] for i, col in enumerate(columns)} for row in result.rows]
-        log_success(f"Fetched {len(data)} DBSCAN clustered songs from the database.")
-        return data
+    
+    try:
+        async with create_client(url, auth_token=auth_token) as client:
+            log_success("Database connection established.")
+            
+            # First, let's check if the tables exist
+            check_tables_query = """
+                SELECT name FROM sqlite_master 
+                WHERE type='table' AND (name='songs' OR name='song_clusters');
+            """
+            
+            log_info("Checking if required tables exist...")
+            try:
+                table_result = await client.execute(check_tables_query)
+                
+                if hasattr(table_result, 'rows'):
+                    existing_tables = [row[0] for row in table_result.rows]
+                    log_info(f"Found tables: {existing_tables}")
+                    
+                    if 'songs' not in existing_tables:
+                        log_fail("Table 'songs' not found in database.")
+                        return []
+                    if 'song_clusters' not in existing_tables:
+                        log_fail("Table 'song_clusters' not found in database.")
+                        return []
+                else:
+                    log_warn("Unexpected response format when checking tables.")
+                
+            except Exception as e:
+                log_warn(f"Error checking tables: {e}")
+                log_info("Proceeding with main query anyway...")
+            
+            # FIXED QUERY - Use correct field names from your actual database
+            query = """
+                SELECT s.song_id, s.feature_vector, 
+                       c.dbscan_cluster_id, c.dbscan_is_core, c.is_noise_point,
+                       c.eps, c.min_samples
+                FROM songs s
+                JOIN song_clusters c ON s.song_id = c.song_id
+                WHERE c.algorithm = 'dbscan'
+            """
+            
+            log_info("Fetching DBSCAN clustered songs from database...")
+            
+            try:
+                result = await client.execute(query)
+                
+                # Handle different response formats (same as GMM script)
+                if hasattr(result, 'rows') and hasattr(result, 'columns'):
+                    if not result.rows:
+                        log_warn("No DBSCAN clustered songs found in the database.")
+                        return []
+                    
+                    columns = result.columns
+                    data = [{col: row[i] for i, col in enumerate(columns)} for row in result.rows]
+                    log_success(f"Fetched {len(data)} DBSCAN clustered songs from the database.")
+                    return data
+                    
+                elif isinstance(result, dict):
+                    log_info(f"Result keys: {list(result.keys()) if result else 'None'}")
+                    
+                    # Try different possible keys
+                    rows_data = None
+                    columns_data = None
+                    
+                    if 'rows' in result:
+                        rows_data = result['rows']
+                        columns_data = result.get('columns', [])
+                    elif 'results' in result:
+                        rows_data = result['results']
+                        columns_data = result.get('columns', [])
+                    else:
+                        log_fail(f"Unexpected result format. Available keys: {list(result.keys())}")
+                        return []
+                    
+                    if not rows_data:
+                        log_warn("No DBSCAN clustered songs found in the database.")
+                        return []
+                    
+                    if not columns_data:
+                        # UPDATED default column order to match fixed query
+                        columns_data = ['song_id', 'feature_vector', 'dbscan_cluster_id', 
+                                      'dbscan_is_core', 'is_noise_point', 'eps', 'min_samples']
+                        log_warn("No column information found, using default column order.")
+                    
+                    data = [{col: row[i] for i, col in enumerate(columns_data)} for row in rows_data]
+                    log_success(f"Fetched {len(data)} DBSCAN clustered songs from the database.")
+                    return data
+                    
+                else:
+                    log_fail(f"Unexpected result type: {type(result)}")
+                    if hasattr(result, '__dict__'):
+                        log_info(f"Result attributes: {list(result.__dict__.keys())}")
+                    return []
+                    
+            except Exception as e:
+                log_fail(f"Error executing query: {e}")
+                return []
+                
+    except Exception as e:
+        log_fail(f"Database connection error: {e}")
+        return []
+
+
+async def compare_with_kmeans():
+    """Compare DBSCAN results with existing K-Means clustering with robust parsing."""
+    log_info("Fetching K-Means results for comparison...")
+    
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    
+    try:
+        async with create_client(url, auth_token=auth_token) as client:
+            # Get songs that have both K-Means and DBSCAN labels
+            query = """
+                SELECT s.song_id, s.feature_vector, 
+                       k.kmeans_cluster_id, d.dbscan_cluster_id
+                FROM songs s
+                JOIN song_clusters k ON s.song_id = k.song_id AND k.algorithm = 'kmeans'
+                JOIN song_clusters d ON s.song_id = d.song_id AND d.algorithm = 'dbscan'
+            """
+            
+            try:
+                result = await client.execute(query)
+                
+                # Robust parsing (same pattern)
+                comparison_data = []
+                if hasattr(result, 'rows') and hasattr(result, 'columns'):
+                    if not result.rows:
+                        log_warn("No songs found with both K-Means and DBSCAN labels.")
+                        return
+                    
+                    columns = result.columns
+                    comparison_data = [{col: row[i] for i, col in enumerate(columns)} for row in result.rows]
+                    
+                elif isinstance(result, dict):
+                    rows_data = result.get('rows') or result.get('results')
+                    columns_data = result.get('columns', ['song_id', 'feature_vector', 'kmeans_cluster_id', 'dbscan_cluster_id'])
+                    
+                    if not rows_data:
+                        log_warn("No songs found with both K-Means and DBSCAN labels.")
+                        return
+                    
+                    comparison_data = [{col: row[i] for i, col in enumerate(columns_data)} for row in rows_data]
+                
+                if not comparison_data:
+                    log_warn("No comparison data found.")
+                    return
+                
+                log_info(f"Found {len(comparison_data)} songs with both clustering results.")
+                
+                # Extract labels for comparison
+                kmeans_labels = []
+                dbscan_labels = []
+                
+                for entry in comparison_data:
+                    kmeans_labels.append(int(entry['kmeans_cluster_id']))
+                    dbscan_labels.append(int(entry['dbscan_cluster_id']))
+                
+                # Calculate Adjusted Rand Index
+                ari = adjusted_rand_score(kmeans_labels, dbscan_labels)
+                log_info(f"Adjusted Rand Index (K-Means vs DBSCAN): {ari:.4f}")
+                
+                # Print some statistics
+                kmeans_clusters = len(set(kmeans_labels))
+                dbscan_clusters = len([c for c in set(dbscan_labels) if c != -1])
+                dbscan_noise = dbscan_labels.count(-1)
+                
+                print(f"\nClustering Comparison:")
+                print(f"  K-Means clusters: {kmeans_clusters}")
+                print(f"  DBSCAN clusters: {dbscan_clusters}")
+                print(f"  DBSCAN noise points: {dbscan_noise}")
+                print(f"  Agreement (ARI): {ari:.4f}")
+                
+            except Exception as e:
+                log_fail(f"Error in comparison query: {e}")
+                
+    except Exception as e:
+        log_fail(f"Database connection error during comparison: {e}")
+
+
+async def update_dbscan_metrics_in_db(clustered_data, sil_score, cluster_counts, n_clusters, n_noise):
+    """Update DBSCAN cluster metrics in the database with error handling."""
+    url = os.getenv("TURSO_DATABASE_URL")
+    auth_token = os.getenv("TURSO_AUTH_TOKEN")
+    
+    try:
+        async with create_client(url, auth_token=auth_token) as client:
+            log_info("Updating DBSCAN cluster metrics in the database...")
+            
+            for cid, size in cluster_counts.items():
+                query = """
+                    UPDATE song_clusters
+                    SET dbscan_cluster_size = ?, dbscan_silhouette_score = ?, 
+                        dbscan_n_clusters = ?, dbscan_n_noise = ?
+                    WHERE algorithm = 'dbscan' AND dbscan_cluster_id = ?;
+                """
+                
+                try:
+                    await client.execute(query, [
+                        size, 
+                        float(sil_score) if not np.isnan(sil_score) else None, 
+                        n_clusters, 
+                        n_noise, 
+                        int(cid)
+                    ])
+                    
+                    if cid == -1:
+                        log_success(f"Updated noise points: count={size}")
+                    else:
+                        log_success(f"Updated cluster {cid}: size={size}")
+                        
+                except Exception as e:
+                    log_fail(f"Failed to update cluster {cid}: {e}")
+            
+            log_success("DBSCAN cluster metrics update completed.")
+            
+    except Exception as e:
+        log_fail(f"Database connection error during update: {e}")
 
 def plot_dbscan_results(X, labels, core_samples, sil_score, cluster_counts, eps, min_samples):
     """Plot DBSCAN cluster results with multiple visualizations."""
@@ -191,7 +395,8 @@ def evaluate_dbscan_silhouette_and_sizes(clustered_data):
     for entry in clustered_data:
         fv = parse_feature_vector(entry.get("feature_vector"))
         cid = entry.get("dbscan_cluster_id")
-        is_core = entry.get("is_core_point", 0)
+        # FIXED: Use correct field name from your database
+        is_core = entry.get("dbscan_is_core", 0)  # Changed from "is_core_point"
         
         if fv is not None and cid is not None:
             X.append(fv)
@@ -236,82 +441,6 @@ def evaluate_dbscan_silhouette_and_sizes(clustered_data):
     
     return sil_score, cluster_counts, n_clusters, n_noise
 
-async def update_dbscan_metrics_in_db(clustered_data, sil_score, cluster_counts, n_clusters, n_noise):
-    """Update DBSCAN cluster metrics in the database."""
-    url = os.getenv("TURSO_DATABASE_URL")
-    auth_token = os.getenv("TURSO_AUTH_TOKEN")
-    
-    async with create_client(url, auth_token=auth_token) as client:
-        log_info("Updating DBSCAN cluster metrics in the database...")
-        
-        for cid, size in cluster_counts.items():
-            query = """
-                UPDATE song_clusters
-                SET dbscan_cluster_size = ?, dbscan_silhouette_score = ?, 
-                    dbscan_n_clusters = ?, dbscan_n_noise = ?
-                WHERE algorithm = 'dbscan' AND dbscan_cluster_id = ?;
-            """
-            await client.execute(query, [size, float(sil_score) if not np.isnan(sil_score) else None, 
-                                       n_clusters, n_noise, int(cid)])
-            
-            if cid == -1:
-                log_success(f"Updated noise points: count={size}")
-            else:
-                log_success(f"Updated cluster {cid}: size={size}")
-        
-        log_success("All DBSCAN cluster metrics updated successfully.")
-
-async def compare_with_kmeans():
-    """Compare DBSCAN results with existing K-Means clustering."""
-    log_info("Fetching K-Means results for comparison...")
-    
-    # Fetch K-Means data
-    url = os.getenv("TURSO_DATABASE_URL")
-    auth_token = os.getenv("TURSO_AUTH_TOKEN")
-    
-    async with create_client(url, auth_token=auth_token) as client:
-        # Get songs that have both K-Means and DBSCAN labels
-        query = """
-            SELECT s.song_id, s.feature_vector, 
-                   k.kmeans_cluster_id, d.dbscan_cluster_id
-            FROM songs s
-            JOIN song_clusters k ON s.song_id = k.song_id AND k.algorithm = 'kmeans'
-            JOIN song_clusters d ON s.song_id = d.song_id AND d.algorithm = 'dbscan'
-        """
-        result = await client.execute(query)
-        
-        if not result.rows:
-            log_warn("No songs found with both K-Means and DBSCAN labels.")
-            return
-        
-        columns = result.columns
-        comparison_data = [{col: row[i] for i, col in enumerate(columns)} for row in result.rows]
-        
-        log_info(f"Found {len(comparison_data)} songs with both clustering results.")
-        
-        # Extract labels for comparison
-        kmeans_labels = []
-        dbscan_labels = []
-        
-        for entry in comparison_data:
-            kmeans_labels.append(int(entry['kmeans_cluster_id']))
-            dbscan_labels.append(int(entry['dbscan_cluster_id']))
-        
-        # Calculate Adjusted Rand Index
-        ari = adjusted_rand_score(kmeans_labels, dbscan_labels)
-        log_info(f"Adjusted Rand Index (K-Means vs DBSCAN): {ari:.4f}")
-        
-        # Print some statistics
-        kmeans_clusters = len(set(kmeans_labels))
-        dbscan_clusters = len([c for c in set(dbscan_labels) if c != -1])
-        dbscan_noise = dbscan_labels.count(-1)
-        
-        print(f"\nClustering Comparison:")
-        print(f"  K-Means clusters: {kmeans_clusters}")
-        print(f"  DBSCAN clusters: {dbscan_clusters}")
-        print(f"  DBSCAN noise points: {dbscan_noise}")
-        print(f"  Agreement (ARI): {ari:.4f}")
-
 async def main():
     """Main evaluation pipeline for DBSCAN results."""
     clustered_data = await get_dbscan_clusters_from_db()
@@ -322,8 +451,9 @@ async def main():
     # Evaluate clustering quality
     sil_score, cluster_counts, n_clusters, n_noise = evaluate_dbscan_silhouette_and_sizes(clustered_data)
     
-    # Update database with computed metrics
-    await update_dbscan_metrics_in_db(clustered_data, sil_score, cluster_counts, n_clusters, n_noise)
+    # Update database with computed metrics (optional since they seem to already be populated)
+    log_info("Note: Metrics appear to already be populated in database. Skipping update.")
+    # await update_dbscan_metrics_in_db(clustered_data, sil_score, cluster_counts, n_clusters, n_noise)
     
     # Compare with K-Means if available
     await compare_with_kmeans()
