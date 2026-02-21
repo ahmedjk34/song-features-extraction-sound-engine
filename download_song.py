@@ -30,13 +30,13 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
         if 'entries' in info and info['entries']:
             video_info = info['entries'][0]
         else:
-            print("❌ No results found!")
+            print("No results found!")
             logging.warning(f"No results found for: {song_name} by {artist_name}")
             return
 
         duration = video_info.get('duration', 0)
         if duration > 15 * 60:
-            print(f"❌ Skipped: Video is longer than 15 minutes ({duration/60:.2f} min)")
+            print(f"Skipped: Video is longer than 15 minutes ({duration/60:.2f} min)")
             logging.info(f"Skipped (too long): {song_name} by {artist_name} | Duration: {duration} seconds | URL: {video_info.get('webpage_url', '')}")
             return
 
@@ -75,8 +75,8 @@ def download_song(song_name, artist_name, output_filename="audio.wav"):
 
     if os.path.exists("temp_audio.wav"):
         os.rename("temp_audio.wav", output_filename)
-        print(f"✅ Saved: {output_filename}")
+        print(f"Saved: {output_filename}")
         logging.info(f"Downloaded: {song_name} by {artist_name} | Duration: {duration} seconds | URL: {video_url} | Saved as: {output_filename}")
     else:
-        print("❌ Failed: No WAV found")
+        print("Failed: No WAV found")
         logging.error(f"Failed to save WAV for: {song_name} by {artist_name} | URL: {video_url}")

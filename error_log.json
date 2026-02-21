@@ -1,0 +1,2738 @@
+[
+  {
+    "song_id": "2NbsBSshscKIPRG3kwBbfo",
+    "artist_id": "2feDdbD5araYcm6JhFHHw7",
+    "item_name": "Never Felt So Alone",
+    "artist": "Labrinth",
+    "error": "\u001b[0;31mERROR:\u001b[0m Postprocessing: ffprobe and ffmpeg not found. Please install or provide the path using --ffmpeg-location",
+    "timestamp": "2025-09-09 10:54:57"
+  },
+  {
+    "song_id": "2NbsBSshscKIPRG3kwBbfo",
+    "artist_id": "2feDdbD5araYcm6JhFHHw7",
+    "item_name": "Never Felt So Alone",
+    "artist": "Labrinth",
+    "error": "\u001b[0;31mERROR:\u001b[0m Postprocessing: ffprobe and ffmpeg not found. Please install or provide the path using --ffmpeg-location",
+    "timestamp": "2025-09-09 10:55:43"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-09 10:58:37"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:05:21"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-09 11:05:22"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-09 11:05:23"
+  },
+  {
+    "song_id": "2N06jkrVms60VvuqmR566E",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "I Know How to Hex You",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ke8S7XW3uVU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:05:27"
+  },
+  {
+    "song_id": "5liXfs90tKbiOn4LCzQJOz",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "In Nox",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] Qx_LbmYi3ks: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:05:30"
+  },
+  {
+    "song_id": "3D8fT4ExPoHvW6clW9nYLp",
+    "artist_id": "0CEFCo8288kQU7mJi25s6E",
+    "item_name": "The Diary",
+    "artist": "Hollywood Undead",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j7bPePvGnJw: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:05:58"
+  },
+  {
+    "song_id": "5WGoRfss5mQlZHhNYTjcbP",
+    "artist_id": "3hiYKNf8gJkrqjdRPVLnTC",
+    "item_name": "Cum Junkie",
+    "artist": "Genitorturers",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] zQsvEh_HSEE: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:06:01"
+  },
+  {
+    "song_id": "09MmLUxArOzsoCnZqaknIt",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "Beladi (Motherland)",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_09MmLUxArOzsoCnZqaknIt.webm",
+    "timestamp": "2025-09-09 11:06:02"
+  },
+  {
+    "song_id": "29eq1fbq0LFytCjPSpoNm8",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "The Rising Tide",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_29eq1fbq0LFytCjPSpoNm8.webm",
+    "timestamp": "2025-09-09 11:06:04"
+  },
+  {
+    "song_id": "1iUJAGxkNylIwoaRGTBXW5",
+    "artist_id": "5HGXZdpWmmXoDqbCCsBlYt",
+    "item_name": "Hotcore - Benny Benassi Remix",
+    "artist": "John Roberts",
+    "error": "No audio file found at temp_files/temp_audio_1iUJAGxkNylIwoaRGTBXW5.webm",
+    "timestamp": "2025-09-09 11:06:38"
+  },
+  {
+    "song_id": "22WcKHEO4MnTxjvlncGjYR",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Prelude",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_22WcKHEO4MnTxjvlncGjYR.webm",
+    "timestamp": "2025-09-09 11:18:38"
+  },
+  {
+    "song_id": "4fIDcZOF2OYeTRBFPIY0J1",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Cherub",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_4fIDcZOF2OYeTRBFPIY0J1.webm",
+    "timestamp": "2025-09-09 11:18:39"
+  },
+  {
+    "song_id": "4KtafAcacAzTeuTgjgt2Ei",
+    "artist_id": "0avMDS4HyoCEP6RqZJWpY2",
+    "item_name": "Fuck Me Eyes",
+    "artist": "Ethel Cain",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] u4fhegxsHtY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:35:47"
+  },
+  {
+    "song_id": "6UB23Tg6LwUAdA4A9JkARc",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Reykjavik Nights",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_6UB23Tg6LwUAdA4A9JkARc.webm",
+    "timestamp": "2025-09-09 11:40:38"
+  },
+  {
+    "song_id": "2kmdbVjs4NNeWN2zDukPQ2",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Feral Eyes",
+    "artist": "Lesbian Bed Death",
+    "error": "'mean'",
+    "timestamp": "2025-09-09 11:40:49"
+  },
+  {
+    "song_id": "27PjrtsI7ZskyZ5gYgy0ri",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Moonlight",
+    "artist": "Lesbian Bed Death",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 3WJpWQAZ0VQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:40:54"
+  },
+  {
+    "song_id": "3k6oqIzQ8liTMjqU0FOldU",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Retrosexual",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_3k6oqIzQ8liTMjqU0FOldU.webm",
+    "timestamp": "2025-09-09 11:40:55"
+  },
+  {
+    "song_id": "7rIq5kDjq0S7A5jgnzjhHP",
+    "artist_id": "09CNSAth08QclYtUeFzv5L",
+    "item_name": "Kreuzberg",
+    "artist": "Irwin Brooks",
+    "error": "No audio file found at temp_files/temp_audio_7rIq5kDjq0S7A5jgnzjhHP.webm",
+    "timestamp": "2025-09-09 11:41:39"
+  },
+  {
+    "song_id": "6mib8jl6fASfaAahkDoCr8",
+    "artist_id": "0CqDF46d81NfjoRM74rPtl",
+    "item_name": "Agile",
+    "artist": "Pontus De Bjorn",
+    "error": "No audio file found at temp_files/temp_audio_6mib8jl6fASfaAahkDoCr8.webm",
+    "timestamp": "2025-09-09 11:41:40"
+  },
+  {
+    "song_id": "56nC3EMoE08bds3R5cqbNF",
+    "artist_id": "04TLoocvPLWlgDIC4MjBeq",
+    "item_name": "Mythological Voyagers of Space",
+    "artist": "Toni Verde",
+    "error": "No audio file found at temp_files/temp_audio_56nC3EMoE08bds3R5cqbNF.webm",
+    "timestamp": "2025-09-09 11:41:45"
+  },
+  {
+    "song_id": "309CdwaCYYTM8XRXZVW2hv",
+    "artist_id": "6cjlKrTrFNlg1FYfjyEAmG",
+    "item_name": "Fomalhault",
+    "artist": "Ian Dakota",
+    "error": "No audio file found at temp_files/temp_audio_309CdwaCYYTM8XRXZVW2hv.webm",
+    "timestamp": "2025-09-09 11:41:46"
+  },
+  {
+    "song_id": "0yzWAD97tCIRJWJH23GANb",
+    "artist_id": "4w1x0xqhvGO85K7JrW30Cd",
+    "item_name": "Marijuana",
+    "artist": "Dudiish",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] g5TjC9y_DRs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:08"
+  },
+  {
+    "song_id": "3BO5Zr6jdLEwYsZJjArQo4",
+    "artist_id": "29XJC5N8MrBCo3XgUU1KPk",
+    "item_name": "FUCKGOD",
+    "artist": "elijah daniel",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ozVaxB9c1zY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:12"
+  },
+  {
+    "song_id": "6PQ53jwemx1BgRIefyBVD6",
+    "artist_id": "5xegBBY3vjR75woVR9kiy7",
+    "item_name": "I Don't Give a Fuck",
+    "artist": "Ghostface Playa",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j5y5p-CSm78: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:16"
+  },
+  {
+    "song_id": "4GRFOH8RYHh7X3b9sCUlYs",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:19"
+  },
+  {
+    "song_id": "5XAPpyIoYF3QXP34Hv8Pvx",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself (Part III)",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:24"
+  },
+  {
+    "song_id": "0tMG4bGLNqVJV8mbRSlKkF",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "[whispers indistinctly]",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] gZvRZjE12SQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:48"
+  },
+  {
+    "song_id": "2XSrt1dcuOXPgl3B4bxmBz",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Carrollton",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] COgzxq3najs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:42:53"
+  },
+  {
+    "song_id": "7vwzeyaQbi9qZRRbt0e4Hi",
+    "artist_id": "0ATEuLnRYbNFmTIYugYYzT",
+    "item_name": "Batny",
+    "artist": "Luka Wel Batteekh",
+    "error": "No audio file found at temp_files/temp_audio_7vwzeyaQbi9qZRRbt0e4Hi.webm",
+    "timestamp": "2025-09-09 11:42:54"
+  },
+  {
+    "song_id": "5rlowamtQ4P9WWupWyDxrX",
+    "artist_id": "6zqVWSBW6bzmjwT2T1MQQ6",
+    "item_name": "Beedhum",
+    "artist": "Rawi",
+    "error": "No audio file found at temp_files/temp_audio_5rlowamtQ4P9WWupWyDxrX.webm",
+    "timestamp": "2025-09-09 11:43:50"
+  },
+  {
+    "song_id": "5tXKUlGgXbUkr3cyT1ivWn",
+    "artist_id": "5pKCCKE2ajJHZ9KAiaK11H",
+    "item_name": "Crazy Little Thing Called Love",
+    "artist": "Rihanna",
+    "error": "'mean'",
+    "timestamp": "2025-09-09 11:48:49"
+  },
+  {
+    "song_id": "7hDgazw0jcZFhzRN1jCeuE",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "All I Want",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] W_u_i8_Q8GU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:49:22"
+  },
+  {
+    "song_id": "0Oe48pAERsSra98PkJxTS1",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "BAD GAME",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] OROAn0j48sU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 11:49:27"
+  },
+  {
+    "song_id": "2sPaX15MJcC6bhJ31tSdh9",
+    "artist_id": "58gyHFyLoEM1rVTrPTa4vE",
+    "item_name": "Нелюбимая",
+    "artist": "A'Studio",
+    "error": "No audio file found at temp_files/temp_audio_2sPaX15MJcC6bhJ31tSdh9.webm",
+    "timestamp": "2025-09-09 12:03:10"
+  },
+  {
+    "song_id": "0VJYhKhrHgJ7fgjGaC2k07",
+    "artist_id": "15UsOTVnJzReFVN1VCnxy4",
+    "item_name": "The Explanation",
+    "artist": "XXXTENTACION",
+    "error": "'mean'",
+    "timestamp": "2025-09-09 12:10:52"
+  },
+  {
+    "song_id": "1GpbWfwb4rR7UiNfaKdZ16",
+    "artist_id": "3xoLUBE5kWiGDw1Dgp8Fcf",
+    "item_name": "northen lights",
+    "artist": "LVTA",
+    "error": "No audio file found at temp_files/temp_audio_1GpbWfwb4rR7UiNfaKdZ16.webm",
+    "timestamp": "2025-09-09 13:24:25"
+  },
+  {
+    "song_id": "0JoOEjVuA6VtEzHPVygoeA",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Medow",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_0JoOEjVuA6VtEzHPVygoeA.webm",
+    "timestamp": "2025-09-09 13:26:41"
+  },
+  {
+    "song_id": "6vNocabqNxmIsiBzrJTaQ0",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "Nightrider",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_6vNocabqNxmIsiBzrJTaQ0.webm",
+    "timestamp": "2025-09-09 13:28:40"
+  },
+  {
+    "song_id": "7q0NPAbq3rDORmYjfR0VYu",
+    "artist_id": "4rMRjyAjkIJB4a6voVAtAM",
+    "item_name": "Plant Haze",
+    "artist": "WFPB",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] G5ql2YgbL4w: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 13:31:40"
+  },
+  {
+    "song_id": "6GpE61U0CCL7k01WyF3DiN",
+    "artist_id": "6oGyihO2387JNURS8U5Olg",
+    "item_name": "Dusk's Delight",
+    "artist": "Wezley Wiz",
+    "error": "No audio file found at temp_files/temp_audio_6GpE61U0CCL7k01WyF3DiN.webm",
+    "timestamp": "2025-09-09 13:33:53"
+  },
+  {
+    "song_id": "7kCclmsH5N16EG7eSTmkh4",
+    "artist_id": "55psXqpj00WvVubriLCEet",
+    "item_name": "Kyoto Nights",
+    "artist": "Nitta' Gritta'",
+    "error": "No audio file found at temp_files/temp_audio_7kCclmsH5N16EG7eSTmkh4.webm",
+    "timestamp": "2025-09-09 13:36:37"
+  },
+  {
+    "song_id": "0iBxNrMyD5IX0EPDaioTjn",
+    "artist_id": "5nljYdfvafyRYs5soqzJ1U",
+    "item_name": "Just For The Night",
+    "artist": "Monocloud",
+    "error": "No audio file found at temp_files/temp_audio_0iBxNrMyD5IX0EPDaioTjn.webm",
+    "timestamp": "2025-09-09 13:36:38"
+  },
+  {
+    "song_id": "487Kkxgr20J7WW60ETMCFR",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "City Of Lofi",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_487Kkxgr20J7WW60ETMCFR.webm",
+    "timestamp": "2025-09-09 13:36:39"
+  },
+  {
+    "song_id": "2yUZCS5EZcYntD023zbKEw",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Starlight",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_2yUZCS5EZcYntD023zbKEw.webm",
+    "timestamp": "2025-09-09 13:36:40"
+  },
+  {
+    "song_id": "1cOQS9uGWr6LzyeL9f1J4T",
+    "artist_id": "4EQ0a6RygiHzb95fmQYc72",
+    "item_name": "no worriezz",
+    "artist": "uniqlesse",
+    "error": "No audio file found at temp_files/temp_audio_1cOQS9uGWr6LzyeL9f1J4T.webm",
+    "timestamp": "2025-09-09 13:38:02"
+  },
+  {
+    "song_id": "4wdLAE3i6t3tCqE6WBn7bY",
+    "artist_id": "1qTfRbMkItLTntzS9ehXQT",
+    "item_name": "Freediving",
+    "artist": "Paoz",
+    "error": "No audio file found at temp_files/temp_audio_4wdLAE3i6t3tCqE6WBn7bY.webm",
+    "timestamp": "2025-09-09 13:38:06"
+  },
+  {
+    "song_id": "3FTinrwcWEVKWLFNNeagiJ",
+    "artist_id": "2kz8ErEfOCprZuWDcFgzSM",
+    "item_name": "lucid.",
+    "artist": "pandora.",
+    "error": "\u001b[0;31mERROR:\u001b[0m \r[download] Got error: HTTP Error 500: Internal Server Error",
+    "timestamp": "2025-09-09 14:30:01"
+  },
+  {
+    "song_id": "4VkEkljlOC5cMbRMhREO5E",
+    "artist_id": "0dgJbQ0bKPyUXco8hEXN7X",
+    "item_name": "snowfall (Slowed + Reverb)",
+    "artist": "Øneheart",
+    "error": "No audio file found at temp_files/temp_audio_4VkEkljlOC5cMbRMhREO5E.webm",
+    "timestamp": "2025-09-09 14:34:09"
+  },
+  {
+    "song_id": "4Hc2TTFkRGXqZjBXKh4QL7",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "recalling memories that never existed",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_4Hc2TTFkRGXqZjBXKh4QL7.webm",
+    "timestamp": "2025-09-09 14:37:30"
+  },
+  {
+    "song_id": "2IvnDjlgH8yy70Nz99UdcJ",
+    "artist_id": "18oYqNtcLUHrqO7LfX7qni",
+    "item_name": "Agape",
+    "artist": "Nicholas Britell",
+    "error": "No audio file found at temp_files/temp_audio_2IvnDjlgH8yy70Nz99UdcJ.webm",
+    "timestamp": "2025-09-09 14:42:41"
+  },
+  {
+    "song_id": "5x1zuX99a6XMM5KVjFy7KY",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "Reality Changes",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_5x1zuX99a6XMM5KVjFy7KY.webm",
+    "timestamp": "2025-09-09 14:43:37"
+  },
+  {
+    "song_id": "3CzBdanquEZFE6VHN6Lsku",
+    "artist_id": "5kG6hlo8uHTWve3yMdUAgQ",
+    "item_name": "we were something i'll never forget",
+    "artist": ".nthngfeelsreal?",
+    "error": "No audio file found at temp_files/temp_audio_3CzBdanquEZFE6VHN6Lsku.webm",
+    "timestamp": "2025-09-09 14:44:05"
+  },
+  {
+    "song_id": "2NJeair83CrcDrvo4qxDD8",
+    "artist_id": "2qR5Lyg6J7XNFqJAGdwuup",
+    "item_name": "what do your thoughts sound like?",
+    "artist": "broimsuperman",
+    "error": "No audio file found at temp_files/temp_audio_2NJeair83CrcDrvo4qxDD8.webm",
+    "timestamp": "2025-09-09 14:44:10"
+  },
+  {
+    "song_id": "3SarK1sebXFdOraul9Bkwk",
+    "artist_id": "09tB7baQ8wEJUJ4fNZIJiW",
+    "item_name": "Scheming - Instrumental Slowed",
+    "artist": "you lost",
+    "error": "No audio file found at temp_files/temp_audio_3SarK1sebXFdOraul9Bkwk.webm",
+    "timestamp": "2025-09-09 14:50:00"
+  },
+  {
+    "song_id": "6horli6yhrSbLmKQdcYTtQ",
+    "artist_id": "6MwPCCR936cYfM1dLsGVnl",
+    "item_name": "Dead As F**k",
+    "artist": "Motionless In White",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] moEOfNp3HYM: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 15:00:55"
+  },
+  {
+    "song_id": "4k51blEvWIergzbXNc1LHj",
+    "artist_id": "5m8fc8h0xd4QfpJzcPI9NK",
+    "item_name": "Wala Ala Bali",
+    "artist": "Hani Mitwasi",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 6-s0PzEoXyI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-09 15:33:48"
+  },
+  {
+    "song_id": "5MGBA89UiFra2Z9QoTGySA",
+    "artist_id": "5UYpPowESfmqU3fD6fJFox",
+    "item_name": "Silvered Shadows",
+    "artist": "Kardashev",
+    "error": "No audio file found at temp_files/temp_audio_5MGBA89UiFra2Z9QoTGySA.webm",
+    "timestamp": "2025-09-09 16:45:12"
+  },
+  {
+    "song_id": "0cGJuyGIUpDHDsh23idOdD",
+    "artist_id": "23otkEMJAdZIscLXLsicOq",
+    "item_name": "The Departure (From The Leftovers)",
+    "artist": "I Aimed My Pebble",
+    "error": "No audio file found at temp_files/temp_audio_0cGJuyGIUpDHDsh23idOdD.webm",
+    "timestamp": "2025-09-09 16:57:27"
+  },
+  {
+    "song_id": "6pCczQZSRssz8Cs55qjUm6",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 1",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_6pCczQZSRssz8Cs55qjUm6.webm",
+    "timestamp": "2025-09-09 17:12:12"
+  },
+  {
+    "song_id": "5cU514wT6pC9Q95wiM7BhL",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 2",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5cU514wT6pC9Q95wiM7BhL.webm",
+    "timestamp": "2025-09-09 17:12:13"
+  },
+  {
+    "song_id": "1Fyt8iWrt4vktLdL2N4GdN",
+    "artist_id": "1drDjMtBaf1rUIbEUpImav",
+    "item_name": "At the Races",
+    "artist": "Julian du Perron",
+    "error": "'mean'",
+    "timestamp": "2025-09-09 17:14:53"
+  },
+  {
+    "song_id": "62ZiNyF0xYgU5shbu57vSl",
+    "artist_id": "5gToXiJixvWtYGI1S3uGhM",
+    "item_name": "My Car Wouldn't Start",
+    "artist": "Winston Hunte",
+    "error": "No audio file found at temp_files/temp_audio_62ZiNyF0xYgU5shbu57vSl.webm",
+    "timestamp": "2025-09-09 17:16:47"
+  },
+  {
+    "song_id": "5g6ZI5vg3aGKxdrPMk4l35",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "2000 Miles - interlude",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5g6ZI5vg3aGKxdrPMk4l35.webm",
+    "timestamp": "2025-09-09 17:17:51"
+  },
+  {
+    "song_id": "2bivRnJXU7tUFbaoeemfSO",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Wintersleep - outro",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_2bivRnJXU7tUFbaoeemfSO.webm",
+    "timestamp": "2025-09-09 17:26:05"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 12:47:28"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:34"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-13 12:47:35"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-13 12:47:36"
+  },
+  {
+    "song_id": "2N06jkrVms60VvuqmR566E",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "I Know How to Hex You",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ke8S7XW3uVU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:40"
+  },
+  {
+    "song_id": "5liXfs90tKbiOn4LCzQJOz",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "In Nox",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] Qx_LbmYi3ks: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:43"
+  },
+  {
+    "song_id": "3D8fT4ExPoHvW6clW9nYLp",
+    "artist_id": "0CEFCo8288kQU7mJi25s6E",
+    "item_name": "The Diary",
+    "artist": "Hollywood Undead",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j7bPePvGnJw: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:47"
+  },
+  {
+    "song_id": "5WGoRfss5mQlZHhNYTjcbP",
+    "artist_id": "3hiYKNf8gJkrqjdRPVLnTC",
+    "item_name": "Cum Junkie",
+    "artist": "Genitorturers",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] zQsvEh_HSEE: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:51"
+  },
+  {
+    "song_id": "09MmLUxArOzsoCnZqaknIt",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "Beladi (Motherland)",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_09MmLUxArOzsoCnZqaknIt.webm",
+    "timestamp": "2025-09-13 12:47:51"
+  },
+  {
+    "song_id": "29eq1fbq0LFytCjPSpoNm8",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "The Rising Tide",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_29eq1fbq0LFytCjPSpoNm8.webm",
+    "timestamp": "2025-09-13 12:47:52"
+  },
+  {
+    "song_id": "1iUJAGxkNylIwoaRGTBXW5",
+    "artist_id": "5HGXZdpWmmXoDqbCCsBlYt",
+    "item_name": "Hotcore - Benny Benassi Remix",
+    "artist": "John Roberts",
+    "error": "No audio file found at temp_files/temp_audio_1iUJAGxkNylIwoaRGTBXW5.webm",
+    "timestamp": "2025-09-13 12:47:53"
+  },
+  {
+    "song_id": "22WcKHEO4MnTxjvlncGjYR",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Prelude",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_22WcKHEO4MnTxjvlncGjYR.webm",
+    "timestamp": "2025-09-13 12:47:54"
+  },
+  {
+    "song_id": "4fIDcZOF2OYeTRBFPIY0J1",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Cherub",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_4fIDcZOF2OYeTRBFPIY0J1.webm",
+    "timestamp": "2025-09-13 12:47:55"
+  },
+  {
+    "song_id": "4KtafAcacAzTeuTgjgt2Ei",
+    "artist_id": "0avMDS4HyoCEP6RqZJWpY2",
+    "item_name": "Fuck Me Eyes",
+    "artist": "Ethel Cain",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] u4fhegxsHtY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:47:59"
+  },
+  {
+    "song_id": "6UB23Tg6LwUAdA4A9JkARc",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Reykjavik Nights",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_6UB23Tg6LwUAdA4A9JkARc.webm",
+    "timestamp": "2025-09-13 12:48:00"
+  },
+  {
+    "song_id": "2kmdbVjs4NNeWN2zDukPQ2",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Feral Eyes",
+    "artist": "Lesbian Bed Death",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 12:48:19"
+  },
+  {
+    "song_id": "27PjrtsI7ZskyZ5gYgy0ri",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Moonlight",
+    "artist": "Lesbian Bed Death",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 3WJpWQAZ0VQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:48:22"
+  },
+  {
+    "song_id": "3k6oqIzQ8liTMjqU0FOldU",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Retrosexual",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_3k6oqIzQ8liTMjqU0FOldU.webm",
+    "timestamp": "2025-09-13 12:48:23"
+  },
+  {
+    "song_id": "7rIq5kDjq0S7A5jgnzjhHP",
+    "artist_id": "09CNSAth08QclYtUeFzv5L",
+    "item_name": "Kreuzberg",
+    "artist": "Irwin Brooks",
+    "error": "No audio file found at temp_files/temp_audio_7rIq5kDjq0S7A5jgnzjhHP.webm",
+    "timestamp": "2025-09-13 12:48:24"
+  },
+  {
+    "song_id": "6mib8jl6fASfaAahkDoCr8",
+    "artist_id": "0CqDF46d81NfjoRM74rPtl",
+    "item_name": "Agile",
+    "artist": "Pontus De Bjorn",
+    "error": "No audio file found at temp_files/temp_audio_6mib8jl6fASfaAahkDoCr8.webm",
+    "timestamp": "2025-09-13 12:48:28"
+  },
+  {
+    "song_id": "309CdwaCYYTM8XRXZVW2hv",
+    "artist_id": "6cjlKrTrFNlg1FYfjyEAmG",
+    "item_name": "Fomalhault",
+    "artist": "Ian Dakota",
+    "error": "No audio file found at temp_files/temp_audio_309CdwaCYYTM8XRXZVW2hv.webm",
+    "timestamp": "2025-09-13 12:48:43"
+  },
+  {
+    "song_id": "0yzWAD97tCIRJWJH23GANb",
+    "artist_id": "4w1x0xqhvGO85K7JrW30Cd",
+    "item_name": "Marijuana",
+    "artist": "Dudiish",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] g5TjC9y_DRs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:48:46"
+  },
+  {
+    "song_id": "3BO5Zr6jdLEwYsZJjArQo4",
+    "artist_id": "29XJC5N8MrBCo3XgUU1KPk",
+    "item_name": "FUCKGOD",
+    "artist": "elijah daniel",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ozVaxB9c1zY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:48:51"
+  },
+  {
+    "song_id": "6PQ53jwemx1BgRIefyBVD6",
+    "artist_id": "5xegBBY3vjR75woVR9kiy7",
+    "item_name": "I Don't Give a Fuck",
+    "artist": "Ghostface Playa",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j5y5p-CSm78: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:48:54"
+  },
+  {
+    "song_id": "4GRFOH8RYHh7X3b9sCUlYs",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:48:58"
+  },
+  {
+    "song_id": "5XAPpyIoYF3QXP34Hv8Pvx",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself (Part III)",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:49:01"
+  },
+  {
+    "song_id": "0tMG4bGLNqVJV8mbRSlKkF",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "[whispers indistinctly]",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] gZvRZjE12SQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:49:04"
+  },
+  {
+    "song_id": "2XSrt1dcuOXPgl3B4bxmBz",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Carrollton",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] COgzxq3najs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:49:08"
+  },
+  {
+    "song_id": "7vwzeyaQbi9qZRRbt0e4Hi",
+    "artist_id": "0ATEuLnRYbNFmTIYugYYzT",
+    "item_name": "Batny",
+    "artist": "Luka Wel Batteekh",
+    "error": "No audio file found at temp_files/temp_audio_7vwzeyaQbi9qZRRbt0e4Hi.webm",
+    "timestamp": "2025-09-13 12:49:09"
+  },
+  {
+    "song_id": "5rlowamtQ4P9WWupWyDxrX",
+    "artist_id": "6zqVWSBW6bzmjwT2T1MQQ6",
+    "item_name": "Beedhum",
+    "artist": "Rawi",
+    "error": "No audio file found at temp_files/temp_audio_5rlowamtQ4P9WWupWyDxrX.webm",
+    "timestamp": "2025-09-13 12:49:10"
+  },
+  {
+    "song_id": "5tXKUlGgXbUkr3cyT1ivWn",
+    "artist_id": "5pKCCKE2ajJHZ9KAiaK11H",
+    "item_name": "Crazy Little Thing Called Love",
+    "artist": "Rihanna",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 12:49:27"
+  },
+  {
+    "song_id": "7hDgazw0jcZFhzRN1jCeuE",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "All I Want",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] W_u_i8_Q8GU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:49:31"
+  },
+  {
+    "song_id": "0Oe48pAERsSra98PkJxTS1",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "BAD GAME",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] OROAn0j48sU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:49:34"
+  },
+  {
+    "song_id": "0VJYhKhrHgJ7fgjGaC2k07",
+    "artist_id": "15UsOTVnJzReFVN1VCnxy4",
+    "item_name": "The Explanation",
+    "artist": "XXXTENTACION",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 12:50:22"
+  },
+  {
+    "song_id": "1GpbWfwb4rR7UiNfaKdZ16",
+    "artist_id": "3xoLUBE5kWiGDw1Dgp8Fcf",
+    "item_name": "northen lights",
+    "artist": "LVTA",
+    "error": "No audio file found at temp_files/temp_audio_1GpbWfwb4rR7UiNfaKdZ16.webm",
+    "timestamp": "2025-09-13 12:50:23"
+  },
+  {
+    "song_id": "0JoOEjVuA6VtEzHPVygoeA",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Medow",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_0JoOEjVuA6VtEzHPVygoeA.webm",
+    "timestamp": "2025-09-13 12:50:24"
+  },
+  {
+    "song_id": "6vNocabqNxmIsiBzrJTaQ0",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "Nightrider",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_6vNocabqNxmIsiBzrJTaQ0.webm",
+    "timestamp": "2025-09-13 12:50:25"
+  },
+  {
+    "song_id": "7q0NPAbq3rDORmYjfR0VYu",
+    "artist_id": "4rMRjyAjkIJB4a6voVAtAM",
+    "item_name": "Plant Haze",
+    "artist": "WFPB",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] G5ql2YgbL4w: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:50:29"
+  },
+  {
+    "song_id": "6GpE61U0CCL7k01WyF3DiN",
+    "artist_id": "6oGyihO2387JNURS8U5Olg",
+    "item_name": "Dusk's Delight",
+    "artist": "Wezley Wiz",
+    "error": "No audio file found at temp_files/temp_audio_6GpE61U0CCL7k01WyF3DiN.webm",
+    "timestamp": "2025-09-13 12:50:30"
+  },
+  {
+    "song_id": "7kCclmsH5N16EG7eSTmkh4",
+    "artist_id": "55psXqpj00WvVubriLCEet",
+    "item_name": "Kyoto Nights",
+    "artist": "Nitta' Gritta'",
+    "error": "No audio file found at temp_files/temp_audio_7kCclmsH5N16EG7eSTmkh4.webm",
+    "timestamp": "2025-09-13 12:50:31"
+  },
+  {
+    "song_id": "0iBxNrMyD5IX0EPDaioTjn",
+    "artist_id": "5nljYdfvafyRYs5soqzJ1U",
+    "item_name": "Just For The Night",
+    "artist": "Monocloud",
+    "error": "No audio file found at temp_files/temp_audio_0iBxNrMyD5IX0EPDaioTjn.webm",
+    "timestamp": "2025-09-13 12:50:32"
+  },
+  {
+    "song_id": "487Kkxgr20J7WW60ETMCFR",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "City Of Lofi",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_487Kkxgr20J7WW60ETMCFR.webm",
+    "timestamp": "2025-09-13 12:50:33"
+  },
+  {
+    "song_id": "2yUZCS5EZcYntD023zbKEw",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Starlight",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_2yUZCS5EZcYntD023zbKEw.webm",
+    "timestamp": "2025-09-13 12:50:34"
+  },
+  {
+    "song_id": "1cOQS9uGWr6LzyeL9f1J4T",
+    "artist_id": "4EQ0a6RygiHzb95fmQYc72",
+    "item_name": "no worriezz",
+    "artist": "uniqlesse",
+    "error": "No audio file found at temp_files/temp_audio_1cOQS9uGWr6LzyeL9f1J4T.webm",
+    "timestamp": "2025-09-13 12:50:38"
+  },
+  {
+    "song_id": "4wdLAE3i6t3tCqE6WBn7bY",
+    "artist_id": "1qTfRbMkItLTntzS9ehXQT",
+    "item_name": "Freediving",
+    "artist": "Paoz",
+    "error": "No audio file found at temp_files/temp_audio_4wdLAE3i6t3tCqE6WBn7bY.webm",
+    "timestamp": "2025-09-13 12:50:39"
+  },
+  {
+    "song_id": "4VkEkljlOC5cMbRMhREO5E",
+    "artist_id": "0dgJbQ0bKPyUXco8hEXN7X",
+    "item_name": "snowfall (Slowed + Reverb)",
+    "artist": "Øneheart",
+    "error": "No audio file found at temp_files/temp_audio_4VkEkljlOC5cMbRMhREO5E.webm",
+    "timestamp": "2025-09-13 12:51:07"
+  },
+  {
+    "song_id": "4Hc2TTFkRGXqZjBXKh4QL7",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "recalling memories that never existed",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_4Hc2TTFkRGXqZjBXKh4QL7.webm",
+    "timestamp": "2025-09-13 12:51:11"
+  },
+  {
+    "song_id": "2IvnDjlgH8yy70Nz99UdcJ",
+    "artist_id": "18oYqNtcLUHrqO7LfX7qni",
+    "item_name": "Agape",
+    "artist": "Nicholas Britell",
+    "error": "No audio file found at temp_files/temp_audio_2IvnDjlgH8yy70Nz99UdcJ.webm",
+    "timestamp": "2025-09-13 12:51:15"
+  },
+  {
+    "song_id": "5x1zuX99a6XMM5KVjFy7KY",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "Reality Changes",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_5x1zuX99a6XMM5KVjFy7KY.webm",
+    "timestamp": "2025-09-13 12:51:19"
+  },
+  {
+    "song_id": "3CzBdanquEZFE6VHN6Lsku",
+    "artist_id": "5kG6hlo8uHTWve3yMdUAgQ",
+    "item_name": "we were something i'll never forget",
+    "artist": ".nthngfeelsreal?",
+    "error": "No audio file found at temp_files/temp_audio_3CzBdanquEZFE6VHN6Lsku.webm",
+    "timestamp": "2025-09-13 12:51:22"
+  },
+  {
+    "song_id": "2NJeair83CrcDrvo4qxDD8",
+    "artist_id": "2qR5Lyg6J7XNFqJAGdwuup",
+    "item_name": "what do your thoughts sound like?",
+    "artist": "broimsuperman",
+    "error": "No audio file found at temp_files/temp_audio_2NJeair83CrcDrvo4qxDD8.webm",
+    "timestamp": "2025-09-13 12:51:26"
+  },
+  {
+    "song_id": "6horli6yhrSbLmKQdcYTtQ",
+    "artist_id": "6MwPCCR936cYfM1dLsGVnl",
+    "item_name": "Dead As F**k",
+    "artist": "Motionless In White",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] moEOfNp3HYM: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:51:46"
+  },
+  {
+    "song_id": "4k51blEvWIergzbXNc1LHj",
+    "artist_id": "5m8fc8h0xd4QfpJzcPI9NK",
+    "item_name": "Wala Ala Bali",
+    "artist": "Hani Mitwasi",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 6-s0PzEoXyI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 12:51:50"
+  },
+  {
+    "song_id": "5MGBA89UiFra2Z9QoTGySA",
+    "artist_id": "5UYpPowESfmqU3fD6fJFox",
+    "item_name": "Silvered Shadows",
+    "artist": "Kardashev",
+    "error": "No audio file found at temp_files/temp_audio_5MGBA89UiFra2Z9QoTGySA.webm",
+    "timestamp": "2025-09-13 12:51:54"
+  },
+  {
+    "song_id": "0cGJuyGIUpDHDsh23idOdD",
+    "artist_id": "23otkEMJAdZIscLXLsicOq",
+    "item_name": "The Departure (From The Leftovers)",
+    "artist": "I Aimed My Pebble",
+    "error": "No audio file found at temp_files/temp_audio_0cGJuyGIUpDHDsh23idOdD.webm",
+    "timestamp": "2025-09-13 12:51:58"
+  },
+  {
+    "song_id": "6pCczQZSRssz8Cs55qjUm6",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 1",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_6pCczQZSRssz8Cs55qjUm6.webm",
+    "timestamp": "2025-09-13 12:51:59"
+  },
+  {
+    "song_id": "5cU514wT6pC9Q95wiM7BhL",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 2",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5cU514wT6pC9Q95wiM7BhL.webm",
+    "timestamp": "2025-09-13 12:52:00"
+  },
+  {
+    "song_id": "1Fyt8iWrt4vktLdL2N4GdN",
+    "artist_id": "1drDjMtBaf1rUIbEUpImav",
+    "item_name": "At the Races",
+    "artist": "Julian du Perron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 12:52:12"
+  },
+  {
+    "song_id": "62ZiNyF0xYgU5shbu57vSl",
+    "artist_id": "5gToXiJixvWtYGI1S3uGhM",
+    "item_name": "My Car Wouldn't Start",
+    "artist": "Winston Hunte",
+    "error": "No audio file found at temp_files/temp_audio_62ZiNyF0xYgU5shbu57vSl.webm",
+    "timestamp": "2025-09-13 12:52:13"
+  },
+  {
+    "song_id": "2bivRnJXU7tUFbaoeemfSO",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Wintersleep - outro",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_2bivRnJXU7tUFbaoeemfSO.webm",
+    "timestamp": "2025-09-13 12:52:28"
+  },
+  {
+    "song_id": "1IJ2K1Xb3t5lqx1g92TG9o",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Morirò d'amore - Sanremo 2003",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_1IJ2K1Xb3t5lqx1g92TG9o.webm",
+    "timestamp": "2025-09-13 14:09:08"
+  },
+  {
+    "song_id": "0HCe4WBa6Zn5n3FhNc08Fi",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Un'ora fa - Sanremo 1969",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_0HCe4WBa6Zn5n3FhNc08Fi.webm",
+    "timestamp": "2025-09-13 14:09:09"
+  },
+  {
+    "song_id": "6PMxaplv6gUpuoZ4gdUGVf",
+    "artist_id": "1RoEC0cSqlyye3aeVGtopp",
+    "item_name": "Farfalla",
+    "artist": "Superzoo",
+    "error": "No audio file found at temp_files/temp_audio_6PMxaplv6gUpuoZ4gdUGVf.webm",
+    "timestamp": "2025-09-13 14:15:46"
+  },
+  {
+    "song_id": "3j8MsPvRyL5yAwS6r1ddfP",
+    "artist_id": "0QojTjDzEw23Vv15Ovax7j",
+    "item_name": "Venere sfregiata",
+    "artist": "Railway",
+    "error": "No audio file found at temp_files/temp_audio_3j8MsPvRyL5yAwS6r1ddfP.webm",
+    "timestamp": "2025-09-13 14:27:38"
+  },
+  {
+    "song_id": "0dJKjCzO7OIO54T9vRQd1q",
+    "artist_id": "3vuKNU7lgoecqjnArUKom6",
+    "item_name": "Almeno pensami",
+    "artist": "Ron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 14:29:50"
+  },
+  {
+    "song_id": "5xkbLP0SPheqjXX4sOImpu",
+    "artist_id": "7DKYin98qUdfyCGBCl4uUl",
+    "item_name": "Fino a stare bene",
+    "artist": "Filippo Favretto",
+    "error": "No audio file found at temp_files/temp_audio_5xkbLP0SPheqjXX4sOImpu.webm",
+    "timestamp": "2025-09-13 14:41:13"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 14:46:53"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 14:46:56"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-13 14:46:57"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 15:22:41"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:22:45"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-13 15:22:46"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-13 15:22:47"
+  },
+  {
+    "song_id": "2N06jkrVms60VvuqmR566E",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "I Know How to Hex You",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ke8S7XW3uVU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:22:51"
+  },
+  {
+    "song_id": "5liXfs90tKbiOn4LCzQJOz",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "In Nox",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] Qx_LbmYi3ks: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:22:55"
+  },
+  {
+    "song_id": "3D8fT4ExPoHvW6clW9nYLp",
+    "artist_id": "0CEFCo8288kQU7mJi25s6E",
+    "item_name": "The Diary",
+    "artist": "Hollywood Undead",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j7bPePvGnJw: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:22:59"
+  },
+  {
+    "song_id": "5WGoRfss5mQlZHhNYTjcbP",
+    "artist_id": "3hiYKNf8gJkrqjdRPVLnTC",
+    "item_name": "Cum Junkie",
+    "artist": "Genitorturers",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] zQsvEh_HSEE: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:02"
+  },
+  {
+    "song_id": "09MmLUxArOzsoCnZqaknIt",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "Beladi (Motherland)",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_09MmLUxArOzsoCnZqaknIt.webm",
+    "timestamp": "2025-09-13 15:23:03"
+  },
+  {
+    "song_id": "29eq1fbq0LFytCjPSpoNm8",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "The Rising Tide",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_29eq1fbq0LFytCjPSpoNm8.webm",
+    "timestamp": "2025-09-13 15:23:04"
+  },
+  {
+    "song_id": "1iUJAGxkNylIwoaRGTBXW5",
+    "artist_id": "5HGXZdpWmmXoDqbCCsBlYt",
+    "item_name": "Hotcore - Benny Benassi Remix",
+    "artist": "John Roberts",
+    "error": "No audio file found at temp_files/temp_audio_1iUJAGxkNylIwoaRGTBXW5.webm",
+    "timestamp": "2025-09-13 15:23:05"
+  },
+  {
+    "song_id": "22WcKHEO4MnTxjvlncGjYR",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Prelude",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_22WcKHEO4MnTxjvlncGjYR.webm",
+    "timestamp": "2025-09-13 15:23:06"
+  },
+  {
+    "song_id": "4fIDcZOF2OYeTRBFPIY0J1",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Cherub",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_4fIDcZOF2OYeTRBFPIY0J1.webm",
+    "timestamp": "2025-09-13 15:23:08"
+  },
+  {
+    "song_id": "4KtafAcacAzTeuTgjgt2Ei",
+    "artist_id": "0avMDS4HyoCEP6RqZJWpY2",
+    "item_name": "Fuck Me Eyes",
+    "artist": "Ethel Cain",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] u4fhegxsHtY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:12"
+  },
+  {
+    "song_id": "6UB23Tg6LwUAdA4A9JkARc",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Reykjavik Nights",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_6UB23Tg6LwUAdA4A9JkARc.webm",
+    "timestamp": "2025-09-13 15:23:13"
+  },
+  {
+    "song_id": "2kmdbVjs4NNeWN2zDukPQ2",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Feral Eyes",
+    "artist": "Lesbian Bed Death",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:23:27"
+  },
+  {
+    "song_id": "27PjrtsI7ZskyZ5gYgy0ri",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Moonlight",
+    "artist": "Lesbian Bed Death",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 3WJpWQAZ0VQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:31"
+  },
+  {
+    "song_id": "3k6oqIzQ8liTMjqU0FOldU",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Retrosexual",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_3k6oqIzQ8liTMjqU0FOldU.webm",
+    "timestamp": "2025-09-13 15:23:32"
+  },
+  {
+    "song_id": "7rIq5kDjq0S7A5jgnzjhHP",
+    "artist_id": "09CNSAth08QclYtUeFzv5L",
+    "item_name": "Kreuzberg",
+    "artist": "Irwin Brooks",
+    "error": "No audio file found at temp_files/temp_audio_7rIq5kDjq0S7A5jgnzjhHP.webm",
+    "timestamp": "2025-09-13 15:23:33"
+  },
+  {
+    "song_id": "6mib8jl6fASfaAahkDoCr8",
+    "artist_id": "0CqDF46d81NfjoRM74rPtl",
+    "item_name": "Agile",
+    "artist": "Pontus De Bjorn",
+    "error": "No audio file found at temp_files/temp_audio_6mib8jl6fASfaAahkDoCr8.webm",
+    "timestamp": "2025-09-13 15:23:37"
+  },
+  {
+    "song_id": "309CdwaCYYTM8XRXZVW2hv",
+    "artist_id": "6cjlKrTrFNlg1FYfjyEAmG",
+    "item_name": "Fomalhault",
+    "artist": "Ian Dakota",
+    "error": "No audio file found at temp_files/temp_audio_309CdwaCYYTM8XRXZVW2hv.webm",
+    "timestamp": "2025-09-13 15:23:38"
+  },
+  {
+    "song_id": "0yzWAD97tCIRJWJH23GANb",
+    "artist_id": "4w1x0xqhvGO85K7JrW30Cd",
+    "item_name": "Marijuana",
+    "artist": "Dudiish",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] g5TjC9y_DRs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:41"
+  },
+  {
+    "song_id": "3BO5Zr6jdLEwYsZJjArQo4",
+    "artist_id": "29XJC5N8MrBCo3XgUU1KPk",
+    "item_name": "FUCKGOD",
+    "artist": "elijah daniel",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ozVaxB9c1zY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:45"
+  },
+  {
+    "song_id": "6PQ53jwemx1BgRIefyBVD6",
+    "artist_id": "5xegBBY3vjR75woVR9kiy7",
+    "item_name": "I Don't Give a Fuck",
+    "artist": "Ghostface Playa",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j5y5p-CSm78: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:48"
+  },
+  {
+    "song_id": "4GRFOH8RYHh7X3b9sCUlYs",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:52"
+  },
+  {
+    "song_id": "5XAPpyIoYF3QXP34Hv8Pvx",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself (Part III)",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:55"
+  },
+  {
+    "song_id": "0tMG4bGLNqVJV8mbRSlKkF",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "[whispers indistinctly]",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] gZvRZjE12SQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:23:59"
+  },
+  {
+    "song_id": "2XSrt1dcuOXPgl3B4bxmBz",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Carrollton",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] COgzxq3najs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:24:04"
+  },
+  {
+    "song_id": "7vwzeyaQbi9qZRRbt0e4Hi",
+    "artist_id": "0ATEuLnRYbNFmTIYugYYzT",
+    "item_name": "Batny",
+    "artist": "Luka Wel Batteekh",
+    "error": "No audio file found at temp_files/temp_audio_7vwzeyaQbi9qZRRbt0e4Hi.webm",
+    "timestamp": "2025-09-13 15:24:05"
+  },
+  {
+    "song_id": "5rlowamtQ4P9WWupWyDxrX",
+    "artist_id": "6zqVWSBW6bzmjwT2T1MQQ6",
+    "item_name": "Beedhum",
+    "artist": "Rawi",
+    "error": "No audio file found at temp_files/temp_audio_5rlowamtQ4P9WWupWyDxrX.webm",
+    "timestamp": "2025-09-13 15:24:06"
+  },
+  {
+    "song_id": "5tXKUlGgXbUkr3cyT1ivWn",
+    "artist_id": "5pKCCKE2ajJHZ9KAiaK11H",
+    "item_name": "Crazy Little Thing Called Love",
+    "artist": "Rihanna",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:24:20"
+  },
+  {
+    "song_id": "7hDgazw0jcZFhzRN1jCeuE",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "All I Want",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] W_u_i8_Q8GU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:24:23"
+  },
+  {
+    "song_id": "0Oe48pAERsSra98PkJxTS1",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "BAD GAME",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] OROAn0j48sU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:24:27"
+  },
+  {
+    "song_id": "0VJYhKhrHgJ7fgjGaC2k07",
+    "artist_id": "15UsOTVnJzReFVN1VCnxy4",
+    "item_name": "The Explanation",
+    "artist": "XXXTENTACION",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:24:42"
+  },
+  {
+    "song_id": "1GpbWfwb4rR7UiNfaKdZ16",
+    "artist_id": "3xoLUBE5kWiGDw1Dgp8Fcf",
+    "item_name": "northen lights",
+    "artist": "LVTA",
+    "error": "No audio file found at temp_files/temp_audio_1GpbWfwb4rR7UiNfaKdZ16.webm",
+    "timestamp": "2025-09-13 15:24:43"
+  },
+  {
+    "song_id": "0JoOEjVuA6VtEzHPVygoeA",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Medow",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_0JoOEjVuA6VtEzHPVygoeA.webm",
+    "timestamp": "2025-09-13 15:24:44"
+  },
+  {
+    "song_id": "6vNocabqNxmIsiBzrJTaQ0",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "Nightrider",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_6vNocabqNxmIsiBzrJTaQ0.webm",
+    "timestamp": "2025-09-13 15:24:45"
+  },
+  {
+    "song_id": "7q0NPAbq3rDORmYjfR0VYu",
+    "artist_id": "4rMRjyAjkIJB4a6voVAtAM",
+    "item_name": "Plant Haze",
+    "artist": "WFPB",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] G5ql2YgbL4w: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:24:49"
+  },
+  {
+    "song_id": "6GpE61U0CCL7k01WyF3DiN",
+    "artist_id": "6oGyihO2387JNURS8U5Olg",
+    "item_name": "Dusk's Delight",
+    "artist": "Wezley Wiz",
+    "error": "No audio file found at temp_files/temp_audio_6GpE61U0CCL7k01WyF3DiN.webm",
+    "timestamp": "2025-09-13 15:24:50"
+  },
+  {
+    "song_id": "7kCclmsH5N16EG7eSTmkh4",
+    "artist_id": "55psXqpj00WvVubriLCEet",
+    "item_name": "Kyoto Nights",
+    "artist": "Nitta' Gritta'",
+    "error": "No audio file found at temp_files/temp_audio_7kCclmsH5N16EG7eSTmkh4.webm",
+    "timestamp": "2025-09-13 15:24:51"
+  },
+  {
+    "song_id": "0iBxNrMyD5IX0EPDaioTjn",
+    "artist_id": "5nljYdfvafyRYs5soqzJ1U",
+    "item_name": "Just For The Night",
+    "artist": "Monocloud",
+    "error": "No audio file found at temp_files/temp_audio_0iBxNrMyD5IX0EPDaioTjn.webm",
+    "timestamp": "2025-09-13 15:24:52"
+  },
+  {
+    "song_id": "487Kkxgr20J7WW60ETMCFR",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "City Of Lofi",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_487Kkxgr20J7WW60ETMCFR.webm",
+    "timestamp": "2025-09-13 15:24:53"
+  },
+  {
+    "song_id": "2yUZCS5EZcYntD023zbKEw",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Starlight",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_2yUZCS5EZcYntD023zbKEw.webm",
+    "timestamp": "2025-09-13 15:24:54"
+  },
+  {
+    "song_id": "1cOQS9uGWr6LzyeL9f1J4T",
+    "artist_id": "4EQ0a6RygiHzb95fmQYc72",
+    "item_name": "no worriezz",
+    "artist": "uniqlesse",
+    "error": "No audio file found at temp_files/temp_audio_1cOQS9uGWr6LzyeL9f1J4T.webm",
+    "timestamp": "2025-09-13 15:24:58"
+  },
+  {
+    "song_id": "4wdLAE3i6t3tCqE6WBn7bY",
+    "artist_id": "1qTfRbMkItLTntzS9ehXQT",
+    "item_name": "Freediving",
+    "artist": "Paoz",
+    "error": "No audio file found at temp_files/temp_audio_4wdLAE3i6t3tCqE6WBn7bY.webm",
+    "timestamp": "2025-09-13 15:24:59"
+  },
+  {
+    "song_id": "4VkEkljlOC5cMbRMhREO5E",
+    "artist_id": "0dgJbQ0bKPyUXco8hEXN7X",
+    "item_name": "snowfall (Slowed + Reverb)",
+    "artist": "Øneheart",
+    "error": "No audio file found at temp_files/temp_audio_4VkEkljlOC5cMbRMhREO5E.webm",
+    "timestamp": "2025-09-13 15:25:04"
+  },
+  {
+    "song_id": "4Hc2TTFkRGXqZjBXKh4QL7",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "recalling memories that never existed",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_4Hc2TTFkRGXqZjBXKh4QL7.webm",
+    "timestamp": "2025-09-13 15:25:08"
+  },
+  {
+    "song_id": "2IvnDjlgH8yy70Nz99UdcJ",
+    "artist_id": "18oYqNtcLUHrqO7LfX7qni",
+    "item_name": "Agape",
+    "artist": "Nicholas Britell",
+    "error": "No audio file found at temp_files/temp_audio_2IvnDjlgH8yy70Nz99UdcJ.webm",
+    "timestamp": "2025-09-13 15:25:12"
+  },
+  {
+    "song_id": "5x1zuX99a6XMM5KVjFy7KY",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "Reality Changes",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_5x1zuX99a6XMM5KVjFy7KY.webm",
+    "timestamp": "2025-09-13 15:25:16"
+  },
+  {
+    "song_id": "3CzBdanquEZFE6VHN6Lsku",
+    "artist_id": "5kG6hlo8uHTWve3yMdUAgQ",
+    "item_name": "we were something i'll never forget",
+    "artist": ".nthngfeelsreal?",
+    "error": "No audio file found at temp_files/temp_audio_3CzBdanquEZFE6VHN6Lsku.webm",
+    "timestamp": "2025-09-13 15:25:20"
+  },
+  {
+    "song_id": "2NJeair83CrcDrvo4qxDD8",
+    "artist_id": "2qR5Lyg6J7XNFqJAGdwuup",
+    "item_name": "what do your thoughts sound like?",
+    "artist": "broimsuperman",
+    "error": "No audio file found at temp_files/temp_audio_2NJeair83CrcDrvo4qxDD8.webm",
+    "timestamp": "2025-09-13 15:25:24"
+  },
+  {
+    "song_id": "6horli6yhrSbLmKQdcYTtQ",
+    "artist_id": "6MwPCCR936cYfM1dLsGVnl",
+    "item_name": "Dead As F**k",
+    "artist": "Motionless In White",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] moEOfNp3HYM: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:25:27"
+  },
+  {
+    "song_id": "4k51blEvWIergzbXNc1LHj",
+    "artist_id": "5m8fc8h0xd4QfpJzcPI9NK",
+    "item_name": "Wala Ala Bali",
+    "artist": "Hani Mitwasi",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 6-s0PzEoXyI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:25:31"
+  },
+  {
+    "song_id": "5MGBA89UiFra2Z9QoTGySA",
+    "artist_id": "5UYpPowESfmqU3fD6fJFox",
+    "item_name": "Silvered Shadows",
+    "artist": "Kardashev",
+    "error": "No audio file found at temp_files/temp_audio_5MGBA89UiFra2Z9QoTGySA.webm",
+    "timestamp": "2025-09-13 15:25:35"
+  },
+  {
+    "song_id": "0cGJuyGIUpDHDsh23idOdD",
+    "artist_id": "23otkEMJAdZIscLXLsicOq",
+    "item_name": "The Departure (From The Leftovers)",
+    "artist": "I Aimed My Pebble",
+    "error": "No audio file found at temp_files/temp_audio_0cGJuyGIUpDHDsh23idOdD.webm",
+    "timestamp": "2025-09-13 15:25:39"
+  },
+  {
+    "song_id": "6pCczQZSRssz8Cs55qjUm6",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 1",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_6pCczQZSRssz8Cs55qjUm6.webm",
+    "timestamp": "2025-09-13 15:25:40"
+  },
+  {
+    "song_id": "5cU514wT6pC9Q95wiM7BhL",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 2",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5cU514wT6pC9Q95wiM7BhL.webm",
+    "timestamp": "2025-09-13 15:25:41"
+  },
+  {
+    "song_id": "1Fyt8iWrt4vktLdL2N4GdN",
+    "artist_id": "1drDjMtBaf1rUIbEUpImav",
+    "item_name": "At the Races",
+    "artist": "Julian du Perron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:25:53"
+  },
+  {
+    "song_id": "62ZiNyF0xYgU5shbu57vSl",
+    "artist_id": "5gToXiJixvWtYGI1S3uGhM",
+    "item_name": "My Car Wouldn't Start",
+    "artist": "Winston Hunte",
+    "error": "No audio file found at temp_files/temp_audio_62ZiNyF0xYgU5shbu57vSl.webm",
+    "timestamp": "2025-09-13 15:25:54"
+  },
+  {
+    "song_id": "2bivRnJXU7tUFbaoeemfSO",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Wintersleep - outro",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_2bivRnJXU7tUFbaoeemfSO.webm",
+    "timestamp": "2025-09-13 15:25:55"
+  },
+  {
+    "song_id": "1IJ2K1Xb3t5lqx1g92TG9o",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Morirò d'amore - Sanremo 2003",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_1IJ2K1Xb3t5lqx1g92TG9o.webm",
+    "timestamp": "2025-09-13 15:25:56"
+  },
+  {
+    "song_id": "0HCe4WBa6Zn5n3FhNc08Fi",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Un'ora fa - Sanremo 1969",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_0HCe4WBa6Zn5n3FhNc08Fi.webm",
+    "timestamp": "2025-09-13 15:25:57"
+  },
+  {
+    "song_id": "6PMxaplv6gUpuoZ4gdUGVf",
+    "artist_id": "1RoEC0cSqlyye3aeVGtopp",
+    "item_name": "Farfalla",
+    "artist": "Superzoo",
+    "error": "No audio file found at temp_files/temp_audio_6PMxaplv6gUpuoZ4gdUGVf.webm",
+    "timestamp": "2025-09-13 15:26:01"
+  },
+  {
+    "song_id": "3j8MsPvRyL5yAwS6r1ddfP",
+    "artist_id": "0QojTjDzEw23Vv15Ovax7j",
+    "item_name": "Venere sfregiata",
+    "artist": "Railway",
+    "error": "No audio file found at temp_files/temp_audio_3j8MsPvRyL5yAwS6r1ddfP.webm",
+    "timestamp": "2025-09-13 15:26:02"
+  },
+  {
+    "song_id": "0dJKjCzO7OIO54T9vRQd1q",
+    "artist_id": "3vuKNU7lgoecqjnArUKom6",
+    "item_name": "Almeno pensami",
+    "artist": "Ron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:26:23"
+  },
+  {
+    "song_id": "5xkbLP0SPheqjXX4sOImpu",
+    "artist_id": "7DKYin98qUdfyCGBCl4uUl",
+    "item_name": "Fino a stare bene",
+    "artist": "Filippo Favretto",
+    "error": "No audio file found at temp_files/temp_audio_5xkbLP0SPheqjXX4sOImpu.webm",
+    "timestamp": "2025-09-13 15:26:24"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 15:55:53"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:55:57"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-13 15:55:58"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 15:55:58"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-13 15:55:59"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 15:56:07"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:56:11"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-13 15:58:49"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:58:52"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-13 15:58:54"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-13 15:58:55"
+  },
+  {
+    "song_id": "2N06jkrVms60VvuqmR566E",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "I Know How to Hex You",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ke8S7XW3uVU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:58:59"
+  },
+  {
+    "song_id": "5liXfs90tKbiOn4LCzQJOz",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "In Nox",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] Qx_LbmYi3ks: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:03"
+  },
+  {
+    "song_id": "3D8fT4ExPoHvW6clW9nYLp",
+    "artist_id": "0CEFCo8288kQU7mJi25s6E",
+    "item_name": "The Diary",
+    "artist": "Hollywood Undead",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j7bPePvGnJw: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:06"
+  },
+  {
+    "song_id": "5WGoRfss5mQlZHhNYTjcbP",
+    "artist_id": "3hiYKNf8gJkrqjdRPVLnTC",
+    "item_name": "Cum Junkie",
+    "artist": "Genitorturers",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] zQsvEh_HSEE: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:09"
+  },
+  {
+    "song_id": "09MmLUxArOzsoCnZqaknIt",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "Beladi (Motherland)",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_09MmLUxArOzsoCnZqaknIt.webm",
+    "timestamp": "2025-09-13 15:59:10"
+  },
+  {
+    "song_id": "29eq1fbq0LFytCjPSpoNm8",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "The Rising Tide",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_29eq1fbq0LFytCjPSpoNm8.webm",
+    "timestamp": "2025-09-13 15:59:11"
+  },
+  {
+    "song_id": "1iUJAGxkNylIwoaRGTBXW5",
+    "artist_id": "5HGXZdpWmmXoDqbCCsBlYt",
+    "item_name": "Hotcore - Benny Benassi Remix",
+    "artist": "John Roberts",
+    "error": "No audio file found at temp_files/temp_audio_1iUJAGxkNylIwoaRGTBXW5.webm",
+    "timestamp": "2025-09-13 15:59:12"
+  },
+  {
+    "song_id": "22WcKHEO4MnTxjvlncGjYR",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Prelude",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_22WcKHEO4MnTxjvlncGjYR.webm",
+    "timestamp": "2025-09-13 15:59:13"
+  },
+  {
+    "song_id": "4fIDcZOF2OYeTRBFPIY0J1",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Cherub",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_4fIDcZOF2OYeTRBFPIY0J1.webm",
+    "timestamp": "2025-09-13 15:59:14"
+  },
+  {
+    "song_id": "4KtafAcacAzTeuTgjgt2Ei",
+    "artist_id": "0avMDS4HyoCEP6RqZJWpY2",
+    "item_name": "Fuck Me Eyes",
+    "artist": "Ethel Cain",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] u4fhegxsHtY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:18"
+  },
+  {
+    "song_id": "6UB23Tg6LwUAdA4A9JkARc",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Reykjavik Nights",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_6UB23Tg6LwUAdA4A9JkARc.webm",
+    "timestamp": "2025-09-13 15:59:19"
+  },
+  {
+    "song_id": "2kmdbVjs4NNeWN2zDukPQ2",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Feral Eyes",
+    "artist": "Lesbian Bed Death",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 15:59:33"
+  },
+  {
+    "song_id": "27PjrtsI7ZskyZ5gYgy0ri",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Moonlight",
+    "artist": "Lesbian Bed Death",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 3WJpWQAZ0VQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:37"
+  },
+  {
+    "song_id": "3k6oqIzQ8liTMjqU0FOldU",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Retrosexual",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_3k6oqIzQ8liTMjqU0FOldU.webm",
+    "timestamp": "2025-09-13 15:59:38"
+  },
+  {
+    "song_id": "7rIq5kDjq0S7A5jgnzjhHP",
+    "artist_id": "09CNSAth08QclYtUeFzv5L",
+    "item_name": "Kreuzberg",
+    "artist": "Irwin Brooks",
+    "error": "No audio file found at temp_files/temp_audio_7rIq5kDjq0S7A5jgnzjhHP.webm",
+    "timestamp": "2025-09-13 15:59:39"
+  },
+  {
+    "song_id": "6mib8jl6fASfaAahkDoCr8",
+    "artist_id": "0CqDF46d81NfjoRM74rPtl",
+    "item_name": "Agile",
+    "artist": "Pontus De Bjorn",
+    "error": "No audio file found at temp_files/temp_audio_6mib8jl6fASfaAahkDoCr8.webm",
+    "timestamp": "2025-09-13 15:59:43"
+  },
+  {
+    "song_id": "309CdwaCYYTM8XRXZVW2hv",
+    "artist_id": "6cjlKrTrFNlg1FYfjyEAmG",
+    "item_name": "Fomalhault",
+    "artist": "Ian Dakota",
+    "error": "No audio file found at temp_files/temp_audio_309CdwaCYYTM8XRXZVW2hv.webm",
+    "timestamp": "2025-09-13 15:59:44"
+  },
+  {
+    "song_id": "0yzWAD97tCIRJWJH23GANb",
+    "artist_id": "4w1x0xqhvGO85K7JrW30Cd",
+    "item_name": "Marijuana",
+    "artist": "Dudiish",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] g5TjC9y_DRs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:48"
+  },
+  {
+    "song_id": "3BO5Zr6jdLEwYsZJjArQo4",
+    "artist_id": "29XJC5N8MrBCo3XgUU1KPk",
+    "item_name": "FUCKGOD",
+    "artist": "elijah daniel",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ozVaxB9c1zY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:51"
+  },
+  {
+    "song_id": "6PQ53jwemx1BgRIefyBVD6",
+    "artist_id": "5xegBBY3vjR75woVR9kiy7",
+    "item_name": "I Don't Give a Fuck",
+    "artist": "Ghostface Playa",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j5y5p-CSm78: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 15:59:55"
+  },
+  {
+    "song_id": "4GRFOH8RYHh7X3b9sCUlYs",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:00"
+  },
+  {
+    "song_id": "5XAPpyIoYF3QXP34Hv8Pvx",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself (Part III)",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:03"
+  },
+  {
+    "song_id": "0tMG4bGLNqVJV8mbRSlKkF",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "[whispers indistinctly]",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] gZvRZjE12SQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:07"
+  },
+  {
+    "song_id": "2XSrt1dcuOXPgl3B4bxmBz",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Carrollton",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] COgzxq3najs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:11"
+  },
+  {
+    "song_id": "7vwzeyaQbi9qZRRbt0e4Hi",
+    "artist_id": "0ATEuLnRYbNFmTIYugYYzT",
+    "item_name": "Batny",
+    "artist": "Luka Wel Batteekh",
+    "error": "No audio file found at temp_files/temp_audio_7vwzeyaQbi9qZRRbt0e4Hi.webm",
+    "timestamp": "2025-09-13 16:00:12"
+  },
+  {
+    "song_id": "5rlowamtQ4P9WWupWyDxrX",
+    "artist_id": "6zqVWSBW6bzmjwT2T1MQQ6",
+    "item_name": "Beedhum",
+    "artist": "Rawi",
+    "error": "No audio file found at temp_files/temp_audio_5rlowamtQ4P9WWupWyDxrX.webm",
+    "timestamp": "2025-09-13 16:00:13"
+  },
+  {
+    "song_id": "5tXKUlGgXbUkr3cyT1ivWn",
+    "artist_id": "5pKCCKE2ajJHZ9KAiaK11H",
+    "item_name": "Crazy Little Thing Called Love",
+    "artist": "Rihanna",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 16:00:29"
+  },
+  {
+    "song_id": "7hDgazw0jcZFhzRN1jCeuE",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "All I Want",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] W_u_i8_Q8GU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:32"
+  },
+  {
+    "song_id": "0Oe48pAERsSra98PkJxTS1",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "BAD GAME",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] OROAn0j48sU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:36"
+  },
+  {
+    "song_id": "0VJYhKhrHgJ7fgjGaC2k07",
+    "artist_id": "15UsOTVnJzReFVN1VCnxy4",
+    "item_name": "The Explanation",
+    "artist": "XXXTENTACION",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 16:00:52"
+  },
+  {
+    "song_id": "1GpbWfwb4rR7UiNfaKdZ16",
+    "artist_id": "3xoLUBE5kWiGDw1Dgp8Fcf",
+    "item_name": "northen lights",
+    "artist": "LVTA",
+    "error": "No audio file found at temp_files/temp_audio_1GpbWfwb4rR7UiNfaKdZ16.webm",
+    "timestamp": "2025-09-13 16:00:53"
+  },
+  {
+    "song_id": "0JoOEjVuA6VtEzHPVygoeA",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Medow",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_0JoOEjVuA6VtEzHPVygoeA.webm",
+    "timestamp": "2025-09-13 16:00:53"
+  },
+  {
+    "song_id": "6vNocabqNxmIsiBzrJTaQ0",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "Nightrider",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_6vNocabqNxmIsiBzrJTaQ0.webm",
+    "timestamp": "2025-09-13 16:00:54"
+  },
+  {
+    "song_id": "7q0NPAbq3rDORmYjfR0VYu",
+    "artist_id": "4rMRjyAjkIJB4a6voVAtAM",
+    "item_name": "Plant Haze",
+    "artist": "WFPB",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] G5ql2YgbL4w: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:00:58"
+  },
+  {
+    "song_id": "6GpE61U0CCL7k01WyF3DiN",
+    "artist_id": "6oGyihO2387JNURS8U5Olg",
+    "item_name": "Dusk's Delight",
+    "artist": "Wezley Wiz",
+    "error": "No audio file found at temp_files/temp_audio_6GpE61U0CCL7k01WyF3DiN.webm",
+    "timestamp": "2025-09-13 16:00:59"
+  },
+  {
+    "song_id": "7kCclmsH5N16EG7eSTmkh4",
+    "artist_id": "55psXqpj00WvVubriLCEet",
+    "item_name": "Kyoto Nights",
+    "artist": "Nitta' Gritta'",
+    "error": "No audio file found at temp_files/temp_audio_7kCclmsH5N16EG7eSTmkh4.webm",
+    "timestamp": "2025-09-13 16:01:00"
+  },
+  {
+    "song_id": "0iBxNrMyD5IX0EPDaioTjn",
+    "artist_id": "5nljYdfvafyRYs5soqzJ1U",
+    "item_name": "Just For The Night",
+    "artist": "Monocloud",
+    "error": "No audio file found at temp_files/temp_audio_0iBxNrMyD5IX0EPDaioTjn.webm",
+    "timestamp": "2025-09-13 16:01:01"
+  },
+  {
+    "song_id": "487Kkxgr20J7WW60ETMCFR",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "City Of Lofi",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_487Kkxgr20J7WW60ETMCFR.webm",
+    "timestamp": "2025-09-13 16:01:02"
+  },
+  {
+    "song_id": "2yUZCS5EZcYntD023zbKEw",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Starlight",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_2yUZCS5EZcYntD023zbKEw.webm",
+    "timestamp": "2025-09-13 16:01:03"
+  },
+  {
+    "song_id": "1cOQS9uGWr6LzyeL9f1J4T",
+    "artist_id": "4EQ0a6RygiHzb95fmQYc72",
+    "item_name": "no worriezz",
+    "artist": "uniqlesse",
+    "error": "No audio file found at temp_files/temp_audio_1cOQS9uGWr6LzyeL9f1J4T.webm",
+    "timestamp": "2025-09-13 16:01:08"
+  },
+  {
+    "song_id": "4wdLAE3i6t3tCqE6WBn7bY",
+    "artist_id": "1qTfRbMkItLTntzS9ehXQT",
+    "item_name": "Freediving",
+    "artist": "Paoz",
+    "error": "No audio file found at temp_files/temp_audio_4wdLAE3i6t3tCqE6WBn7bY.webm",
+    "timestamp": "2025-09-13 16:01:09"
+  },
+  {
+    "song_id": "4VkEkljlOC5cMbRMhREO5E",
+    "artist_id": "0dgJbQ0bKPyUXco8hEXN7X",
+    "item_name": "snowfall (Slowed + Reverb)",
+    "artist": "Øneheart",
+    "error": "No audio file found at temp_files/temp_audio_4VkEkljlOC5cMbRMhREO5E.webm",
+    "timestamp": "2025-09-13 16:01:13"
+  },
+  {
+    "song_id": "4Hc2TTFkRGXqZjBXKh4QL7",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "recalling memories that never existed",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_4Hc2TTFkRGXqZjBXKh4QL7.webm",
+    "timestamp": "2025-09-13 16:01:17"
+  },
+  {
+    "song_id": "5x1zuX99a6XMM5KVjFy7KY",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "Reality Changes",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_5x1zuX99a6XMM5KVjFy7KY.webm",
+    "timestamp": "2025-09-13 16:01:44"
+  },
+  {
+    "song_id": "3CzBdanquEZFE6VHN6Lsku",
+    "artist_id": "5kG6hlo8uHTWve3yMdUAgQ",
+    "item_name": "we were something i'll never forget",
+    "artist": ".nthngfeelsreal?",
+    "error": "No audio file found at temp_files/temp_audio_3CzBdanquEZFE6VHN6Lsku.webm",
+    "timestamp": "2025-09-13 16:01:48"
+  },
+  {
+    "song_id": "2NJeair83CrcDrvo4qxDD8",
+    "artist_id": "2qR5Lyg6J7XNFqJAGdwuup",
+    "item_name": "what do your thoughts sound like?",
+    "artist": "broimsuperman",
+    "error": "No audio file found at temp_files/temp_audio_2NJeair83CrcDrvo4qxDD8.webm",
+    "timestamp": "2025-09-13 16:01:52"
+  },
+  {
+    "song_id": "6horli6yhrSbLmKQdcYTtQ",
+    "artist_id": "6MwPCCR936cYfM1dLsGVnl",
+    "item_name": "Dead As F**k",
+    "artist": "Motionless In White",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] moEOfNp3HYM: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:01:55"
+  },
+  {
+    "song_id": "4k51blEvWIergzbXNc1LHj",
+    "artist_id": "5m8fc8h0xd4QfpJzcPI9NK",
+    "item_name": "Wala Ala Bali",
+    "artist": "Hani Mitwasi",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 6-s0PzEoXyI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-13 16:01:59"
+  },
+  {
+    "song_id": "5MGBA89UiFra2Z9QoTGySA",
+    "artist_id": "5UYpPowESfmqU3fD6fJFox",
+    "item_name": "Silvered Shadows",
+    "artist": "Kardashev",
+    "error": "No audio file found at temp_files/temp_audio_5MGBA89UiFra2Z9QoTGySA.webm",
+    "timestamp": "2025-09-13 16:02:03"
+  },
+  {
+    "song_id": "0cGJuyGIUpDHDsh23idOdD",
+    "artist_id": "23otkEMJAdZIscLXLsicOq",
+    "item_name": "The Departure (From The Leftovers)",
+    "artist": "I Aimed My Pebble",
+    "error": "No audio file found at temp_files/temp_audio_0cGJuyGIUpDHDsh23idOdD.webm",
+    "timestamp": "2025-09-13 16:02:08"
+  },
+  {
+    "song_id": "6pCczQZSRssz8Cs55qjUm6",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 1",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_6pCczQZSRssz8Cs55qjUm6.webm",
+    "timestamp": "2025-09-13 16:02:09"
+  },
+  {
+    "song_id": "5cU514wT6pC9Q95wiM7BhL",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 2",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5cU514wT6pC9Q95wiM7BhL.webm",
+    "timestamp": "2025-09-13 16:02:10"
+  },
+  {
+    "song_id": "1Fyt8iWrt4vktLdL2N4GdN",
+    "artist_id": "1drDjMtBaf1rUIbEUpImav",
+    "item_name": "At the Races",
+    "artist": "Julian du Perron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 16:02:23"
+  },
+  {
+    "song_id": "62ZiNyF0xYgU5shbu57vSl",
+    "artist_id": "5gToXiJixvWtYGI1S3uGhM",
+    "item_name": "My Car Wouldn't Start",
+    "artist": "Winston Hunte",
+    "error": "No audio file found at temp_files/temp_audio_62ZiNyF0xYgU5shbu57vSl.webm",
+    "timestamp": "2025-09-13 16:02:24"
+  },
+  {
+    "song_id": "2bivRnJXU7tUFbaoeemfSO",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Wintersleep - outro",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_2bivRnJXU7tUFbaoeemfSO.webm",
+    "timestamp": "2025-09-13 16:02:25"
+  },
+  {
+    "song_id": "1IJ2K1Xb3t5lqx1g92TG9o",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Morirò d'amore - Sanremo 2003",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_1IJ2K1Xb3t5lqx1g92TG9o.webm",
+    "timestamp": "2025-09-13 16:02:26"
+  },
+  {
+    "song_id": "0HCe4WBa6Zn5n3FhNc08Fi",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Un'ora fa - Sanremo 1969",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_0HCe4WBa6Zn5n3FhNc08Fi.webm",
+    "timestamp": "2025-09-13 16:02:27"
+  },
+  {
+    "song_id": "6PMxaplv6gUpuoZ4gdUGVf",
+    "artist_id": "1RoEC0cSqlyye3aeVGtopp",
+    "item_name": "Farfalla",
+    "artist": "Superzoo",
+    "error": "No audio file found at temp_files/temp_audio_6PMxaplv6gUpuoZ4gdUGVf.webm",
+    "timestamp": "2025-09-13 16:02:32"
+  },
+  {
+    "song_id": "3j8MsPvRyL5yAwS6r1ddfP",
+    "artist_id": "0QojTjDzEw23Vv15Ovax7j",
+    "item_name": "Venere sfregiata",
+    "artist": "Railway",
+    "error": "No audio file found at temp_files/temp_audio_3j8MsPvRyL5yAwS6r1ddfP.webm",
+    "timestamp": "2025-09-13 16:02:33"
+  },
+  {
+    "song_id": "0dJKjCzO7OIO54T9vRQd1q",
+    "artist_id": "3vuKNU7lgoecqjnArUKom6",
+    "item_name": "Almeno pensami",
+    "artist": "Ron",
+    "error": "'mean'",
+    "timestamp": "2025-09-13 16:02:54"
+  },
+  {
+    "song_id": "5xkbLP0SPheqjXX4sOImpu",
+    "artist_id": "7DKYin98qUdfyCGBCl4uUl",
+    "item_name": "Fino a stare bene",
+    "artist": "Filippo Favretto",
+    "error": "No audio file found at temp_files/temp_audio_5xkbLP0SPheqjXX4sOImpu.webm",
+    "timestamp": "2025-09-13 16:02:55"
+  },
+  {
+    "song_id": "6xXcZLCfj9Zb5LEwMsZWpq",
+    "artist_id": "2XiCLhyLBWWI5o1M0uVKWf",
+    "item_name": "Better Luck Next Time Meme",
+    "artist": "MemMachine",
+    "error": "No audio file found at temp_files/temp_audio_6xXcZLCfj9Zb5LEwMsZWpq.webm",
+    "timestamp": "2025-09-14 12:26:10"
+  },
+  {
+    "song_id": "5bU4KX47KqtDKKaLM4QCzh",
+    "artist_id": "7fWgqc4HJi3pcHhK8hKg2p",
+    "item_name": "Die MF Die",
+    "artist": "Dope",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] -LdYXYNtPJI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:14"
+  },
+  {
+    "song_id": "5k6bgMi4ep0yeDKSR8Wmlf",
+    "artist_id": "2KfPjVRfPvUZSFltmjO2wW",
+    "item_name": "Distaste",
+    "artist": "TiMeKuRe",
+    "error": "No audio file found at temp_files/temp_audio_5k6bgMi4ep0yeDKSR8Wmlf.webm",
+    "timestamp": "2025-09-14 12:26:15"
+  },
+  {
+    "song_id": "6eiTO0HPPB0Qz5lGGQj4L6",
+    "artist_id": "2a666lQ2f50oXakqeAfLh5",
+    "item_name": "SUMMER LIES",
+    "artist": "Xeren Lia",
+    "error": "No audio file found at temp_files/temp_audio_6eiTO0HPPB0Qz5lGGQj4L6.webm",
+    "timestamp": "2025-09-14 12:26:15"
+  },
+  {
+    "song_id": "2N06jkrVms60VvuqmR566E",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "I Know How to Hex You",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ke8S7XW3uVU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:19"
+  },
+  {
+    "song_id": "5liXfs90tKbiOn4LCzQJOz",
+    "artist_id": "5NYEE4kgrEZPlM3DxUsTyc",
+    "item_name": "In Nox",
+    "artist": "Twin Temple",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] Qx_LbmYi3ks: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:23"
+  },
+  {
+    "song_id": "3D8fT4ExPoHvW6clW9nYLp",
+    "artist_id": "0CEFCo8288kQU7mJi25s6E",
+    "item_name": "The Diary",
+    "artist": "Hollywood Undead",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j7bPePvGnJw: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:27"
+  },
+  {
+    "song_id": "5WGoRfss5mQlZHhNYTjcbP",
+    "artist_id": "3hiYKNf8gJkrqjdRPVLnTC",
+    "item_name": "Cum Junkie",
+    "artist": "Genitorturers",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] zQsvEh_HSEE: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:31"
+  },
+  {
+    "song_id": "09MmLUxArOzsoCnZqaknIt",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "Beladi (Motherland)",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_09MmLUxArOzsoCnZqaknIt.webm",
+    "timestamp": "2025-09-14 12:26:32"
+  },
+  {
+    "song_id": "29eq1fbq0LFytCjPSpoNm8",
+    "artist_id": "4G0v9mXjUbAIDtP0dS9zVY",
+    "item_name": "The Rising Tide",
+    "artist": "Al Fat'h members",
+    "error": "No audio file found at temp_files/temp_audio_29eq1fbq0LFytCjPSpoNm8.webm",
+    "timestamp": "2025-09-14 12:26:33"
+  },
+  {
+    "song_id": "1iUJAGxkNylIwoaRGTBXW5",
+    "artist_id": "5HGXZdpWmmXoDqbCCsBlYt",
+    "item_name": "Hotcore - Benny Benassi Remix",
+    "artist": "John Roberts",
+    "error": "No audio file found at temp_files/temp_audio_1iUJAGxkNylIwoaRGTBXW5.webm",
+    "timestamp": "2025-09-14 12:26:34"
+  },
+  {
+    "song_id": "22WcKHEO4MnTxjvlncGjYR",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Prelude",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_22WcKHEO4MnTxjvlncGjYR.webm",
+    "timestamp": "2025-09-14 12:26:35"
+  },
+  {
+    "song_id": "4fIDcZOF2OYeTRBFPIY0J1",
+    "artist_id": "57Z1BNEYrgNgPRgRHA8vzA",
+    "item_name": "Cherub",
+    "artist": "Lila Ravelle",
+    "error": "No audio file found at temp_files/temp_audio_4fIDcZOF2OYeTRBFPIY0J1.webm",
+    "timestamp": "2025-09-14 12:26:35"
+  },
+  {
+    "song_id": "4KtafAcacAzTeuTgjgt2Ei",
+    "artist_id": "0avMDS4HyoCEP6RqZJWpY2",
+    "item_name": "Fuck Me Eyes",
+    "artist": "Ethel Cain",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] u4fhegxsHtY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:39"
+  },
+  {
+    "song_id": "6UB23Tg6LwUAdA4A9JkARc",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Reykjavik Nights",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_6UB23Tg6LwUAdA4A9JkARc.webm",
+    "timestamp": "2025-09-14 12:26:40"
+  },
+  {
+    "song_id": "2kmdbVjs4NNeWN2zDukPQ2",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Feral Eyes",
+    "artist": "Lesbian Bed Death",
+    "error": "'mean'",
+    "timestamp": "2025-09-14 12:26:54"
+  },
+  {
+    "song_id": "27PjrtsI7ZskyZ5gYgy0ri",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Moonlight",
+    "artist": "Lesbian Bed Death",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 3WJpWQAZ0VQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:26:59"
+  },
+  {
+    "song_id": "3k6oqIzQ8liTMjqU0FOldU",
+    "artist_id": "0FNcJDUwjkEdByZRl7vxSp",
+    "item_name": "Retrosexual",
+    "artist": "Lesbian Bed Death",
+    "error": "No audio file found at temp_files/temp_audio_3k6oqIzQ8liTMjqU0FOldU.webm",
+    "timestamp": "2025-09-14 12:27:00"
+  },
+  {
+    "song_id": "7rIq5kDjq0S7A5jgnzjhHP",
+    "artist_id": "09CNSAth08QclYtUeFzv5L",
+    "item_name": "Kreuzberg",
+    "artist": "Irwin Brooks",
+    "error": "No audio file found at temp_files/temp_audio_7rIq5kDjq0S7A5jgnzjhHP.webm",
+    "timestamp": "2025-09-14 12:27:01"
+  },
+  {
+    "song_id": "6mib8jl6fASfaAahkDoCr8",
+    "artist_id": "0CqDF46d81NfjoRM74rPtl",
+    "item_name": "Agile",
+    "artist": "Pontus De Bjorn",
+    "error": "No audio file found at temp_files/temp_audio_6mib8jl6fASfaAahkDoCr8.webm",
+    "timestamp": "2025-09-14 12:27:05"
+  },
+  {
+    "song_id": "309CdwaCYYTM8XRXZVW2hv",
+    "artist_id": "6cjlKrTrFNlg1FYfjyEAmG",
+    "item_name": "Fomalhault",
+    "artist": "Ian Dakota",
+    "error": "No audio file found at temp_files/temp_audio_309CdwaCYYTM8XRXZVW2hv.webm",
+    "timestamp": "2025-09-14 12:27:06"
+  },
+  {
+    "song_id": "0yzWAD97tCIRJWJH23GANb",
+    "artist_id": "4w1x0xqhvGO85K7JrW30Cd",
+    "item_name": "Marijuana",
+    "artist": "Dudiish",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] g5TjC9y_DRs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:09"
+  },
+  {
+    "song_id": "3BO5Zr6jdLEwYsZJjArQo4",
+    "artist_id": "29XJC5N8MrBCo3XgUU1KPk",
+    "item_name": "FUCKGOD",
+    "artist": "elijah daniel",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] ozVaxB9c1zY: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:12"
+  },
+  {
+    "song_id": "6PQ53jwemx1BgRIefyBVD6",
+    "artist_id": "5xegBBY3vjR75woVR9kiy7",
+    "item_name": "I Don't Give a Fuck",
+    "artist": "Ghostface Playa",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] j5y5p-CSm78: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:17"
+  },
+  {
+    "song_id": "4GRFOH8RYHh7X3b9sCUlYs",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:20"
+  },
+  {
+    "song_id": "5XAPpyIoYF3QXP34Hv8Pvx",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Kill Yourself (Part III)",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] NxwJ1q7cIck: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:24"
+  },
+  {
+    "song_id": "0tMG4bGLNqVJV8mbRSlKkF",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "[whispers indistinctly]",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] gZvRZjE12SQ: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:27"
+  },
+  {
+    "song_id": "2XSrt1dcuOXPgl3B4bxmBz",
+    "artist_id": "1VPmR4DJC1PlOtd0IADAO0",
+    "item_name": "Carrollton",
+    "artist": "$uicideboy$",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] COgzxq3najs: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:31"
+  },
+  {
+    "song_id": "7vwzeyaQbi9qZRRbt0e4Hi",
+    "artist_id": "0ATEuLnRYbNFmTIYugYYzT",
+    "item_name": "Batny",
+    "artist": "Luka Wel Batteekh",
+    "error": "No audio file found at temp_files/temp_audio_7vwzeyaQbi9qZRRbt0e4Hi.webm",
+    "timestamp": "2025-09-14 12:27:32"
+  },
+  {
+    "song_id": "5rlowamtQ4P9WWupWyDxrX",
+    "artist_id": "6zqVWSBW6bzmjwT2T1MQQ6",
+    "item_name": "Beedhum",
+    "artist": "Rawi",
+    "error": "No audio file found at temp_files/temp_audio_5rlowamtQ4P9WWupWyDxrX.webm",
+    "timestamp": "2025-09-14 12:27:33"
+  },
+  {
+    "song_id": "5tXKUlGgXbUkr3cyT1ivWn",
+    "artist_id": "5pKCCKE2ajJHZ9KAiaK11H",
+    "item_name": "Crazy Little Thing Called Love",
+    "artist": "Rihanna",
+    "error": "'mean'",
+    "timestamp": "2025-09-14 12:27:49"
+  },
+  {
+    "song_id": "7hDgazw0jcZFhzRN1jCeuE",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "All I Want",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] W_u_i8_Q8GU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:53"
+  },
+  {
+    "song_id": "0Oe48pAERsSra98PkJxTS1",
+    "artist_id": "03fLoIOO015incUitpfkad",
+    "item_name": "BAD GAME",
+    "artist": "Michele Morrone",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] OROAn0j48sU: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:27:56"
+  },
+  {
+    "song_id": "0VJYhKhrHgJ7fgjGaC2k07",
+    "artist_id": "15UsOTVnJzReFVN1VCnxy4",
+    "item_name": "The Explanation",
+    "artist": "XXXTENTACION",
+    "error": "'mean'",
+    "timestamp": "2025-09-14 12:28:11"
+  },
+  {
+    "song_id": "1GpbWfwb4rR7UiNfaKdZ16",
+    "artist_id": "3xoLUBE5kWiGDw1Dgp8Fcf",
+    "item_name": "northen lights",
+    "artist": "LVTA",
+    "error": "No audio file found at temp_files/temp_audio_1GpbWfwb4rR7UiNfaKdZ16.webm",
+    "timestamp": "2025-09-14 12:28:12"
+  },
+  {
+    "song_id": "0JoOEjVuA6VtEzHPVygoeA",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Medow",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_0JoOEjVuA6VtEzHPVygoeA.webm",
+    "timestamp": "2025-09-14 12:28:13"
+  },
+  {
+    "song_id": "6vNocabqNxmIsiBzrJTaQ0",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "Nightrider",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_6vNocabqNxmIsiBzrJTaQ0.webm",
+    "timestamp": "2025-09-14 12:28:14"
+  },
+  {
+    "song_id": "7q0NPAbq3rDORmYjfR0VYu",
+    "artist_id": "4rMRjyAjkIJB4a6voVAtAM",
+    "item_name": "Plant Haze",
+    "artist": "WFPB",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] G5ql2YgbL4w: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:28:17"
+  },
+  {
+    "song_id": "6GpE61U0CCL7k01WyF3DiN",
+    "artist_id": "6oGyihO2387JNURS8U5Olg",
+    "item_name": "Dusk's Delight",
+    "artist": "Wezley Wiz",
+    "error": "No audio file found at temp_files/temp_audio_6GpE61U0CCL7k01WyF3DiN.webm",
+    "timestamp": "2025-09-14 12:28:18"
+  },
+  {
+    "song_id": "7kCclmsH5N16EG7eSTmkh4",
+    "artist_id": "55psXqpj00WvVubriLCEet",
+    "item_name": "Kyoto Nights",
+    "artist": "Nitta' Gritta'",
+    "error": "No audio file found at temp_files/temp_audio_7kCclmsH5N16EG7eSTmkh4.webm",
+    "timestamp": "2025-09-14 12:28:19"
+  },
+  {
+    "song_id": "0iBxNrMyD5IX0EPDaioTjn",
+    "artist_id": "5nljYdfvafyRYs5soqzJ1U",
+    "item_name": "Just For The Night",
+    "artist": "Monocloud",
+    "error": "No audio file found at temp_files/temp_audio_0iBxNrMyD5IX0EPDaioTjn.webm",
+    "timestamp": "2025-09-14 12:28:20"
+  },
+  {
+    "song_id": "487Kkxgr20J7WW60ETMCFR",
+    "artist_id": "6vRLEJFTHryBVa2mZ4aBKX",
+    "item_name": "City Of Lofi",
+    "artist": "Kisiaria",
+    "error": "No audio file found at temp_files/temp_audio_487Kkxgr20J7WW60ETMCFR.webm",
+    "timestamp": "2025-09-14 12:28:21"
+  },
+  {
+    "song_id": "2yUZCS5EZcYntD023zbKEw",
+    "artist_id": "3c124seowxwVtBR8dGvirN",
+    "item_name": "Starlight",
+    "artist": "J0pie",
+    "error": "No audio file found at temp_files/temp_audio_2yUZCS5EZcYntD023zbKEw.webm",
+    "timestamp": "2025-09-14 12:28:22"
+  },
+  {
+    "song_id": "1cOQS9uGWr6LzyeL9f1J4T",
+    "artist_id": "4EQ0a6RygiHzb95fmQYc72",
+    "item_name": "no worriezz",
+    "artist": "uniqlesse",
+    "error": "No audio file found at temp_files/temp_audio_1cOQS9uGWr6LzyeL9f1J4T.webm",
+    "timestamp": "2025-09-14 12:28:26"
+  },
+  {
+    "song_id": "4wdLAE3i6t3tCqE6WBn7bY",
+    "artist_id": "1qTfRbMkItLTntzS9ehXQT",
+    "item_name": "Freediving",
+    "artist": "Paoz",
+    "error": "No audio file found at temp_files/temp_audio_4wdLAE3i6t3tCqE6WBn7bY.webm",
+    "timestamp": "2025-09-14 12:28:27"
+  },
+  {
+    "song_id": "4VkEkljlOC5cMbRMhREO5E",
+    "artist_id": "0dgJbQ0bKPyUXco8hEXN7X",
+    "item_name": "snowfall (Slowed + Reverb)",
+    "artist": "Øneheart",
+    "error": "No audio file found at temp_files/temp_audio_4VkEkljlOC5cMbRMhREO5E.webm",
+    "timestamp": "2025-09-14 12:28:32"
+  },
+  {
+    "song_id": "4Hc2TTFkRGXqZjBXKh4QL7",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "recalling memories that never existed",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_4Hc2TTFkRGXqZjBXKh4QL7.webm",
+    "timestamp": "2025-09-14 12:28:36"
+  },
+  {
+    "song_id": "5x1zuX99a6XMM5KVjFy7KY",
+    "artist_id": "3DjJgcdn3LP9xhKggrNFtV",
+    "item_name": "Reality Changes",
+    "artist": "18FEARS",
+    "error": "No audio file found at temp_files/temp_audio_5x1zuX99a6XMM5KVjFy7KY.webm",
+    "timestamp": "2025-09-14 12:28:40"
+  },
+  {
+    "song_id": "3CzBdanquEZFE6VHN6Lsku",
+    "artist_id": "5kG6hlo8uHTWve3yMdUAgQ",
+    "item_name": "we were something i'll never forget",
+    "artist": ".nthngfeelsreal?",
+    "error": "No audio file found at temp_files/temp_audio_3CzBdanquEZFE6VHN6Lsku.webm",
+    "timestamp": "2025-09-14 12:28:43"
+  },
+  {
+    "song_id": "2NJeair83CrcDrvo4qxDD8",
+    "artist_id": "2qR5Lyg6J7XNFqJAGdwuup",
+    "item_name": "what do your thoughts sound like?",
+    "artist": "broimsuperman",
+    "error": "No audio file found at temp_files/temp_audio_2NJeair83CrcDrvo4qxDD8.webm",
+    "timestamp": "2025-09-14 12:28:48"
+  },
+  {
+    "song_id": "6horli6yhrSbLmKQdcYTtQ",
+    "artist_id": "6MwPCCR936cYfM1dLsGVnl",
+    "item_name": "Dead As F**k",
+    "artist": "Motionless In White",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] moEOfNp3HYM: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:28:51"
+  },
+  {
+    "song_id": "4k51blEvWIergzbXNc1LHj",
+    "artist_id": "5m8fc8h0xd4QfpJzcPI9NK",
+    "item_name": "Wala Ala Bali",
+    "artist": "Hani Mitwasi",
+    "error": "\u001b[0;31mERROR:\u001b[0m [youtube] 6-s0PzEoXyI: Sign in to confirm your age. This video may be inappropriate for some users. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2025-09-14 12:28:55"
+  },
+  {
+    "song_id": "5MGBA89UiFra2Z9QoTGySA",
+    "artist_id": "5UYpPowESfmqU3fD6fJFox",
+    "item_name": "Silvered Shadows",
+    "artist": "Kardashev",
+    "error": "No audio file found at temp_files/temp_audio_5MGBA89UiFra2Z9QoTGySA.webm",
+    "timestamp": "2025-09-14 12:28:59"
+  },
+  {
+    "song_id": "0cGJuyGIUpDHDsh23idOdD",
+    "artist_id": "23otkEMJAdZIscLXLsicOq",
+    "item_name": "The Departure (From The Leftovers)",
+    "artist": "I Aimed My Pebble",
+    "error": "No audio file found at temp_files/temp_audio_0cGJuyGIUpDHDsh23idOdD.webm",
+    "timestamp": "2025-09-14 12:29:03"
+  },
+  {
+    "song_id": "6pCczQZSRssz8Cs55qjUm6",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 1",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_6pCczQZSRssz8Cs55qjUm6.webm",
+    "timestamp": "2025-09-14 12:29:04"
+  },
+  {
+    "song_id": "5cU514wT6pC9Q95wiM7BhL",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Winterland - part 2",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_5cU514wT6pC9Q95wiM7BhL.webm",
+    "timestamp": "2025-09-14 12:29:05"
+  },
+  {
+    "song_id": "1Fyt8iWrt4vktLdL2N4GdN",
+    "artist_id": "1drDjMtBaf1rUIbEUpImav",
+    "item_name": "At the Races",
+    "artist": "Julian du Perron",
+    "error": "'mean'",
+    "timestamp": "2025-09-14 12:29:18"
+  },
+  {
+    "song_id": "62ZiNyF0xYgU5shbu57vSl",
+    "artist_id": "5gToXiJixvWtYGI1S3uGhM",
+    "item_name": "My Car Wouldn't Start",
+    "artist": "Winston Hunte",
+    "error": "No audio file found at temp_files/temp_audio_62ZiNyF0xYgU5shbu57vSl.webm",
+    "timestamp": "2025-09-14 12:29:19"
+  },
+  {
+    "song_id": "2bivRnJXU7tUFbaoeemfSO",
+    "artist_id": "2T4mLZTwr9qV5jYx0soKW4",
+    "item_name": "Wintersleep - outro",
+    "artist": "Joshua Greenwood",
+    "error": "No audio file found at temp_files/temp_audio_2bivRnJXU7tUFbaoeemfSO.webm",
+    "timestamp": "2025-09-14 12:29:20"
+  },
+  {
+    "song_id": "1IJ2K1Xb3t5lqx1g92TG9o",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Morirò d'amore - Sanremo 2003",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_1IJ2K1Xb3t5lqx1g92TG9o.webm",
+    "timestamp": "2025-09-14 12:29:22"
+  },
+  {
+    "song_id": "0HCe4WBa6Zn5n3FhNc08Fi",
+    "artist_id": "7Fu7IFXMC1dM7VsZ5QeWHJ",
+    "item_name": "Un'ora fa - Sanremo 1969",
+    "artist": "Elisabetta Maj",
+    "error": "No audio file found at temp_files/temp_audio_0HCe4WBa6Zn5n3FhNc08Fi.webm",
+    "timestamp": "2025-09-14 12:29:23"
+  },
+  {
+    "song_id": "6PMxaplv6gUpuoZ4gdUGVf",
+    "artist_id": "1RoEC0cSqlyye3aeVGtopp",
+    "item_name": "Farfalla",
+    "artist": "Superzoo",
+    "error": "No audio file found at temp_files/temp_audio_6PMxaplv6gUpuoZ4gdUGVf.webm",
+    "timestamp": "2025-09-14 12:29:27"
+  },
+  {
+    "song_id": "3j8MsPvRyL5yAwS6r1ddfP",
+    "artist_id": "0QojTjDzEw23Vv15Ovax7j",
+    "item_name": "Venere sfregiata",
+    "artist": "Railway",
+    "error": "No audio file found at temp_files/temp_audio_3j8MsPvRyL5yAwS6r1ddfP.webm",
+    "timestamp": "2025-09-14 12:29:28"
+  },
+  {
+    "song_id": "0dJKjCzO7OIO54T9vRQd1q",
+    "artist_id": "3vuKNU7lgoecqjnArUKom6",
+    "item_name": "Almeno pensami",
+    "artist": "Ron",
+    "error": "'mean'",
+    "timestamp": "2025-09-14 12:29:51"
+  },
+  {
+    "song_id": "5xkbLP0SPheqjXX4sOImpu",
+    "artist_id": "7DKYin98qUdfyCGBCl4uUl",
+    "item_name": "Fino a stare bene",
+    "artist": "Filippo Favretto",
+    "error": "No audio file found at temp_files/temp_audio_5xkbLP0SPheqjXX4sOImpu.webm",
+    "timestamp": "2025-09-14 12:29:52"
+  },
+  {
+    "song_id": "4xAHRyGlJBP4vZnI42MkaU",
+    "artist_id": "0RvVEnuKnzlPBTlzc34ElP",
+    "item_name": "سورة يس",
+    "artist": "Islam Sobhi",
+    "error": "No audio file found at temp_files/temp_audio_4xAHRyGlJBP4vZnI42MkaU.webm",
+    "timestamp": "2025-09-14 12:55:15"
+  },
+  {
+    "song_id": "6K0jtk7e0hyyIDWszp5Nlh",
+    "artist_id": "0ZEn9IRjwIBpU6ZJ19ExOx",
+    "item_name": "ما تيسر من سورة البقرة ١",
+    "artist": "عبدالرحمن مسعد",
+    "error": "No audio file found at temp_files/temp_audio_6K0jtk7e0hyyIDWszp5Nlh.webm",
+    "timestamp": "2025-09-14 12:56:45"
+  },
+  {
+    "song_id": "21r4kosHuDosz3AIdXqUGk",
+    "artist_id": "2uYWxilOVlUdk4oV9DvwqK",
+    "item_name": "Valentine, Texas",
+    "artist": "Mitski",
+    "error": "\u001b[0;31mERROR:\u001b[0m \r[download] Got error: The read operation timed out",
+    "timestamp": "2025-09-14 13:12:53"
+  }
+]

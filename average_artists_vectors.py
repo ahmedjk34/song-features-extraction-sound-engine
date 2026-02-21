@@ -19,6 +19,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+#Fetches all the artist with the minimum number of songs to average and create an artist profile 
 async def fetch_artists_with_min_songs(client, min_count=5):
     query = """
         SELECT artist_id FROM artists_vector

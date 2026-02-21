@@ -13,18 +13,9 @@ N_MFCC = 13
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
+# Load audio using librosa; returns (y, sr)
 def load_audio(audio_path: str, sr: int = 44100) -> Tuple[np.ndarray, int]:
-    """
-    Loads an audio file using librosa.
-    Args:
-        audio_path: Path to the audio file.
-        sr: Target sample rate.
-    Returns:
-        y: Audio time series.
-        sr: Sample rate.
-    Raises:
-        RuntimeError: If loading fails.
-    """
+    """Loads an audio file using librosa."""
     try:
         y, sr = librosa.load(audio_path, sr=sr, mono=True)
         return y, sr
@@ -35,15 +26,9 @@ def load_audio(audio_path: str, sr: int = 44100) -> Tuple[np.ndarray, int]:
 vggish_model = vggish()
 vggish_model.eval()
 
+# Get VGGish embedding for a segment (returns list of floats)
 def get_vggish_embedding(y_seg: np.ndarray, sr: int) -> List[float]:
-    """
-    Extracts VGGish embedding from an audio segment.
-    Args:
-        y_seg: Audio segment.
-        sr: Sample rate.
-    Returns:
-        List of floats representing the embedding.
-    """
+    """Extracts VGGish embedding from an audio segment."""
     try:
         # VGGish expects mono, 16kHz float32
         if sr != 16000:
@@ -78,17 +63,9 @@ def get_vggish_embedding(y_seg: np.ndarray, sr: int) -> List[float]:
         logging.error(f"VGGish embedding error: {e}")
         return [0.0] * VGGISH_EMBED_SIZE
 
+# Calculate a set of audio features for a segment; returns a dict
 def calculate_features(y_seg: np.ndarray, sr: int) -> Dict[str, Any]:
-    """
-    Calculates audio features for a segment.
-    Args:
-        y_seg: Audio segment.
-        sr: Sample rate.
-    Returns:
-        Dictionary of features.
-    Raises:
-        RuntimeError: If feature extraction fails.
-    """
+    """Calculates audio features for a segment."""
     try:
         bpm, _ = librosa.beat.beat_track(y=y_seg, sr=sr)
         chroma_stft = librosa.feature.chroma_stft(y=y_seg, sr=sr)
@@ -131,15 +108,9 @@ def calculate_features(y_seg: np.ndarray, sr: int) -> Dict[str, Any]:
     except Exception as e:
         raise RuntimeError(f"Feature extraction failed: {e}")
 
+# Aggregate a scalar feature across segments
 def aggregate_features(features_per_segment: List[Dict[str, Any]], key: str) -> Dict[str, float]:
-    """
-    Aggregates a feature across segments.
-    Args:
-        features_per_segment: List of feature dicts.
-        key: Feature key.
-    Returns:
-        Dict with mean, std, min, max.
-    """
+    """Aggregates a feature across segments."""
     vals = [seg[key] for seg in features_per_segment if key in seg]
     if not vals:
         return {}
@@ -150,15 +121,9 @@ def aggregate_features(features_per_segment: List[Dict[str, Any]], key: str) -> 
         "max": float(np.max(vals)),
     }
 
+# Aggregate MFCC arrays across segments
 def aggregate_mfcc(features_per_segment: List[Dict[str, Any]], key: str) -> List[Dict[str, float]]:
-    """
-    Aggregates MFCC features across segments.
-    Args:
-        features_per_segment: List of feature dicts.
-        key: MFCC key.
-    Returns:
-        List of dicts with mean and std for each MFCC coefficient.
-    """
+    """Aggregates MFCC features across segments."""
     mfcc_arrs = [seg[key] for seg in features_per_segment if key in seg]
     if not mfcc_arrs:
         return []
@@ -171,30 +136,22 @@ def aggregate_mfcc(features_per_segment: List[Dict[str, Any]], key: str) -> List
         for i in range(mfcc_arrs.shape[1])
     ]
 
+# Aggregate VGGish embeddings across segments (returns mean embedding)
 def aggregate_vggish(features_per_segment: List[Dict[str, Any]]) -> List[float]:
-    """
-    Aggregates VGGish embeddings across segments.
-    Args:
-        features_per_segment: List of feature dicts.
-    Returns:
-        Mean embedding as a list.
-    """
+    """Aggregates VGGish embeddings across segments."""
     vgg_arrs = [seg["vggish_emb"] for seg in features_per_segment if "vggish_emb" in seg]
     if not vgg_arrs:
         return [0.0] * VGGISH_EMBED_SIZE
     vgg_arrs = np.array(vgg_arrs)
     return vgg_arrs.mean(axis=0).tolist()
 
+# Extract features for entire audio and segments; returns aggregated dict
 def extract_features(
     audio_path: str,
     segment_duration: float = 10.0,
     min_rms: float = 0.01
 ) -> Dict[str, Any]:
-    """
-    Extracts audio features for the entire audio and for segments.
-    Returns a dict with aggregated statistics for each feature.
-    BPM is computed globally and for valid segments.
-    """
+    """Extracts audio features for the entire audio and for segments."""
     try:
         y, sr = load_audio(audio_path)
         duration = librosa.get_duration(y=y, sr=sr)

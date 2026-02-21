@@ -8,9 +8,8 @@ import time
 from libsql_client import create_client
 
 from dotenv import load_dotenv
-load_dotenv()  # <-- Load .env at the very top!
+load_dotenv()  
 
-# Replace with your actual client ID/secret and redirect URI
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
@@ -30,10 +29,10 @@ async def get_latest_data_from_turso():
         
         if result.rows:
             data_json = result.rows[0][0]
-            print("✅ Data retrieved from data_from_site table.")
+            print("Data retrieved from data_from_site.")
             return json.loads(data_json) if isinstance(data_json, str) else data_json
         else:
-            print("❌ No data found in data_from_site table.")
+            print("No data found in data_from_site.")
             return None
 
 async def save_songs_batch_to_database(songs_batch):
@@ -55,7 +54,7 @@ async def save_songs_batch_to_database(songs_batch):
             
             return saved_count
         except Exception as e:
-            print(f"❌ Error saving batch of songs: {e}")
+            print(f"Error saving batch of songs: {e}")
             return 0
 
 def extract_playlist_id_from_url(url):
@@ -82,17 +81,17 @@ def get_all_playlist_tracks_safe(sp, playlist_id, sleep_between=0.2):
             offset += len(items)
             total_downloaded += len(items)
             
-            print(f"     📥 Playlist {playlist_id}: Downloaded {total_downloaded} tracks so far...")
+            print(f"Playlist {playlist_id}: downloaded {total_downloaded} tracks so far.")
             
             # If playlist is very large, consider limiting
             if len(tracks) > 1000:  # Limit very large playlists
-                print(f"     ⚠️  Large playlist detected, limiting to first 1000 tracks")
+                print("Large playlist detected; limiting to first 1000 tracks.")
                 break
 
             time.sleep(sleep_between)  # Add slight rate limiting
                 
     except Exception as e:
-        print(f"❌ Error fetching tracks for playlist {playlist_id}: {e}")
+        print(f"Error fetching tracks for playlist {playlist_id}: {e}")
         return []
     
     return tracks
@@ -105,18 +104,18 @@ async def process_playlist_tracks(playlist_urls, max_playlists=None, sleep_betwe
     # Limit number of playlists if specified
     if max_playlists:
         playlist_urls = playlist_urls[:max_playlists]
-        print(f"🚦 Processing limited to first {max_playlists} playlists")
+        print(f"Processing limited to first {max_playlists} playlists")
     
-    print(f"📊 Processing {len(playlist_urls)} playlists total...")
+    print(f"Processing {len(playlist_urls)} playlists...")
     
     for i, url in enumerate(playlist_urls, 1):
         playlist_id = extract_playlist_id_from_url(url)
         
         if not playlist_id:
-            print(f"❌ Could not extract playlist ID from URL: {url}")
+            print(f"Could not extract playlist ID from URL: {url}")
             continue
             
-        print(f"\n🎵 [{i}/{len(playlist_urls)}] Processing playlist: {playlist_id}")
+        print(f"[{i}/{len(playlist_urls)}] Processing playlist: {playlist_id}")
         
         try:
             playlist_info = sp.playlist(
@@ -128,13 +127,13 @@ async def process_playlist_tracks(playlist_urls, max_playlists=None, sleep_betwe
             playlist_owner = playlist_info.get('owner', {}).get('display_name', 'Unknown Owner')
             total_tracks = playlist_info.get('tracks', {}).get('total', 0)
             
-            print(f"   📝 Playlist: '{playlist_name}' by {playlist_owner} ({total_tracks} tracks)")
+            print(f"Playlist: '{playlist_name}' by {playlist_owner} ({total_tracks} tracks)")
 
             # Get all tracks from this playlist
             tracks = get_all_playlist_tracks_safe(sp, playlist_id)
             
             if tracks:
-                print(f"   ✅ Retrieved {len(tracks)} tracks")
+                print(f"Retrieved {len(tracks)} tracks")
                 playlist_songs = []
                 
                 # Process each track
@@ -156,18 +155,18 @@ async def process_playlist_tracks(playlist_urls, max_playlists=None, sleep_betwe
                 if playlist_songs:
                     saved_count = await save_songs_batch_to_database(playlist_songs)
                     total_saved += saved_count
-                    print(f"   💾 Saved {saved_count} songs to database")
+                    print(f"Saved {saved_count} songs to database")
                     
             else:
-                print(f"   ❌ No tracks found in playlist {playlist_id}")
+                print(f"No tracks found in playlist {playlist_id}")
                 
         except Exception as e:
-            print(f"   ❌ Error processing playlist {playlist_id}: {e}")
+            print(f"Error processing playlist {playlist_id}: {e}")
             continue
         
         # Progress update
-        print(f"🕐 Progress: Finished playlist {i}/{len(playlist_urls)}")
-        print(f"---------------------------------------------")
+        print(f"Progress: finished playlist {i}/{len(playlist_urls)}")
+        print("---------------------------------------------")
         time.sleep(sleep_between_playlists)  # Add slight rate limiting between playlist downloads
     
     return all_songs_data, total_saved
@@ -187,9 +186,9 @@ async def create_table_if_not_exists():
                   artist_name TEXT NOT NULL
                 )
             """)
-            print("✅ Table songs_from_playlists ready")
+            print("Table songs_from_playlists ready")
         except Exception as e:
-            print(f"❌ Error creating table: {e}")
+            print(f"Error creating table: {e}")
 
 async def main():
     """Main function with slight rate limiting and enhanced logging"""
@@ -198,7 +197,7 @@ async def main():
     latest_data = await get_latest_data_from_turso()
     
     if latest_data and isinstance(latest_data, list):
-        print(f"\n🎯 Found {len(latest_data)} playlist URLs in database")
+        print(f"Found {len(latest_data)} playlist URLs in database")
         
         # Uncomment this line to limit processing for testing:
         # max_playlists = 20  # Process only first 20 playlists for testing
@@ -206,12 +205,12 @@ async def main():
         
         all_songs, total_saved = await process_playlist_tracks(latest_data, max_playlists)
         
-        print(f"\n📊 Final Summary:")
-        print(f"   Total unique songs found: {len(all_songs)}")
-        print(f"   Total songs saved to database: {total_saved}")
+        print("Final Summary:")
+        print(f"  Total unique songs found: {len(all_songs)}")
+        print(f"  Total songs saved to database: {total_saved}")
         
     else:
-        print("❌ No valid playlist URLs found in database.")
+        print("No valid playlist URLs found in database.")
 
 if __name__ == "__main__":
     asyncio.run(main())
